@@ -24,7 +24,7 @@ namespace Capstone.Web.DALs
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM landmark WHERE admin_approved = 1");
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM landmark WHERE admin_approved = 1",conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
