@@ -9,7 +9,7 @@ drop table landmark;
 
 create table landmark (
 id integer identity(1,1) not null,
-landmark_description varchar not null,
+landmark_description varchar(max) not null,
 name varchar(64) not null,
 admin_approved bit not null,
 longitude float not null,
