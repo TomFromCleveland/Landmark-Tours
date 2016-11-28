@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../../Content/styles.css" rel="stylesheet" />
+    <script src="../../Scripts/jquery-3.1.1.js"></script>
+    <script src="../../Scripts/scripts.js"></script>
+</head>
+<body>
+    <header>
+        <img src="../../Content/imgs/skyline.png" />
+    </header>
+    <nav>
+        <ul>
+            <li name="home">@Html.ActionLink("Home", "Index", "Home")</li>
+            <li name="viewLandmarks">@Html.ActionLink("View Landmarks","LandmarkList","Landmark")</li>
+
+        </ul>
+    </nav>
+    <section id="main_content">
+        @RenderBody()
+    </section>
+</body>
+</html>

@@ -1,17 +1,14 @@
-
 create table landmark (
-id integer not null,
---location goes here
+id integer identity(1,1) not null,
 landmark_description varchar(64) not null,
 name varchar(64) not null,
-review_pending bit not null,
-
+admin_approved bit not null,
 constraint pk_landmark_id primary key (id)
 );
 
 create table app_user (
-id integer not null,
-user_type varchar(64) not null, 
+id integer identity(1,1) not null,
+user_type varchar(64) not null,
 username varchar(64) not null,
 user_password varchar(64) not null,
 
@@ -19,6 +16,7 @@ constraint pk_app_user_id primary key (id)
 );
 
 create table review (
+id integer identity(1,1) not null,
 landmark_id integer not null,
 user_id integer not null,
 review_date date not null,
@@ -28,11 +26,12 @@ thumbs_down bit not null default 0,
 picture varchar(64) null,
 
 constraint fk_review_landmark_id foreign key (landmark_id) references landmark(id),
-constraint fk_review_user_id foreign key (user_id) references app_user(id)
+constraint fk_review_user_id foreign key (user_id) references app_user(id),
+constraint pk_review_id primary key (id)
 );
 
 create table itinerary (
-id integer not null,
+id integer identity(1,1) not null,
 user_id integer not null,
 --starting point goes here
 
