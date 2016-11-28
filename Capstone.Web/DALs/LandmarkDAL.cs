@@ -21,7 +21,7 @@ namespace Capstone.Web.DALs
             List<LandmarkModel> allLandMarks = new List<LandmarkModel>();
             try
             {
-                using(SqlConnection conn = new SqlConnection(_connectionString))
+                using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("SELECT * FROM landmark WHERE admin_approved = 1");
@@ -34,18 +34,20 @@ namespace Capstone.Web.DALs
                         {
 
 
-                           ID = Convert.ToInt32(reader["id"]),
-                        Name = Convert.ToString(reader["name"]),
-                        Description = Convert.ToString(reader["landmark_description"]),
-                        
+                            ID = Convert.ToInt32(reader["id"]),
+                            Name = Convert.ToString(reader["name"]),
+                            Description = Convert.ToString(reader["landmark_description"]),
+                            Longitude = Convert.ToDouble(reader["longitude"]),
+                            Latitude = Convert.ToDouble(reader["latitude"])
 
-                       });
+                        });
                     }
 
 
                 }
 
-            }catch(SqlException e)
+            }
+            catch (SqlException e)
             {
                 Console.WriteLine(e.Message);
             }

@@ -16,9 +16,9 @@ namespace Capstone.Web.Controllers
             this.landmarkDAL = landmarkDAL;
         }
 
-        public ActionResult Index()
+        public ActionResult LandmarkList()
         {
-            return View();
+            return View("LandmarkList", landmarkDAL.GetAllApprovedLandmarks());
         }
     }
 }
