@@ -12,6 +12,6 @@ namespace Capstone.Web.DALs
 
         List<LandmarkModel> GetAllApprovedLandmarks();
         LandmarkModel GetLandmark();
-
+        bool SubmitNewLandmark(LandmarkModel landmark);
     }
 }

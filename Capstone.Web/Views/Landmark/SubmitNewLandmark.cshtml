@@ -1,0 +1,30 @@
+﻿@model Capstone.Web.Models.LandmarkSubmissionModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SubmissionConfirmation", "Landmark",  FormMethod.Post, new { @class = "submission_form",enctype = "multipart/form-data" }))
+{
+    @Html.Label("landmarkName", "Please enter a name for your landmark")
+    @Html.TextBoxFor(m=>m.LandmarkName, new { name = "landmarkName"})
+    @Html.ValidationMessageFor(m => m.LandmarkName)
+
+    @Html.Label("description", "Please enter a brief description")
+    @Html.TextAreaFor(m => m.Description, new { name = "description"})
+    @Html.ValidationMessageFor(m => m.Description)
+
+    @Html.Label("street_address", "Street Address")
+    @Html.TextBoxFor(m => m.StreetAddress,new { name = "street_address" })
+    
+    @Html.Label("city", "City")
+    @Html.TextBoxFor(m =>m.City, new { name = "city" })
+
+    @Html.Label("state","State")
+    @Html.TextBoxFor(m=>m.State,new { name = "state" })
+
+    @Html.Label("zip", "Zipcode")
+    @Html.TextBoxFor(m=>m.zip, new { name = "zip" })
+
+
+    <button id="landmark_submit">Submit</button>
+}       

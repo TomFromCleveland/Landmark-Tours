@@ -12,3 +12,15 @@
 <script>
     generateMap(@Html.Raw(Json.Encode(Model)));
 </script>
+
+@foreach (var landmark in Model)
+{
+    <div class="landmark_list">
+        @*<a>wrap image below in link to detail page, and also the name just to keep Rami quiet</a>*@
+        <img class="thumbnail" src="@("/Content/imgs/" + landmark.ImageName)" />
+        <div class="landmark_details">
+            <p class="landmark_name">@landmark.Name</p>
+        </div>
+
+    </div>
+}
