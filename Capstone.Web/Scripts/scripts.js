@@ -107,10 +107,7 @@ $(document).ready(function () {
 
     $("#landmark_submit").click(function () {
         $('#LandmarkName').val(places[0].name);
-        $('#StreetAddress').val(places[0].address_components[0].long_name + ' ' + places[0].address_components[1].long_name);
-        $('#City').val(places[0].address_components[2].long_name);
-        $('#State').val(places[0].address_components[4].long_name);
-        $('#zip').val(places[0].address_components[6].short_name);
+        $('#Address').val(places[0].formatted_address);
         $('.submission_form').submit();
     });
 });

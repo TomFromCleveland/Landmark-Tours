@@ -13,14 +13,8 @@ namespace Capstone.Web.Models
         [Required]
         public string Description { get;set;}
         [Required]
-        public string StreetAddress { get; set; }
-        [Required]
-        public string City { get; set; }
-        [Required]
-        public string State { get; set; }
-        [Required]
-        [RegularExpression(@"\d{5}$", ErrorMessage = "Invalid Zip Code")]
-        public string zip { get; set; }
+        public string Address { get; set; }
+  
 
         
         

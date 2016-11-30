@@ -46,7 +46,7 @@ namespace Capstone.Web.Controllers
         {
             LandmarkModel landmark = new LandmarkModel();
 
-            string address = lmc.StreetAddress + ", " + lmc.City + ", " + lmc.State + " " + lmc.zip;
+            string address = lmc.Address;
             string requestUrl = string.Format("http://maps.googleapis.com/maps/api/geocode/json?address={0}&sensor=false", Uri.EscapeDataString(address));
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
             request.Method = "Get";
