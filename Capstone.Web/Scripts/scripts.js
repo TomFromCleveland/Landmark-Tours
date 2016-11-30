@@ -100,9 +100,14 @@ function newMap() {
 
 
 $(document).ready(function () {
+      $(".nav a").on("click", function () {
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+
     $("#landmark_submit").click(function () {
         $('#LandmarkName').val(places[0].name);
-        $('#StreetAddress').val(places[0].address_components[0].long_name + ' ' + places[0].address_components[1].short_name);
+        $('#StreetAddress').val(places[0].address_components[0].long_name + ' ' + places[0].address_components[1].long_name);
         $('#City').val(places[0].address_components[2].long_name);
         $('#State').val(places[0].address_components[4].long_name);
         $('#zip').val(places[0].address_components[6].short_name);
@@ -110,12 +115,6 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    $(".nav a").on("click", function () {
-        $(".nav").find(".active").removeClass("active");
-        $(this).parent().addClass("active");
-    });
-});
 
 
 
