@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "LandmarkList";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string imageSource;
 }
 
 
@@ -16,8 +17,17 @@
 @foreach (var landmark in Model)
 {
     <div class="landmark_list">
+        
+        @if (landmark.ImageName.StartsWith("https://"))
+        {
+            imageSource = landmark.ImageName;
+        }
+        else
+        {
+            imageSource = "/Content/imgs/" + landmark.ImageName;
+        }
         @*<a>wrap image below in link to detail page, and also the name just to keep Rami quiet</a>*@
-        <img class="thumbnail" src="@("/Content/imgs/" + landmark.ImageName)" />
+        <img class="thumbnail" src=@imageSource />
         <div class="landmark_details">
             <p class="landmark_name">@landmark.Name</p>
         </div>

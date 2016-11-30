@@ -36,13 +36,13 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult SubmissionConfirmation(LandmarkSubmissionModel lmc)
         {
-            LandmarkModel landmark = RetriveAddressCoordinates(lmc);
+            LandmarkModel landmark = RetrieveAddressCoordinates(lmc);
             landmarkDAL.SubmitNewLandmark(landmark);
 
             return View("SubmissionConfirmation");
         }
 
-        public LandmarkModel RetriveAddressCoordinates(LandmarkSubmissionModel lmc)
+        public LandmarkModel RetrieveAddressCoordinates(LandmarkSubmissionModel lmc)
         {
             LandmarkModel landmark = new LandmarkModel();
 
@@ -77,6 +77,21 @@ namespace Capstone.Web.Controllers
             landmark.Description = lmc.Description;
             return landmark;
 
+        }
+
+        public ActionResult UnapprovedLandmarkList()
+        {
+            return View("UnapprovedLandmarkList", landmarkDAL.GetAllUnapprovedLandmarks());
+        }
+
+        [HttpPost]
+        public ActionResult ApproveLandmarks(List<LandmarkModel> landmarksList)
+        {
+            landmarkDAL.ApproveLandmarks(landmarksList);
+
+            //Ask Josh: should this be a redirect? why or why not?
+            ModelState.Clear();
+            return View("UnapprovedLandmarkList", landmarkDAL.GetAllUnapprovedLandmarks());
         }
     }
 }
