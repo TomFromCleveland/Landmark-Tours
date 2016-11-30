@@ -110,6 +110,8 @@ $(document).ready(function () {
         $('#Address').val(places[0].formatted_address);
         $('.submission_form').submit();
     });
+
+    //$('body').height(document.documentElement.);
 });
 
 

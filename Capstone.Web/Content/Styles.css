@@ -19,3 +19,20 @@
  .pagetitle {
      text-align: center;
  }
+
+ .landmark_list {
+     width:30%;
+ }
+ 
+ .landmark_name {
+     width: 60%;
+     text-align: left;
+     padding-left: 5%;
+ }
+
+ .landmark_description {
+     width: 10%;
+     text-align: right;
+     padding-left: 5%;
+     white-space: nowrap;
+ }

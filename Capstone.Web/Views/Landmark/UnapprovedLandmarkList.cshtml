@@ -4,31 +4,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Unapproved Landmarks</h2>
+<h2 class="pagetitle">Approve Landmarks</h2>
 @Html.Partial("_Map");
 <script>
 
    generateMap(@Html.Raw(Json.Encode(Model)));
 </script>
 
+<tabe>
 
-@using (Html.BeginForm("ApproveLandmarks", "Landmark", FormMethod.Post))
-{
-
-
-    for (var i = 0; i < Model.Count; i++)
+    @using (Html.BeginForm("ApproveLandmarks", "Landmark", FormMethod.Post))
     {
-        <div class="landmark_list">
-            <div class="landmark_details">
-                <p class="landmark_name">@Model[i].Name</p>
-                <p class="landmark_description">@Model[i].Description</p>
-            </div>
-@*            Ask Josh: what does this m do??*@
-            @Html.Label("Approve")
-            @Html.Hidden("landmarksList[" + @i + "].ID", Model[i].ID)
-            @Html.CheckBox("landmarksList[" + @i + "].IsApproved", Model[i].IsApproved)
-        </div>
+
+        for (var i = 0; i < Model.Count; i++)
+        {
+            <tr class="landmark_list">
+                <div class="landmark_details">
+                    <p class="landmark_name">@Model[i].Name</p>
+                    <p class="landmark_description">@Model[i].Description</p>
+                </div>
+                @*            Ask Josh: what does this m do??*@
+                @Html.Label("Approve")
+                @Html.Hidden("landmarksList[" + @i + "].ID", Model[i].ID)
+                @Html.CheckBox("landmarksList[" + @i + "].IsApproved", Model[i].IsApproved)
+            </tr>
+        }
+
+        <button>Submit Approval(s)</button>
     }
 
-    <button>Submit Approval(s)</button>
-}
+</tabe>
