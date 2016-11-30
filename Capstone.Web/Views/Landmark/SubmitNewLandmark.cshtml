@@ -3,38 +3,67 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Landmark</h2>
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-@Html.Partial("_Map");
+<h2 class="pagetitle">Add a Landmark</h2>
 
-<script>
-    var places;
-    addLandmark();
-  
-</script>
+<div class="container">
+    <div class="row">
+        <div class="column-sm-6">
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+            @Html.Partial("_Map")
+        </div>
+        <br />
+        <br />
 
-@using (Html.BeginForm("SubmissionConfirmation", "Landmark",  FormMethod.Post, new { @class = "submission_form",enctype = "multipart/form-data" }))
-{
-    
-    @Html.HiddenFor(m=>m.LandmarkName, new { name = "landmarkName"})
-    
+        <script>
+            var places;
+            addLandmark();
+        </script>
+        
 
-    @Html.Label("description", "Please enter a brief description")
-    @Html.TextAreaFor(m => m.Description, new { name = "description"})
-    @Html.ValidationMessageFor(m => m.Description)
+        <div class="column-sm-6">
+            @using (Html.BeginForm("SubmissionConfirmation", "Landmark", FormMethod.Post, new { @class = "submission_form", enctype = "multipart/form-data" }))
+            {
+                <form>
+                    @*To move 'Search Box' on to form side
+                        <div class="form-group">
+                            <label for="inputLocation">Search</label>
+                            <input type="text" class="form-control controls" id="location pac-input" aria-describedby="searchLocation" placeholder="Search for a Location">
+                            <small id="locationHelp" class="form-text text-muted">Please enter the name or address of a landmark you would like to add.</small>
+                        </div>*@
+                    <div class="form-group">
+                        <label for="inputLocation">Description</label>
+                        <textarea class="form-control" id="location" rows="3" placeholder="Enter Description of Landmark"></textarea>
+                        <small id="descriptionHelp" class="form-text text-muted">Please enter a brief description of the landmark.</small>
 
-    
-    @Html.HiddenFor(m => m.StreetAddress,new { name = "street_address" })
-    
-    
-    @Html.HiddenFor(m =>m.City, new { name = "city" })
 
-    
-    @Html.HiddenFor(m=>m.State,new { name = "state" })
+                        @Html.ValidationMessageFor(m => m.Description)
+                    </div>
+                    <button id="landmark_submit" type="submit" class="btn btn-primary">Submit</button>
 
-    
-    @Html.HiddenFor(m=>m.zip, new { name = "zip" })
+                    @* To upload photo:
+                        <div class="form-group">
+                            <label for="exampleInputFile">File input</label>
+                            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                        </div>*@
+                    @Html.HiddenFor(m => m.LandmarkName, new { name = "landmarkName" })
 
 
-    <button id="landmark_submit">Submit</button>
-}       
+                    @Html.HiddenFor(m => m.StreetAddress, new { name = "street_address" })
+
+
+                    @Html.HiddenFor(m => m.City, new { name = "city" })
+
+
+                    @Html.HiddenFor(m => m.State, new { name = "state" })
+
+
+                    @Html.HiddenFor(m => m.zip, new { name = "zip" })
+                </form>
+            }
+        </div>
+
+    </div>
+</div>
+
+
