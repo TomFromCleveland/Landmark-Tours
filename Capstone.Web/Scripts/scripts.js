@@ -6,6 +6,8 @@
     }
 
     var map = newMap();
+    //var origin = new google.maps.LatLng(pos.Lat, pos.Lng);
+
     var infowindow = new google.maps.InfoWindow();
 
     var marker, i;
@@ -22,6 +24,16 @@
                 infowindow.open(map, marker);
             }
         })(marker, i));
+        //var service = new google.mpas.DistanceMatrixService();
+        //dist.push(service.getDistanceMatrix(
+
+        //{
+        //    origins: [origin],
+        //    destinations:[marker.pos],
+        //    travelMode: 'DRIVING'
+
+        //}, callback));
+
     }
 
 
@@ -90,36 +102,37 @@ function addLandmark() {
 }
 
 function newMap() {
-    var map=new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: new google.maps.LatLng(41.500473, -81.693750),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
+    //if (navigator.geolocation) {
+    //    var location_timeout = setTimeout("geolocFail()", 10000);
+    //    navigator.geolocation.getCurrentPosition(function (position) {
+    //        clearTimeout(location_timeout);
+    //        pos = {
+    //            lat: position.coords.latitude,
+    //            lng: position.coords.longitude
+    //        };
 
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-        }, function () {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
+
+    //        map.setCenter(pos);
+    //    }, function geolocFail() {
+    //        handleLocationError(true, infoWindow, map.getCenter());
+    //    });
+    //} else {
+    //    // Browser doesn't support Geolocation
+    //    handleLocationError(false, infoWindow, map.getCenter());
+    //}
     return map;
 }
 
 
 
 $(document).ready(function () {
-      $(".nav a").on("click", function () {
+    $(".nav a").on("click", function () {
         $(".nav").find(".active").removeClass("active");
         $(this).parent().addClass("active");
     });
