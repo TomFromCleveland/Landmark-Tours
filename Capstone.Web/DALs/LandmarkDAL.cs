@@ -37,7 +37,8 @@ namespace Capstone.Web.DALs
                             Name = Convert.ToString(reader["name"]),
                             Description = Convert.ToString(reader["landmark_description"]),
                             Longitude = Convert.ToDouble(reader["longitude"]),
-                            Latitude = Convert.ToDouble(reader["latitude"])
+                            Latitude = Convert.ToDouble(reader["latitude"]),
+                            GooglePlacesID=Convert.ToString(reader["google_api_placeID"])
                         });
                     }
                 }
@@ -64,13 +65,13 @@ namespace Capstone.Web.DALs
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO landmark ( admin_approved, image_name, landmark_description, name, longitude, latitude) VALUES (0, @imageName, @landmarkDescription, @name, @longitude, @latitude )", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO landmark ( admin_approved, image_name, landmark_description, name, longitude, latitude, google_api_placeID) VALUES (0, @imageName, @landmarkDescription, @name, @longitude, @latitude, @placeID )", conn);
                     cmd.Parameters.AddWithValue("@imageName", landmark.ImageName);
                     cmd.Parameters.AddWithValue("@landmarkDescription", landmark.Description);
                     cmd.Parameters.AddWithValue("@name", landmark.Name);
                     cmd.Parameters.AddWithValue("@longitude", landmark.Longitude);
                     cmd.Parameters.AddWithValue("@latitude", landmark.Latitude);
-
+                    cmd.Parameters.AddWithValue("@placeID", landmark.GooglePlacesID);
                     submissionSuccessful = cmd.ExecuteNonQuery();
                 }
             }
@@ -102,7 +103,8 @@ namespace Capstone.Web.DALs
                             Name = Convert.ToString(reader["name"]),
                             Description = Convert.ToString(reader["landmark_description"]),
                             Longitude = Convert.ToDouble(reader["longitude"]),
-                            Latitude = Convert.ToDouble(reader["latitude"])
+                            Latitude = Convert.ToDouble(reader["latitude"]),
+                            GooglePlacesID = Convert.ToString(reader["google_api_placeID"])
                         });
                     }
                 }

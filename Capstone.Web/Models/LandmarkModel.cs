@@ -25,5 +25,8 @@ namespace Capstone.Web.Models
 
         [Required]
         public double Latitude { get; set; }
+
+        [Required]
+        public string GooglePlacesID { get; set; }
     }
 }

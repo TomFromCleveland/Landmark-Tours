@@ -13,6 +13,8 @@ name varchar(64) not null,
 admin_approved bit not null,
 longitude float not null,
 latitude float not null,
+google_api_reference varchar(8000) not null,
+constraint uc_API_Reference UNIQUE (google_api_reference),
 constraint pk_landmark_id primary key (id)
 );
 

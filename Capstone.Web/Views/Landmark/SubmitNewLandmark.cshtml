@@ -50,7 +50,7 @@
 
 
                     @Html.HiddenFor(m => m.Address, new { name = "street_address" })
-
+                    @Html.HiddenFor(m=>m.GooglePlacesID, new { name="placeID"})
                 </div>
                 <button id="landmark_submit" type="submit" class="btn btn-primary">Submit</button>
 

@@ -37,9 +37,9 @@ namespace Capstone.Web.Controllers
         public ActionResult SubmissionConfirmation(LandmarkSubmissionModel lmc)
         {
             LandmarkModel landmark = RetrieveAddressCoordinates(lmc);
-            landmarkDAL.SubmitNewLandmark(landmark);
+           lmc.SubmissionSuccessful= landmarkDAL.SubmitNewLandmark(landmark);
 
-            return View("SubmissionConfirmation");
+            return View("SubmissionConfirmation", lmc);
         }
 
         public LandmarkModel RetrieveAddressCoordinates(LandmarkSubmissionModel lmc)
@@ -75,6 +75,7 @@ namespace Capstone.Web.Controllers
             string imgSrc = "https://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + landmark.Latitude + "," + landmark.Longitude + "&heading=151.78&pitch=-0.76&key=" + "AIzaSyDu0VhcsrEx_f3CdQFVOC_Sw3r29lWBnYA";
             landmark.ImageName = imgSrc;
             landmark.Description = lmc.Description;
+            landmark.GooglePlacesID = lmc.GooglePlacesID;
             return landmark;
 
         }

@@ -90,11 +90,30 @@ function addLandmark() {
 }
 
 function newMap() {
-    return new google.maps.Map(document.getElementById('map'), {
+    var map=new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: new google.maps.LatLng(41.500473, -81.693750),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            map.setCenter(pos);
+        }, function () {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+    return map;
 }
 
 
@@ -108,10 +127,18 @@ $(document).ready(function () {
     $("#landmark_submit").click(function () {
         $('#LandmarkName').val(places[0].name);
         $('#Address').val(places[0].formatted_address);
+        $('#GooglePlacesID').val(places[0].place_id);
         $('.submission_form').submit();
     });
+
+
 });
 
 
-
+function redirect() {
+    var url = $("#RedirectTo").val();
+    window.setTimeout(function () {
+        window.location.href = url;
+    }, 5000);
+}
 
