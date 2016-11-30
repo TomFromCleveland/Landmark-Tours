@@ -97,6 +97,8 @@ function newMap() {
     });
 }
 
+
+
 $(document).ready(function () {
     $("#landmark_submit").click(function () {
         $('#LandmarkName').val(places[0].name);
@@ -106,7 +108,14 @@ $(document).ready(function () {
         $('#zip').val(places[0].address_components[6].short_name);
         $('.submission_form').submit();
     });
-
-
-
 });
+
+$(document).ready(function () {
+    $(".nav a").on("click", function () {
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+});
+
+
+

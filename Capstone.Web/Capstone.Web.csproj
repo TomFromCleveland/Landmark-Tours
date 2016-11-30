@@ -114,10 +114,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\imgs\BorderlineCafe.jpg" />
+    <Content Include="Content\imgs\Carousel-cavs-raptors.jpg" />
+    <Content Include="Content\imgs\Carousel-Cleveland-the-Beautiful.jpg" />
+    <Content Include="Content\imgs\Carousel-Indians1BIG-1024x768.jpg" />
+    <Content Include="Content\imgs\Carousel-Skyline.jpg" />
     <Content Include="Content\imgs\ChristmasStoryHouse.jpg" />
     <Content Include="Content\imgs\FranklinCastle.jpg" />
     <Content Include="Content\imgs\GreatLakesBrewingCompany.png" />
     <Content Include="Content\imgs\LeaguePark.jpg" />
+    <Content Include="Content\imgs\Logo.png" />
     <Content Include="Content\imgs\RockAndRollHallOfFame.jpg" />
     <Content Include="Content\imgs\skyline.png" />
     <Content Include="Content\imgs\WestSideMarket.jpg" />

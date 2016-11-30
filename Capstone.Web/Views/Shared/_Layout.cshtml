@@ -17,15 +17,24 @@
     <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.js "></script>
 </head>
 <body>
-    <header>
-        <img src="../../Content/imgs/skyline.png" />
-    </header>
-    <nav>
-        <ul>
-            <li name="home">@Html.ActionLink("Home", "Index", "Home")</li>
-            <li name="viewLandmarks">@Html.ActionLink("View Landmarks","LandmarkList","Landmark")</li>
-            <li name="submitLandmark">@Html.ActionLink("Submit a Landmark","SubmitNewLandmark","Landmark")</li>
-        </ul>
+    @*<div class="page-header">
+            <header>
+                <img src="../../Content/imgs/skyline.png" />
+                <img src="~/Content/imgs/Logo.png" />
+            </header>
+        </div>*@
+
+    <nav class="navbar navbar-inverse">
+        <img src="~/Content/imgs/Logo.png" height="150" />
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li name="home">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li name="addLandmark">@Html.ActionLink("Add Landmark", "SubmitNewLandmark", "Landmark")</li>
+                <li name="approveLandmark">@Html.ActionLink("Approve Landmark", "UnapprovedLandmarkList", "Landmark")</li>
+                <li name="viewLandmarks">@Html.ActionLink("View Landmarks", "LandmarkList", "Landmark")</li>
+                <li name="createItinerary">@Html.ActionLink("Create Itinerary", "CreateItinerary", "Itinerary")</li>
+            </ul>
+        </div>
     </nav>
     <section id="main_content">
         @RenderBody()
