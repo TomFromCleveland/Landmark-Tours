@@ -114,7 +114,7 @@ namespace Capstone.Web.DALs
             return unapprovedLandMarks;
         }
 
-        public bool ApproveLandmark(LandmarkModel landmark)
+        public bool ApproveLandmarks(List<LandmarkModel> landmarks)
         {
             int approvalSucessful = 0;
 
@@ -123,18 +123,26 @@ namespace Capstone.Web.DALs
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("UPDATE landmark SET admin_approved = 1 WHERE landmark.name = @landmarkName", conn);
-                    cmd.Parameters.AddWithValue("@landmarkName", landmark.Name);
 
-                    approvalSucessful = cmd.ExecuteNonQuery();
+                    foreach (var landmark in landmarks)
+                    {
+                        SqlCommand cmd = new SqlCommand("UPDATE landmark SET admin_approved = @landmarkIsApproved WHERE landmark.id = @landmarkID", conn);
+                        cmd.Parameters.AddWithValue("@landmarkID", landmark.ID);
+                        cmd.Parameters.AddWithValue("landmarkIsApproved", landmark.IsApproved);
+
+                        if (cmd.ExecuteNonQuery() != 0)
+                        {
+                            approvalSucessful++;
+                        }
+                    }
                 }
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e.Message);
             }
-
-            return (approvalSucessful != 0);
+            //Ask Josh: is it a problem that we don't confirm a partial success?
+            return (approvalSucessful == landmarks.Count);
         }
     }
 }

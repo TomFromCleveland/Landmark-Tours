@@ -12,6 +12,8 @@ namespace Capstone.Web.Models
                 
         public string ImageName { get; set; }
 
+        public bool IsApproved { get; set; } = false;
+
         [Required]
         public string Description { get; set; }
 
