@@ -4,13 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="http://maps.google.com/maps/api/js?key=AIzaSyDu0VhcsrEx_f3CdQFVOC_Sw3r29lWBnYA"
-        type="text/javascript"></script>
+
 
 <h2>LandmarkList</h2>
-<div id="map"  style="width: 500px; height: 400px;"></div>
+@Html.Partial("_Map");
 <script>
-    generateMap(@Html.Raw(Json.Encode(Model)));
+   
+   generateMap(@Html.Raw(Json.Encode(Model)));
 </script>
 
 @foreach (var landmark in Model)
