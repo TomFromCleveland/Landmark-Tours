@@ -166,6 +166,7 @@
     <Content Include="Views\Landmark\LandmarkList.cshtml" />
     <Content Include="Views\Landmark\SubmitNewLandmark.cshtml" />
     <Content Include="Views\Landmark\SubmissionConfirmation.cshtml" />
+    <Content Include="Views\Landmark\UnapprovedLandmarkList.cshtml" />
     <Content Include="Views\Shared\_Map.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

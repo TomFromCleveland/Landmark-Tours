@@ -51,6 +51,7 @@ namespace Capstone.Web.DALs
 
         public LandmarkModel GetLandmark()
         {
+            //to be used for detail page?
             throw new NotImplementedException();
         }
 
@@ -79,6 +80,61 @@ namespace Capstone.Web.DALs
             }
 
             return (submissionSuccessful != 0);
+        }
+        public List<LandmarkModel> GetAllUnapprovedLandmarks()
+        {
+            List<LandmarkModel> unapprovedLandMarks = new List<LandmarkModel>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM landmark WHERE admin_approved = 0", conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        unapprovedLandMarks.Add(new LandmarkModel()
+                        {
+                            ID = Convert.ToInt32(reader["id"]),
+                            ImageName = Convert.ToString(reader["image_name"]),
+                            Name = Convert.ToString(reader["name"]),
+                            Description = Convert.ToString(reader["landmark_description"]),
+                            Longitude = Convert.ToDouble(reader["longitude"]),
+                            Latitude = Convert.ToDouble(reader["latitude"])
+                        });
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return unapprovedLandMarks;
+        }
+
+        public bool ApproveLandmark(LandmarkModel landmark)
+        {
+            int approvalSucessful = 0;
+
+            try 
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE landmark SET admin_approved = 1 WHERE landmark.name = @landmarkName", conn);
+                    cmd.Parameters.AddWithValue("@landmarkName", landmark.Name);
+
+                    approvalSucessful = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return (approvalSucessful != 0);
         }
     }
 }
