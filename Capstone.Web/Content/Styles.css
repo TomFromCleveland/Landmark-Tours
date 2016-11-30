@@ -36,3 +36,26 @@
      padding-left: 5%;
      white-space: nowrap;
  }
+
+ .approve_list div {
+     width:100%;
+ }
+
+ .landmark_name_pending {
+     text-align: left;
+     padding: 0%;
+     margin: 0%;
+ }
+
+ .landmark_description_pending {
+     
+ }
+
+ .approve_tab {
+     text-align:left;
+ }
+
+ #submit_approval_button {
+     margin: 0 auto;
+     float: left;
+ }
