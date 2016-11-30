@@ -86,7 +86,7 @@ function addLandmark() {
         map.fitBounds(bounds);
         return places;
     });
-    
+
 }
 
 function newMap() {
@@ -132,6 +132,7 @@ $(document).ready(function () {
     });
 
 
+
 });
 
 
@@ -141,4 +142,3 @@ function redirect() {
         window.location.href = url;
     }, 5000);
 }
-

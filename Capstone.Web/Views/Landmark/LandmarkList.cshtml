@@ -5,39 +5,49 @@
     string imageSource;
 }
 
-
-
 <h2 class="pagetitle">Landmark List</h2>
 
-@Html.Partial("_Map")
-<br />
-<br />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            @Html.Partial("_Map")
 
-<script>
-   generateMap(@Html.Raw(Json.Encode(Model)));
-</script>
-
-<p> TEST BEFORE LOOP </p>
-
-@foreach (var landmark in Model)
-{
-
-    <div class="landmark_list">
-        
-        @if (landmark.ImageName.StartsWith("https://"))
-        {
-            imageSource = landmark.ImageName;
-        }
-        else
-        {
-            imageSource = "/Content/imgs/" + landmark.ImageName;
-        }
-        @*<a>wrap image below in link to detail page, and also the name just to keep Rami quiet</a>*@
-        <img class="thumbnail" src=@imageSource />
-        <div class="landmark_details">
-            <p class="landmark_name">@landmark.Name</p>
+            <script>
+                generateMap(@Html.Raw(Json.Encode(Model)));
+            </script>
         </div>
 
-    </div>
+        <div class="col-sm-6 table-responsive table-bordered">
+            <table>
 
-}
+                @foreach (var landmark in Model)
+            {
+                    <tr>
+                        <td class="landmark_list">
+
+                            @if (landmark.ImageName.StartsWith("https://"))
+                            {
+                                imageSource = landmark.ImageName;
+                            }
+                            else
+                            {
+                                imageSource = "/Content/imgs/" + landmark.ImageName;
+                            }
+
+                            @*<a>wrap image below in link to detail page, and also the name just to keep Rami quiet</a>*@
+                            <img class="img-responsive img-thumbnail" src=@imageSource />
+                        </td>
+                        <td class="landmark_name">
+                            @landmark.Name
+                        </td>
+
+                        <td class="landmark_distance">
+                            1.0 mi
+                            @*Add distance reference*@
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
