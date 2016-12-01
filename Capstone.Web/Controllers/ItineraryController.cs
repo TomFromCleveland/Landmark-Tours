@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone.Web.DALs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,9 @@ namespace Capstone.Web.Controllers
     public class ItineraryController : Controller
     {
         // GET: Itinerary
-        public ActionResult Index()
+        public ActionResult ViewItineraries()
         {
-            return View();
+            return View("ViewItineraries", ItineraryDAL.GetAllItineraries());
         }
     }
 }
