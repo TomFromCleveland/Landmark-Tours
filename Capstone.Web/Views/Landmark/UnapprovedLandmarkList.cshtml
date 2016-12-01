@@ -3,12 +3,13 @@
     ViewBag.Title = "UnapprovedLandmarkList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2 class="pagetitle">Approve Landmarks</h2>
-
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm-6">
+        <h2 class="pagetitle">Approve Landmarks</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 well well-lg">
             @Html.Partial("_Map")
             <script>
 
@@ -16,32 +17,30 @@
             </script>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6  well">
             @using (Html.BeginForm("ApproveLandmarks", "Landmark", FormMethod.Post))
             {
                 for (var i = 0; i < Model.Count; i++)
                 {
-                    <div class="row">
-                        <div class="approve_list">
+                    <div class="row approve-list">
+                        <div class="col-md-9 landmark_details_pending">
+                            <br />
+                            <h4 class="landmark_name_pending">@Model[i].Name</h4>
+                            <br />
+                            <p class="landmark_description_pending">@Model[i].Description</p>
+                        </div>
 
-                            <div class="col-sm-9 landmark_details_pending">
-                                <br />
-                                <h4 class="landmark_name_pending">@Model[i].Name</h4>
-                                <br />
-                                <p class="landmark_description_pending">@Model[i].Description</p>
-                            </div>
-
-                            <div class="col-sm-3 approve_tab">
-                                @Html.Label("Approve")
-                                @Html.Hidden("landmarksList[" + @i + "].ID", Model[i].ID)
-                                @Html.CheckBox("landmarksList[" + @i + "].IsApproved", Model[i].IsApproved)
-                            </div>
-
+                        <div class="col-md-3 checkbox checkbox-inline approve_tab">
+                            @Html.Label("Approve")
+                            @Html.Hidden("landmarksList[" + @i + "].ID", Model[i].ID)
+                            <br />
+                            @Html.CheckBox("landmarksList[" + @i + "].IsApproved", Model[i].IsApproved)
                         </div>
                     </div>
                 }
 
-            <button id="submit_approval_button">Submit Approval(s)</button>
+                <button id="submit_approval_button">Submit Approval(s)</button>
             }
         </div>
     </div>
+</div>

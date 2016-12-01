@@ -16,10 +16,13 @@ namespace Capstone.Web.Controllers
         {
             this.itineraryDAL = itineraryDAL;
         }
+
         // GET: Itinerary
         public ActionResult ViewItineraries( UserModel user)
         {
             return View("ViewItineraries", itineraryDAL.GetAllItineraries(user));
         }
+
+
     }
 }
