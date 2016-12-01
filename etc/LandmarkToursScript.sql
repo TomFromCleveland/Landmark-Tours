@@ -47,8 +47,8 @@ id integer identity(1,1) not null,
 name varchar(64) not null,
 itinerary_date date not null,
 user_id integer not null,
-startingLatitude integer not null,
-startingLongitude integer not null
+starting_latitude integer not null,
+starting_longitude integer not null
 
 constraint pk_itinerary_id primary key (id),
 constraint fk_itinerary_user_id foreign key (user_id) references app_user(id)
@@ -74,7 +74,7 @@ INSERT INTO landmark ( image_name, landmark_description, name, admin_approved, l
 INSERT INTO app_user (user_type, username, user_password) VALUES ('city visitor', 'visitor', 'password');
 INSERT INTO app_user (user_type, username, user_password) VALUES ('city administrator', 'admin', 'password');
 
-INSERT INTO itinerary (user_id, name, itinerary_date, startingLatitude, startingLongitude) VALUES (1, 'itinerary', '20161201', -81.687451, 41.468737);
+INSERT INTO itinerary (user_id, name, itinerary_date, starting_latitude, starting_longitude) VALUES (1, 'itinerary', '20161201', -81.687451, 41.468737);
 
 INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 2);
 INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 3);

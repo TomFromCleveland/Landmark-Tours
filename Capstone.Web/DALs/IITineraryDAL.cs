@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Capstone.Web.DALs
 {
-    interface IItineraryDAL
+    public interface IItineraryDAL
     {
         bool CreateNewItinerary(ItineraryModel itinerary);
         bool DeleteItinerary(ItineraryModel itinerary);
+        List<ItineraryModel> GetAllItineraries(UserModel user);
     }
 }
