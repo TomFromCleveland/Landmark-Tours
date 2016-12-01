@@ -13,8 +13,8 @@
             @Html.Partial("_Map")
 
             <script>
-                //var pos;
-                //var dist;
+                var pos;
+                var dist=[];
                 generateMap(@Html.Raw(Json.Encode(Model)));
             </script>
         </div>
@@ -44,7 +44,7 @@
                         </td>
 
                         <td class="landmark_distance">
-                            1.0 mi
+
                             @*Add distance reference*@
                         </td>
                     </tr>
