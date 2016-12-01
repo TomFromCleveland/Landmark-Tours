@@ -27,6 +27,12 @@ namespace Capstone.Web.Controllers
             return View("LandmarkList", landmarkDAL.GetAllApprovedLandmarks());
         }
 
+        public ActionResult LandmarkDetail(int landmarkID)
+        {
+            LandmarkModel landmark = landmarkDAL.GetLandmark(landmarkID);
+            return View("LandmarkDetail", landmark);
+        }
+
         public ActionResult SubmitNewLandmark()
         {
             return View("SubmitNewLandmark", new LandmarkSubmissionModel());

@@ -38,7 +38,7 @@ namespace Capstone.Web.DALs
                             Description = Convert.ToString(reader["landmark_description"]),
                             Longitude = Convert.ToDouble(reader["longitude"]),
                             Latitude = Convert.ToDouble(reader["latitude"]),
-                            GooglePlacesID=Convert.ToString(reader["google_api_placeID"])
+                            GooglePlacesID = Convert.ToString(reader["google_api_placeID"])
                         });
                     }
                 }
@@ -50,22 +50,56 @@ namespace Capstone.Web.DALs
             return allLandMarks;
         }
 
-        public LandmarkModel GetLandmark()
+        public LandmarkModel GetLandmark(int landmarkID)
         {
-            //to be used for detail page?
-            throw new NotImplementedException();
-        }
+            LandmarkModel landmark = new LandmarkModel();
 
-        public bool SubmitNewLandmark(LandmarkModel landmark)
-        {
-            int submissionSuccessful = 0;
-                        
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO landmark ( admin_approved, image_name, landmark_description, name, longitude, latitude, google_api_placeID) VALUES (0, @imageName, @landmarkDescription, @name, @longitude, @latitude, @placeID )", conn);
+
+                    SqlCommand cmd = new SqlCommand(@"SELECT * 
+                                                      FROM landmark
+                                                      WHERE landmark.id = @landmarkID", conn);
+
+                    cmd.Parameters.AddWithValue("@landmarkID", landmarkID);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        landmark.Description = Convert.ToString(reader["landmark_description"]);
+                        landmark.GooglePlacesID = Convert.ToString(reader["google_api_placeID"]);
+                        landmark.ImageName = Convert.ToString(reader["image_name"]);
+                        landmark.IsApproved = Convert.ToBoolean(reader["admin_approved"]);
+                        landmark.Latitude = Convert.ToDouble(reader["latitude"]);
+                        landmark.Longitude = Convert.ToDouble(reader["longitude"]);
+                        landmark.Name = Convert.ToString(reader["name"]);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return landmark;
+        }
+
+        public bool SubmitNewLandmark(LandmarkModel landmark)
+        {
+            int submissionSuccessful = 0;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO landmark ( admin_approved, image_name, landmark_description, name, longitude, latitude, google_api_placeID) 
+                                                      VALUES (0, @imageName, @landmarkDescription, @name, @longitude, @latitude, @placeID )", conn);
+
                     cmd.Parameters.AddWithValue("@imageName", landmark.ImageName);
                     cmd.Parameters.AddWithValue("@landmarkDescription", landmark.Description);
                     cmd.Parameters.AddWithValue("@name", landmark.Name);
@@ -120,7 +154,7 @@ namespace Capstone.Web.DALs
         {
             int approvalSucessful = 0;
 
-            try 
+            try
             {
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
@@ -128,7 +162,10 @@ namespace Capstone.Web.DALs
 
                     foreach (var landmark in landmarks)
                     {
-                        SqlCommand cmd = new SqlCommand("UPDATE landmark SET admin_approved = @landmarkIsApproved WHERE landmark.id = @landmarkID", conn);
+                        SqlCommand cmd = new SqlCommand(@"UPDATE landmark 
+                                                          SET admin_approved = @landmarkIsApproved 
+                                                          WHERE landmark.id = @landmarkID", conn);
+
                         cmd.Parameters.AddWithValue("@landmarkID", landmark.ID);
                         cmd.Parameters.AddWithValue("landmarkIsApproved", landmark.IsApproved);
 

@@ -147,8 +147,5 @@ namespace Capstone.Web.DALs
 
             return (itineraryDeletion && (linkTableDeletions == itinerary.LandmarkList.Count));
         }
-
-
-
     }
 }

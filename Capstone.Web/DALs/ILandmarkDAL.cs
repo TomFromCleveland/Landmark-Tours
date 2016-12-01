@@ -11,7 +11,7 @@ namespace Capstone.Web.DALs
     {
 
         List<LandmarkModel> GetAllApprovedLandmarks();
-        LandmarkModel GetLandmark();
+        LandmarkModel GetLandmark(int landmarkID);
         bool SubmitNewLandmark(LandmarkModel landmark);
         List<LandmarkModel> GetAllUnapprovedLandmarks();
         bool ApproveLandmarks(List<LandmarkModel> landmark);

@@ -24,7 +24,7 @@
 
                 @foreach (var landmark in Model)
             {
-                    <tr>
+                    <tr onclick="location.href = '@Url.Action("LandmarkDetail", "Landmark", new { landmarkID = landmark.ID })'">
                         <td class="landmark_list">
 
                             @if (landmark.ImageName.StartsWith("https://"))
