@@ -59,3 +59,13 @@
      margin: 0 auto;
      float: left;
  }
+
+ #create_itin_button {
+     text-align:center;
+ }
+
+ .center-table
+{
+  margin: 0 auto !important;
+  float: none !important;
+}

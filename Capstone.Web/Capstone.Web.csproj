@@ -153,7 +153,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItineraryController.cs" />
     <Compile Include="Controllers\LandmarkController.cs" />
-    <Compile Include="DALs\IITineraryDAL.cs" />
+    <Compile Include="DALs\IItineraryDAL.cs" />
     <Compile Include="DALs\ItineraryDAL.cs" />
     <Compile Include="DALs\LandmarkDAL.cs" />
     <Compile Include="Global.asax.cs">
