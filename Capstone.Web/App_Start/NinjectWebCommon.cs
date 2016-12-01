@@ -64,7 +64,7 @@ namespace Capstone.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<ILandmarkDAL>().To<LandmarkDAL>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["LandmarkTours"].ConnectionString);
-            kernel.Bind<IITineraryDAL>().To<ItineraryDAL>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["LandmarkTours"].ConnectionString);
+            kernel.Bind<IItineraryDAL>().To<ItineraryDAL>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["LandmarkTours"].ConnectionString);
         }
     }
 }
