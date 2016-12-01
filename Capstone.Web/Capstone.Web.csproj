@@ -151,14 +151,19 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItineraryController.cs" />
     <Compile Include="Controllers\LandmarkController.cs" />
+    <Compile Include="DALs\IITineraryDAL.cs" />
+    <Compile Include="DALs\ItineraryDAL.cs" />
     <Compile Include="DALs\LandmarkDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DALs\ILandmarkDAL.cs" />
+    <Compile Include="Models\ItineraryModel.cs" />
     <Compile Include="Models\LandmarkModel.cs" />
     <Compile Include="Models\LandmarkSubmissionModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +178,7 @@
     <Content Include="Views\Landmark\SubmissionConfirmation.cshtml" />
     <Content Include="Views\Landmark\UnapprovedLandmarkList.cshtml" />
     <Content Include="Views\Shared\_Map.cshtml" />
+    <Content Include="Views\Itinerary\ViewItineraries.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

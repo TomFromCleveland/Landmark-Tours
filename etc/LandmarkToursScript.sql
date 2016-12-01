@@ -13,7 +13,7 @@ name varchar(64) not null,
 admin_approved bit not null,
 longitude float not null,
 latitude float not null,
-google_api_placeID varchar(8000) not null,
+google_api_placeID varchar(900) not null,
 constraint uc_API_Reference UNIQUE (google_api_placeID),
 constraint pk_landmark_id primary key (id)
 );
@@ -44,8 +44,11 @@ constraint pk_review_id primary key (id)
 
 create table itinerary (
 id integer identity(1,1) not null,
+name varchar(64) not null,
+itinerary_date date not null,
 user_id integer not null,
---starting point goes here
+starting_latitude integer not null,
+starting_longitude integer not null
 
 constraint pk_itinerary_id primary key (id),
 constraint fk_itinerary_user_id foreign key (user_id) references app_user(id)
@@ -67,3 +70,15 @@ INSERT INTO landmark ( image_name, landmark_description, name, admin_approved, l
 INSERT INTO landmark ( image_name, landmark_description, name, admin_approved, longitude, latitude, google_api_placeID) VALUES ('LeaguePark.jpg', 'League Park was a baseball park located in Cleveland, Ohio, United States. It is situated at the northeast corner of E. 66th Street and Lexington Avenue in the Hough neighborhood. It was built in 1891 as a wood structure and rebuilt using concrete and steel in 1910. The park was home to a number of professional sports teams, most notably the Cleveland Indians of Major League Baseball. League Park was first home to the Cleveland Spiders of the National League from 1891 to 1899 and of the Cleveland Lake Shores of the Western League, the minor league predecessor to the Indians, in 1900. In the late 1940s, the park was also the home field of the Cleveland Buckeyes of the Negro American League.', 'League Park', 1, -81.644167, 41.511389,'ChIJwTmNCbT7MIgRC-mBKTnsBmI');
 INSERT INTO landmark ( image_name, landmark_description, name, admin_approved, longitude, latitude, google_api_placeID) VALUES ('GreatLakesBrewingCompany.png', 'Great Lakes Brewing Company is a brewery and brewpub in Cleveland, Ohio. The first brewpub and microbrewery in the state, Great Lakes Brewing has been named important both to Cleveland''s local identity, as well one of the initial forces behind the revival of the Ohio City neighborhood on the near West Side. In 2015, it was the 21st-largest craft brewery by volume and the 28th-largest overall brewery in the United States. The company was established in 1988 by brothers Patrick and Daniel Conway, both St. Edward High School graduates, in Cleveland''s Ohio City neighborhood, located near St. Ignatius High School and the West Side Market. The brewpub and restaurant remain in their original locations, while production has expanded to adjacent properties.', 'Great Lakes Brewing Company', 0, -81.704605, 41.485377,'ChIJA-V2u23wMIgRe6rtMBxi8uQ');
 INSERT INTO landmark ( image_name, landmark_description, name, admin_approved, longitude, latitude, google_api_placeID) VALUES ('BorderlineCafe.jpg', 'Where all your breakfast dreams come true.', 'Borderline Cafe', 0, -81.827142, 41.482161,'ChIJo41G2ojyMIgRnIlYYTTlbJIs'); 
+
+INSERT INTO app_user (user_type, username, user_password) VALUES ('city visitor', 'visitor', 'password');
+INSERT INTO app_user (user_type, username, user_password) VALUES ('city administrator', 'admin', 'password');
+
+INSERT INTO itinerary (user_id, name, itinerary_date, starting_latitude, starting_longitude) VALUES (1, 'itinerary', '20161201', -81.687451, 41.468737);
+
+INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 2);
+INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 3);
+INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 4);
+INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 5);
+INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 6);
+INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 7);
