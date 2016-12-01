@@ -1,5 +1,7 @@
-﻿function generateMap(mapPins) {
-    var locations = [];
+﻿var locations = [];
+
+function generateMap(mapPins) {
+
     for (var i = 0; i < mapPins.length; i++) {
         var temp = [mapPins[i].Name, mapPins[i].Latitude, mapPins[i].Longitude];
         locations.push(temp);
@@ -28,10 +30,10 @@
 
         console.log(marker.title);
         dist.push(marker.position);
-       
+
     }
 
-    
+
 };
 
 
@@ -91,7 +93,7 @@ function addLandmark() {
 
         });
         map.fitBounds(bounds);
-    
+
         return places;
     });
 
@@ -125,47 +127,64 @@ function getDistances() {
 }
 
 
+function makeCallback(name) {
+    return function (response, status) {
+        if (status === 'OK') {
+            var point = response.routes[0].legs[0];
+            console.log(name);
+            console.log(response.routes[0].legs[0].end_address);
+            console.log(point.distance.text);
+        }
+    };
+}
+
+
 function showLocation(position) {
 
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
     pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-    
-    map.setCenter(pos);
-    var directionService = new google.maps.DirectionsService();
-    var request = {
-        origin: pos,
-        destination: dist[0],
-        travelMode: google.maps.DirectionsTravelMode.DRIVING
-    };
-    for(var i=0;i<dist.length;i++){
-        request.destination = dist[i];
-        directionService.route(request, function (response, status) {
-            if (status === 'OK') {
-                var point = response.routes[0].legs[0];
-                console.log(response.routes[0].legs[0].end_address);
-                console.log(point.distance.text);
-            }
-        });
-    }
-    $(".landmark_name").each(function (i) {
 
+    map.setCenter(pos);
+    for (var i = 0; i < dist.length; i++) {
+        var directionService = new google.maps.DirectionsService();
         var request = {
             origin: pos,
             destination: dist[i],
             travelMode: google.maps.DirectionsTravelMode.DRIVING
         };
-        directionService.route(request, function (response, status) {
-            if (status === 'OK') {
-                var point = response.routes[0].legs[0];
-                
-                $(this).val(point.distance.text);
-            }
-        });
-        var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, dist[i]);
+        
+
+        //request.destination = new google.maps.LatLng(locations[i][1], locations[i][2]);
+        directionService.route(request, makeCallback(locations[i][0]));
+        //directionService.route(request, function (response, status) {
+        //    if (status === 'OK') {
+        //        var point = response.routes[0].legs[0];
+        //        console.log(directionService.name);
+        //        console.log(response.routes[0].legs[0].end_address);
+        //        console.log(point.distance.text);
+        //    }
+        //});
+
+    }
+    //$(".landmark_name").each(function (i) {
+
+    //    var request = {
+    //        origin: pos,
+    //        destination: dist[i],
+    //        travelMode: google.maps.DirectionsTravelMode.DRIVING
+    //    };
+    //    directionService.route(request, function (response, status) {
+    //        if (status === 'OK') {
+    //            var point = response.routes[0].legs[0];
+
+    //            $(this).val(point.distance.text);
+    //        }
+    //    });
+    //    var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, dist[i]);
 
 
-    });
+    //});
 }
 
 
