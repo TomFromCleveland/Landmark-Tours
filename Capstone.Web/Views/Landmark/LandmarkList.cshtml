@@ -14,14 +14,14 @@
 
             <script>
                 var pos;
-                var dist=[];
+                var landmarkLatLng=[];
                 generateMap(@Html.Raw(Json.Encode(Model)));
             </script>
         </div>
 
         <div class="col-sm-6 table-responsive table-bordered">
             <table>
-
+                
                 @foreach (var landmark in Model)
             {
                     <tr onclick="location.href = '@Url.Action("LandmarkDetail", "Landmark", new { landmarkID = landmark.ID })'">
@@ -39,13 +39,12 @@
                             @*<a>wrap image below in link to detail page, and also the name just to keep Rami quiet</a>*@
                             <img class="img-responsive img-thumbnail" src=@imageSource />
                         </td>
-                        <td class="landmark_name">
+                        <td class="landmark_name" >
                             @landmark.Name
                         </td>
 
-                        <td class="landmark_distance">
+                        <td class="landmark_distance" id="lmID@(landmark.ID)">
 
-                            @*Add distance reference*@
                         </td>
                     </tr>
                 }
@@ -53,3 +52,4 @@
         </div>
     </div>
 </div>
+<script>getDistances();</script>
