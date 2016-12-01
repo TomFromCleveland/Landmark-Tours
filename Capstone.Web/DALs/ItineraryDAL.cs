@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Capstone.Web.DALs
 {
-    public class ItineraryDAL : IITineraryDAL
+    public class ItineraryDAL : IItineraryDAL
     {
         private string _connectionString;
 
@@ -73,6 +73,40 @@ namespace Capstone.Web.DALs
             }
 
             return (additionSucess == itinerary.LandmarkList.Count);
+        }
+
+        public List<ItineraryModel> GetAllItineraries(UserModel user)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(@"SELECT * 
+                                                      FROM itinerary
+                                                      WHERE itinerary.user_id = @userID", conn);
+
+                    cmd.Parameters.AddWithValue("@userID", user.ID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        user.Itineraries.Add(new ItineraryModel()
+                        {
+                            ID = Convert.ToInt32(reader["id"]),
+                            StartingLatitude = Convert.ToDouble(reader["starting_latitude"]),
+                            StartingLongitude = Convert.ToDouble(reader["starting_longitude"]),
+                            Date = Convert.ToDateTime(reader["itineerary_date"]),
+                            Name = Convert.ToString(reader["name"])
+                        });
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return user.Itineraries;
         }
 
         public bool DeleteItinerary(ItineraryModel itinerary)
