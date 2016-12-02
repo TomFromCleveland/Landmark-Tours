@@ -20,8 +20,14 @@
         </div>
 
         <div class="col-sm-6 table-responsive table-bordered">
-            <table>
-                
+            <table id="landmark_table">
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>Landmark Name</th>
+                        <th >Distance</th>
+                    </tr>
+                </thead>
                 @foreach (var landmark in Model)
             {
                     <tr onclick="location.href = '@Url.Action("LandmarkDetail", "Landmark", new { landmarkID = landmark.ID })'">

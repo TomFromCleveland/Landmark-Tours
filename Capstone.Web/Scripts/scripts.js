@@ -151,11 +151,11 @@ function showLocation(position) {
             destination: landmarkLatLng[i],
             travelMode: google.maps.DirectionsTravelMode.DRIVING
         };
-        
 
-       
+
+
         directionService.route(request, makeCallback(locations[i][3]));
-       
+
     }
 }
 
@@ -172,7 +172,7 @@ function errorHandler(err) {
 
 
 $(document).ready(function () {
-    
+
     $(".nav a").on("click", function () {
         $(".nav").find(".active").removeClass("active");
         $(this).parent().addClass("active");
@@ -184,7 +184,7 @@ $(document).ready(function () {
         $('#GooglePlacesID').val(places[0].place_id);
         $('.submission_form').submit();
     });
-
+    $("#landmark_table").DataTable();
 
 
 });
