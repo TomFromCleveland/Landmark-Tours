@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="jQuery.Validation.Unobtrusive.Native, Version=1.1.5809.17463, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jQuery.Validation.Unobtrusive.Native.MVC5.1.3.0\lib\net45\jQuery.Validation.Unobtrusive.Native.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -145,8 +149,12 @@
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery.tablesorter.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\scripts.js" />
-    <Content Include="Scripts\stupidtable.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -156,15 +164,18 @@
     <Compile Include="Controllers\ItineraryController.cs" />
     <Compile Include="Controllers\LandmarkController.cs" />
     <Compile Include="DALs\IItineraryDAL.cs" />
+    <Compile Include="DALs\IReviewDAL.cs" />
     <Compile Include="DALs\ItineraryDAL.cs" />
     <Compile Include="DALs\LandmarkDAL.cs" />
+    <Compile Include="DALs\ReviewDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DALs\ILandmarkDAL.cs" />
+    <Compile Include="Models\CurrentDateAttribute.cs" />
     <Compile Include="Models\ItineraryModel.cs" />
     <Compile Include="Models\LandmarkModel.cs" />
-    <Compile Include="Models\LandmarkSubmissionModel.cs" />
+    <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -184,7 +195,11 @@
     <Content Include="Views\Landmark\LandmarkDetail.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_MapList.cshtml" />
+
     <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
+
+    <Content Include="Views\Itinerary\CreateItinerary.cshtml" />
+
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

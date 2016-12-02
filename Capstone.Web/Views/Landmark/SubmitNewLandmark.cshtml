@@ -1,4 +1,4 @@
-﻿@model Capstone.Web.Models.LandmarkSubmissionModel
+﻿@model Capstone.Web.Models.LandmarkModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -16,6 +16,7 @@
 
         <script>
             var places;
+            
             addLandmark();
         </script>
 
@@ -46,10 +47,12 @@
                             <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
                             <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
                         </div>*@
-                    @Html.HiddenFor(m => m.LandmarkName, new { name = "landmarkName" })
+                    @Html.HiddenFor(m => m.Name, new { name = "landmarkName" })
 
 
-                    @Html.HiddenFor(m => m.Address, new { name = "street_address" })
+                    @Html.HiddenFor(m => m.Latitude)                    
+                    @Html.HiddenFor(m => m.Longitude)
+
                     @Html.HiddenFor(m=>m.GooglePlacesID, new { name="placeID"})
                 </div>
                 <button id="landmark_submit" type="submit" class="btn btn-primary">Submit</button>

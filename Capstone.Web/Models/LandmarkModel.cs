@@ -28,5 +28,7 @@ namespace Capstone.Web.Models
 
         [Required]
         public string GooglePlacesID { get; set; }
+
+        public bool SubmissionSuccessful { get; set; } = false;
     }
 }

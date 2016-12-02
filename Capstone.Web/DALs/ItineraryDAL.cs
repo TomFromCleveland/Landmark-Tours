@@ -17,7 +17,7 @@ namespace Capstone.Web.DALs
             _connectionString = connectionString;
         }
 
-        public int CreateNewItinerary(ItineraryModel itinerary)
+        public ItineraryModel CreateNewItinerary(ItineraryModel itinerary)
         {
             int newItineraryAdded = 0;
 
@@ -36,13 +36,14 @@ namespace Capstone.Web.DALs
                     cmd.Parameters.AddWithValue("@startingLongitude", itinerary.StartingLongitude);
 
                     newItineraryAdded = (int)cmd.ExecuteScalar();
+                    itinerary.ID = newItineraryAdded;
                 }
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e.Message);
             }
-            return newItineraryAdded;
+            return itinerary;
         }
 
         public bool AddItineraryLandmarks(ItineraryModel itinerary)
