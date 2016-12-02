@@ -17,7 +17,7 @@ namespace Capstone.Web.DALs
             _connectionString = connectionString;
         }
 
-        public bool CreateNewItinerary(ItineraryModel itinerary)
+        public int CreateNewItinerary(ItineraryModel itinerary)
         {
             int newItineraryAdded = 0;
 
@@ -27,7 +27,7 @@ namespace Capstone.Web.DALs
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(@"INSERT INTO itinerary (name, itinerary_date, user_id, startingLatitude, startingLongitude) 
-                                                      VALUES (@name, @itineraryDate, @userID, @startingLatitude, @startingLongitude)", conn);
+                                                      VALUES (@name, @itineraryDate, @userID, @startingLatitude, @startingLongitude); SELECT cast(Scope_Identity() as int)", conn);
 
                     cmd.Parameters.AddWithValue("@name", itinerary.Name);
                     cmd.Parameters.AddWithValue("@itineraryDate", itinerary.Date);
@@ -35,14 +35,14 @@ namespace Capstone.Web.DALs
                     cmd.Parameters.AddWithValue("@startingLatitude", itinerary.StartingLatitude);
                     cmd.Parameters.AddWithValue("@startingLongitude", itinerary.StartingLongitude);
 
-                    newItineraryAdded = cmd.ExecuteNonQuery();
+                    newItineraryAdded = (int)cmd.ExecuteScalar();
                 }
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e.Message);
             }
-            return (newItineraryAdded != 0);
+            return newItineraryAdded;
         }
 
         public bool AddItineraryLandmarks(ItineraryModel itinerary)
