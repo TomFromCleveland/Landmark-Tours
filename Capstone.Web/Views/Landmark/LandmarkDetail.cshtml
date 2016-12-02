@@ -1,19 +1,11 @@
 ﻿@model Capstone.Web.Models.LandmarkModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    ViewBag.Title = "LandmarkDetail";
 }
 
-<!DOCTYPE html>
+<h1>@Model.Name</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+<img src="~/Content/imgs/@Model.ImageName" />
+
+<p>@Model.Description</p>
