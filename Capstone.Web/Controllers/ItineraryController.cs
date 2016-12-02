@@ -21,11 +21,13 @@ namespace Capstone.Web.Controllers
         public ActionResult ViewItineraries()
         {
             int userID = 1; //TODO Make this (int)Session["UserID"];
-
             return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
         }
 
-
+        public ActionResult ItineraryDetail(int itineraryID)
+        {
+            return View("ItineraryDetail", itineraryDAL.GetItineraryDetail(itineraryID);
+        }
 
     }
 }
