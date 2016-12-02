@@ -29,6 +29,7 @@ namespace Capstone.Web.Controllers
 
         public ActionResult LandmarkDetail(int landmarkID)
         {
+            //TODO Add actual reviews, get rid of dummy review in View, format reviews
             LandmarkModel landmark = landmarkDAL.GetLandmark(landmarkID);
             return View("LandmarkDetail", landmark);
         }

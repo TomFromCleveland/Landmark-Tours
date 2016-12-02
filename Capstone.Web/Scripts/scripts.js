@@ -203,10 +203,11 @@ function redirect() {
 }
 
 
+
 function giveSuggestions() {
     var input = document.getElementById('itinerary_search');
     var searchBox = new google.maps.places.SearchBox(input);
-    
+
 
     searchBox.addListener('places_changed', function () {
         places = searchBox.getPlaces();
@@ -217,10 +218,10 @@ function giveSuggestions() {
 
         startingLocation.Lat = places[0].geometry.location.lat();
         startingLocation.Lng = places[0].geometry.location.lng();
-        
+
         return startingLocation;
         });
 
 
-   
+
 }

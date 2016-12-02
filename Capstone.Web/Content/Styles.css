@@ -70,7 +70,23 @@
   float: none !important;
 }
 
- .itinerary_row .list_of_itineraries {
-     padding: 100px;
-     font-size: medium;
+
+ .list_of_itineraries {
+     width: 75%;
  }
+
+ .itinerary_row {
+   text-align: center;
+ }
+
+ .itinerary_name .itinerary_row {
+     font-size: 3em;
+ }
+
+ .itinerary_date .itinerary_row {
+    font-size: 1em;
+ }
+
+ /* TODO change cursor to hand when hovering over table row: style-cursor {
+
+ }*/
