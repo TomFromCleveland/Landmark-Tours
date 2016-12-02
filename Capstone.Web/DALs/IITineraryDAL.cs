@@ -9,7 +9,7 @@ namespace Capstone.Web.DALs
 {
     public interface IItineraryDAL
     {
-        bool CreateNewItinerary(ItineraryModel itinerary);
+        int CreateNewItinerary(ItineraryModel itinerary);
         bool DeleteItinerary(ItineraryModel itinerary);
         List<ItineraryModel> GetAllItineraries(int userId);
         
