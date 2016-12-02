@@ -197,4 +197,3 @@ function redirect() {
     }, 5000);
 }
 
-

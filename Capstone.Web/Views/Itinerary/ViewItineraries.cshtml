@@ -7,26 +7,22 @@
 
 <h2 class="pagetitle">Your Itineraries</h2>
 <table class="center-table">
-
+    <tr>
+        <td>
+            <br />
+            <button type="button" class="btn btn-primary btn-lg center-block" id="create_itin_button">Create Itinerary</button>
+        </td>
+    </tr>
     <tr>
         <td class="text-center">
-            <br />
             Click <b>Create Itinerary</b> to plan your route!
             <br />
             <br />
         </td>
     </tr>
-
-    <tr>
-        <td>
-            <br />
-            <button type="button" class="btn btn-primary center-block" id="create_itin_button">Create Itinerary</button>
-            <br />
-        </td>
-    </tr>
   </table>
 
-<table class="list_of_itineraries table-bordered center-table">
+<table class="list_of_itineraries table-bordered center-table table-hover">
     @if (Model != null)
     {
         if ((Model.Count == 0))
@@ -45,11 +41,11 @@
 
             foreach (var itinerary in Model)
             {
-                <tr class="itinerary_row">
-                    <td>
+                <tr class="itinerary_row" onclick="location.href = '@Url.Action("ItineraryDetail", "Itinerary", new { itineraryID = itinerary.ID })'" >
+                    <td class="itinerary_name">
                         <b>@itinerary.Name</b>
                     </td>
-                    <td>
+                    <td class="itinerary_date">
                         @itinerary.Date.DayOfWeek
                         @itinerary.Date.ToShortDateString()
                     </td>
