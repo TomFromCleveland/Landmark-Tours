@@ -25,6 +25,28 @@ namespace Capstone.Web.Controllers
             return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
         }
 
+        public ActionResult CreateItinerary()
+        {
+            ModelState.Clear();
+            ItineraryModel itinerary =new ItineraryModel();
+            //itinerary.UserID=;
+            return View("CreateItinerary", itinerary);
+        }
+
+        [HttpPost]
+        public ActionResult SubmitItinerary(ItineraryModel itinerary)
+        {
+            if (!ModelState.IsValid)
+            {
+
+                return RedirectToAction("CreateItinerary");
+            }else
+            {
+
+                return RedirectToAction("Index","Home");
+            }
+        }
+
 
 
     }

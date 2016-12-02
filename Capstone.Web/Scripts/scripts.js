@@ -180,12 +180,17 @@ $(document).ready(function () {
 
     $("#landmark_submit").click(function () {
         $('#LandmarkName').val(places[0].name);
-        $('#Address').val(places[0].formatted_address);
+        $("#Latitude").val(places[0].geometry.location.lat());
+        $("#Longitude").val(places[0].geometry.location.lng());
         $('#GooglePlacesID').val(places[0].place_id);
         $('.submission_form').submit();
     });
     $("#landmark_table").DataTable();
-
+        $("#itinerary_submit").click(function () {
+        $("#StartingLatitude").val(startingLocation.Lat);
+        $("#StartingLongitude").val(startingLocation.Lng);
+        $(".NewItineraryForm").submit();
+    });
 
 });
 
@@ -198,3 +203,24 @@ function redirect() {
 }
 
 
+function giveSuggestions() {
+    var input = document.getElementById('itinerary_search');
+    var searchBox = new google.maps.places.SearchBox(input);
+    
+
+    searchBox.addListener('places_changed', function () {
+        places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+            return;
+        }
+
+        startingLocation.Lat = places[0].geometry.location.lat();
+        startingLocation.Lng = places[0].geometry.location.lng();
+        
+        return startingLocation;
+        });
+
+
+   
+}
