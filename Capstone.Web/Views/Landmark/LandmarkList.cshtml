@@ -2,60 +2,20 @@
 @{
     ViewBag.Title = "LandmarkList";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    string imageSource;
+    
 }
 
 <h2 class="pagetitle">Landmark List</h2>
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-6">
-            @Html.Partial("_Map")
-
-            <script>
+        @Html.Partial("_MapList", Model);
+        <script>
                 var pos;
                 var landmarkLatLng=[];
                 generateMap(@Html.Raw(Json.Encode(Model)));
-            </script>
-        </div>
-
-        <div class="col-sm-6 table-responsive table-bordered">
-            <table id="landmark_table">
-                <thead>
-                    <tr>
-                        <th> </th>
-                        <th>Landmark Name</th>
-                        <th >Distance</th>
-                    </tr>
-                </thead>
-                @foreach (var landmark in Model)
-            {
-                    <tr onclick="location.href = '@Url.Action("LandmarkDetail", "Landmark", new { landmarkID = landmark.ID })'">
-                        <td class="landmark_list">
-
-                            @if (landmark.ImageName.StartsWith("https://"))
-                            {
-                                imageSource = landmark.ImageName;
-                            }
-                            else
-                            {
-                                imageSource = "/Content/imgs/" + landmark.ImageName;
-                            }
-
-                            @*<a>wrap image below in link to detail page, and also the name just to keep Rami quiet</a>*@
-                            <img class="img-responsive img-thumbnail" src=@imageSource />
-                        </td>
-                        <td class="landmark_name" >
-                            @landmark.Name
-                        </td>
-
-                        <td class="landmark_distance" id="lmID@(landmark.ID)">
-
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
+        </script>
+        
     </div>
 </div>
 <script>getDistances();</script>
