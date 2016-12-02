@@ -69,3 +69,8 @@
   margin: 0 auto !important;
   float: none !important;
 }
+
+ .itinerary_row .list_of_itineraries {
+     padding: 100px;
+     font-size: medium;
+ }
