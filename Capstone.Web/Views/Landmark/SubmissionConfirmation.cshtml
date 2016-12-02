@@ -1,4 +1,4 @@
-﻿@model Capstone.Web.Models.LandmarkSubmissionModel
+﻿@model Capstone.Web.Models.LandmarkModel
 @{
     ViewBag.Title = "SubmissionConfirmation";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,11 +8,11 @@
 
 @if (Model.SubmissionSuccessful)
 {
-    <h3>Thank you for submitting @Model.LandmarkName!</h3>
+    <h3>Thank you for submitting @Model.Name!</h3>
 }
 else
 {
-        <h3>@Model.LandmarkName has already been submitted.</h3>
+        <h3>@Model.Name has already been submitted.</h3>
 }
 @Html.Hidden("RedirectTo", Url.Action("LandmarkList", "Landmark"));
 

@@ -36,56 +36,20 @@ namespace Capstone.Web.Controllers
 
         public ActionResult SubmitNewLandmark()
         {
-            return View("SubmitNewLandmark", new LandmarkSubmissionModel());
+            return View("SubmitNewLandmark", new LandmarkModel());
 
         }
 
         [HttpPost]
-        public ActionResult SubmissionConfirmation(LandmarkSubmissionModel lmc)
+        public ActionResult SubmissionConfirmation(LandmarkModel landmark)
         {
-            LandmarkModel landmark = RetrieveAddressCoordinates(lmc);
-           lmc.SubmissionSuccessful= landmarkDAL.SubmitNewLandmark(landmark);
-
-            return View("SubmissionConfirmation", lmc);
-        }
-
-        public LandmarkModel RetrieveAddressCoordinates(LandmarkSubmissionModel lmc)
-        {
-            LandmarkModel landmark = new LandmarkModel();
-
-            string address = lmc.Address;
-            string requestUrl = string.Format("http://maps.googleapis.com/maps/api/geocode/json?address={0}&sensor=false", Uri.EscapeDataString(address));
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
-            request.Method = "Get";
-            WebResponse response = request.GetResponse();
-            if (response != null)
-            {
-                string str = null;
-                using (Stream stream = response.GetResponseStream())
-                {
-                    using (StreamReader streamReader = new StreamReader(stream))
-                    {
-                        str = streamReader.ReadToEnd();
-                    }
-                }
-
-                var geoData = JsonConvert.DeserializeObject<dynamic>(str);
-
-
-
-                landmark.Latitude = geoData.results[0].geometry.location.lat.Value;
-                landmark.Longitude = geoData.results[0].geometry.location.lng.Value;
-
-            }
-
-            landmark.Name = lmc.LandmarkName;
             string imgSrc = "https://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + landmark.Latitude + "," + landmark.Longitude + "&heading=151.78&pitch=-0.76&key=" + "AIzaSyDu0VhcsrEx_f3CdQFVOC_Sw3r29lWBnYA";
             landmark.ImageName = imgSrc;
-            landmark.Description = lmc.Description;
-            landmark.GooglePlacesID = lmc.GooglePlacesID;
-            return landmark;
 
+            landmark.SubmissionSuccessful = landmarkDAL.SubmitNewLandmark(landmark);
+            return View("SubmissionConfirmation", landmark);
         }
+        
 
         public ActionResult UnapprovedLandmarkList()
         {
