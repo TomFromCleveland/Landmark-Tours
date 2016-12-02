@@ -75,8 +75,10 @@ namespace Capstone.Web.DALs
             return (additionSucess == itinerary.LandmarkList.Count);
         }
 
-        public List<ItineraryModel> GetAllItineraries(UserModel user)
+        public List<ItineraryModel> GetAllItineraries(int userId)
         {
+            List<ItineraryModel> itineraries = new List<ItineraryModel>();
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -86,17 +88,17 @@ namespace Capstone.Web.DALs
                                                       FROM itinerary
                                                       WHERE itinerary.user_id = @userID", conn);
 
-                    cmd.Parameters.AddWithValue("@userID", user.ID);
+                    cmd.Parameters.AddWithValue("@userID", userId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        user.Itineraries.Add(new ItineraryModel()
+                        itineraries.Add(new ItineraryModel()
                         {
                             ID = Convert.ToInt32(reader["id"]),
                             StartingLatitude = Convert.ToDouble(reader["starting_latitude"]),
                             StartingLongitude = Convert.ToDouble(reader["starting_longitude"]),
-                            Date = Convert.ToDateTime(reader["itineerary_date"]),
+                            Date = Convert.ToDateTime(reader["itinerary_date"]),
                             Name = Convert.ToString(reader["name"])
                         });
                     }
@@ -106,7 +108,7 @@ namespace Capstone.Web.DALs
             {
                 Console.WriteLine(e.Message);
             }
-            return user.Itineraries;
+            return itineraries;
         }
 
         public bool DeleteItinerary(ItineraryModel itinerary)

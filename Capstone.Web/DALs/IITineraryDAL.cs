@@ -11,6 +11,7 @@ namespace Capstone.Web.DALs
     {
         bool CreateNewItinerary(ItineraryModel itinerary);
         bool DeleteItinerary(ItineraryModel itinerary);
-        List<ItineraryModel> GetAllItineraries(UserModel user);
+        List<ItineraryModel> GetAllItineraries(int userId);
+        
     }
 }
