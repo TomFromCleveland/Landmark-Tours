@@ -17,7 +17,7 @@ namespace Capstone.Web.DALs
             _connectionString = connectionString;
         }
 
-        public bool CreateNewItinerary(ItineraryModel itinerary)
+        public int CreateNewItinerary(ItineraryModel itinerary)
         {
             int newItineraryAdded = 0;
 
@@ -27,7 +27,7 @@ namespace Capstone.Web.DALs
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(@"INSERT INTO itinerary (name, itinerary_date, user_id, startingLatitude, startingLongitude) 
-                                                      VALUES (@name, @itineraryDate, @userID, @startingLatitude, @startingLongitude)", conn);
+                                                      VALUES (@name, @itineraryDate, @userID, @startingLatitude, @startingLongitude); SELECT cast(Scope_Identity() as int)", conn);
 
                     cmd.Parameters.AddWithValue("@name", itinerary.Name);
                     cmd.Parameters.AddWithValue("@itineraryDate", itinerary.Date);
@@ -35,14 +35,14 @@ namespace Capstone.Web.DALs
                     cmd.Parameters.AddWithValue("@startingLatitude", itinerary.StartingLatitude);
                     cmd.Parameters.AddWithValue("@startingLongitude", itinerary.StartingLongitude);
 
-                    newItineraryAdded = cmd.ExecuteNonQuery();
+                    newItineraryAdded = (int)cmd.ExecuteScalar();
                 }
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e.Message);
             }
-            return (newItineraryAdded != 0);
+            return newItineraryAdded;
         }
 
         public bool AddItineraryLandmarks(ItineraryModel itinerary)
@@ -75,8 +75,10 @@ namespace Capstone.Web.DALs
             return (additionSucess == itinerary.LandmarkList.Count);
         }
 
-        public List<ItineraryModel> GetAllItineraries(UserModel user)
+        public List<ItineraryModel> GetAllItineraries(int userId)
         {
+            List<ItineraryModel> itineraries = new List<ItineraryModel>();
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -86,17 +88,17 @@ namespace Capstone.Web.DALs
                                                       FROM itinerary
                                                       WHERE itinerary.user_id = @userID", conn);
 
-                    cmd.Parameters.AddWithValue("@userID", user.ID);
+                    cmd.Parameters.AddWithValue("@userID", userId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        user.Itineraries.Add(new ItineraryModel()
+                        itineraries.Add(new ItineraryModel()
                         {
                             ID = Convert.ToInt32(reader["id"]),
                             StartingLatitude = Convert.ToDouble(reader["starting_latitude"]),
                             StartingLongitude = Convert.ToDouble(reader["starting_longitude"]),
-                            Date = Convert.ToDateTime(reader["itineerary_date"]),
+                            Date = Convert.ToDateTime(reader["itinerary_date"]),
                             Name = Convert.ToString(reader["name"])
                         });
                     }
@@ -106,7 +108,7 @@ namespace Capstone.Web.DALs
             {
                 Console.WriteLine(e.Message);
             }
-            return user.Itineraries;
+            return itineraries;
         }
 
         public bool DeleteItinerary(ItineraryModel itinerary)

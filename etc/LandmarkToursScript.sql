@@ -74,7 +74,11 @@ INSERT INTO landmark ( image_name, landmark_description, name, admin_approved, l
 INSERT INTO app_user (user_type, username, user_password) VALUES ('city visitor', 'visitor', 'password');
 INSERT INTO app_user (user_type, username, user_password) VALUES ('city administrator', 'admin', 'password');
 
-INSERT INTO itinerary (user_id, name, itinerary_DATE, starting_latitude, starting_longitude) VALUES (1, 'itinerary', '20161201', -81.687451, 41.468737);
+INSERT INTO itinerary (user_id, name, itinerary_DATE, starting_latitude, starting_longitude) VALUES (1, 'Itinerary 1', '20161201', -81.687451, 41.468737);
+INSERT INTO itinerary (user_id, name, itinerary_DATE, starting_latitude, starting_longitude) VALUES (1, 'Cleveland Rocks Itinerary', '20161202', -81.687451, 41.468737);
+INSERT INTO itinerary (user_id, name, itinerary_DATE, starting_latitude, starting_longitude) VALUES (1, 'Food Tour of Cleveland', '20161203', -81.687451, 41.468737);
+INSERT INTO itinerary (user_id, name, itinerary_DATE, starting_latitude, starting_longitude) VALUES (1, 'That one time, in CLE', '20161204', -81.687451, 41.468737);
+INSERT INTO itinerary (user_id, name, itinerary_DATE, starting_latitude, starting_longitude) VALUES (1, 'Itinerary 5', '20161205', -81.687451, 41.468737);
 
 INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 2);
 INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 3);

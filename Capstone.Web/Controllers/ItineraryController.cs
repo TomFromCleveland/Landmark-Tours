@@ -18,10 +18,13 @@ namespace Capstone.Web.Controllers
         }
 
         // GET: Itinerary
-        public ActionResult ViewItineraries( UserModel user)
+        public ActionResult ViewItineraries()
         {
-            return View("ViewItineraries", itineraryDAL.GetAllItineraries(user));
+            int userID = 1; //TODO Make this (int)Session["UserID"];
+
+            return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
         }
+
 
 
     }
