@@ -172,6 +172,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DALs\ILandmarkDAL.cs" />
+    <Compile Include="Models\AddLandmarkToItinerary.cs" />
     <Compile Include="Models\CurrentDateAttribute.cs" />
     <Compile Include="Models\ItineraryModel.cs" />
     <Compile Include="Models\LandmarkModel.cs" />
@@ -195,11 +196,9 @@
     <Content Include="Views\Landmark\LandmarkDetail.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_MapList.cshtml" />
-
     <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
-
     <Content Include="Views\Itinerary\CreateItinerary.cshtml" />
-
+    <Content Include="Views\Itinerary\AddLandmarkToItinerary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
