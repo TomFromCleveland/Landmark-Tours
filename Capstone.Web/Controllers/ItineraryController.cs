@@ -27,10 +27,10 @@ namespace Capstone.Web.Controllers
         }
 
 
-        public ActionResult ItineraryDetail(int itineraryID)
-        {
-            return View("ItineraryDetail", itineraryDAL.GetItineraryDetail(itineraryID);
-        }
+        //public ActionResult ItineraryDetail(int itineraryID)
+        //{
+        //    return View("ItineraryDetail", itineraryDAL.GetItineraryDetail(itineraryID);
+        //}
 
         public ActionResult CreateItinerary()
         {

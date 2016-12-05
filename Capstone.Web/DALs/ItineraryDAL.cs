@@ -151,40 +151,40 @@ namespace Capstone.Web.DALs
             return (itineraryDeletion && (linkTableDeletions == itinerary.LandmarkList.Count));
         }
 
-        public ItineraryModel GetItineraryDetail(int itineraryID)
-        {
-            ItineraryModel itinerary = new ItineraryModel();
+        //public ItineraryModel GetItineraryDetail(int itineraryID)
+        //{
+        //    ItineraryModel itinerary = new ItineraryModel();
 
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(_connectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"SELECT * 
-                                                      FROM itinerary
-                                                      WHERE itinerary.user_id = @userID", conn);
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(_connectionString))
+        //        {
+        //            conn.Open();
+        //            SqlCommand cmd = new SqlCommand(@"SELECT * 
+        //                                              FROM itinerary
+        //                                              WHERE itinerary.user_id = @userID", conn);
 
-                    cmd.Parameters.AddWithValue("@userID", userId);
-                    SqlDataReader reader = cmd.ExecuteReader();
+        //            cmd.Parameters.AddWithValue("@userID", userId);
+        //            SqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        itineraries.Add(new ItineraryModel()
-                        {
-                            ID = Convert.ToInt32(reader["id"]),
-                            StartingLatitude = Convert.ToDouble(reader["starting_latitude"]),
-                            StartingLongitude = Convert.ToDouble(reader["starting_longitude"]),
-                            Date = Convert.ToDateTime(reader["itinerary_date"]),
-                            Name = Convert.ToString(reader["name"])
-                        });
-                    }
-                }
-            }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            return itineraries;
-        }
+        //            while (reader.Read())
+        //            {
+        //                itineraries.Add(new ItineraryModel()
+        //                {
+        //                    ID = Convert.ToInt32(reader["id"]),
+        //                    StartingLatitude = Convert.ToDouble(reader["starting_latitude"]),
+        //                    StartingLongitude = Convert.ToDouble(reader["starting_longitude"]),
+        //                    Date = Convert.ToDateTime(reader["itinerary_date"]),
+        //                    Name = Convert.ToString(reader["name"])
+        //                });
+        //            }
+        //        }
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //    }
+        //    return itineraries;
+        //}
     }
 }
