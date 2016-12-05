@@ -13,6 +13,8 @@ namespace Capstone.Web.DALs
         bool DeleteItinerary(ItineraryModel itinerary);
         List<ItineraryModel> GetAllItineraries(int userId);
         ItineraryModel GetItineraryDetail(int itineraryID);
-
+        ItineraryModel GetItineraryByID(int itineraryID);
+        bool AddItineraryLandmarks(int landmarkID, int itineraryID);
+        bool DeleteLandmarkFromItinerary(int landmarkID, int itineraryID);
     }
 }

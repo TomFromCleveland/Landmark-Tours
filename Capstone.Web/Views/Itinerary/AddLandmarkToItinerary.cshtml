@@ -2,13 +2,14 @@
 @{
     ViewBag.Title = "AddLandmarkToItinerary";
     Layout = "~/Views/Shared/_Layout.cshtml";
-  
+
 }
 
 
 
 
 <h2>Select Landmarks To Add To Itinerary</h2>
+@Html.Hidden("itinerary_id", Model.Itinerary.ID);
 @Html.Partial("_MapList", Model.Landmarks);
 
 

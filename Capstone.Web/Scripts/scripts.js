@@ -196,10 +196,13 @@ $(document).ready(function () {
         var obj = JSON.parse(jsonStr);
         $(".add").click(function () {
             var id = this.parentNode.id;
+            var itineraryID=$("#itinerary_id").val();
             var numID = id.replace('lmID', '');
-
-            var jsonArrayText = { id: numID };
-            obj["landmarks"].push(jsonArrayText);
+            var service = new landmarkItineraryService(serviceUrl);
+            service.addLandmarkToItinerary(numID, itineraryID, function (jsonData) {
+                console.log(jsonData)
+            });
+            
             this.className = "delete";
             this.text = "Remove";
 
@@ -207,8 +210,12 @@ $(document).ready(function () {
 
         $(".delete").click(function () {
             var id = this.parentNode.id;
+            var itineraryID = $("#itinerary_id").val();
             var numID = id.replace('lmID', '');
-            delete obj["landmarks"][id];
+            var service = new landmarkItineraryService(serviceUrl);
+            service.removeLandmark(numID, itineraryID, function (jsonData) {
+                console.log(jsonData)
+            });
             this.className = "add";
             this.text = "Add";
         });

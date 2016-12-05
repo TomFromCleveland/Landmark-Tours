@@ -46,26 +46,24 @@ namespace Capstone.Web.DALs
             return itinerary;
         }
 
-        public bool AddItineraryLandmarks(ItineraryModel itinerary)
+        public bool AddItineraryLandmarks(int landmarkID, int itineraryID)
         {
-            int additionSucess = 0;
+            //TODO: change this method to singular landmark
+
+            int additionSuccess = 0;
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
+                    
                     SqlCommand cmd = new SqlCommand(@"INSERT INTO itinerary_landmark (itinerary_id, landmark_id)
                                                       VALUES (@itineraryID, @landmarkID)", conn);
 
-                    cmd.Parameters.AddWithValue("@itineraryID", itinerary.ID);
-                    cmd.Parameters.Add("@landmarkID", SqlDbType.Int);
-
-                    foreach (var landmark in itinerary.LandmarkList)
-                    {
-                        cmd.Parameters["@landmarkID"].Value = landmark.ID;
-                        additionSucess += cmd.ExecuteNonQuery();
-                    }
+                    cmd.Parameters.AddWithValue("@itineraryID", itineraryID);
+                    cmd.Parameters.AddWithValue("@landmarkID", landmarkID);
+                    additionSuccess = cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException e)
@@ -73,7 +71,7 @@ namespace Capstone.Web.DALs
                 Console.WriteLine(e.Message);
             }
 
-            return (additionSucess == itinerary.LandmarkList.Count);
+            return (additionSuccess == 1);
         }
 
         public List<ItineraryModel> GetAllItineraries(int userId)
@@ -152,7 +150,7 @@ namespace Capstone.Web.DALs
             return (itineraryDeletion && (linkTableDeletions == itinerary.LandmarkList.Count));
         }
 
-        public ItineraryModel GetItineraryDetail(int itineraryId)
+        public ItineraryModel GetItineraryDetail(int itineraryID)
         {
             ItineraryModel itinerary = new ItineraryModel();
 
@@ -193,6 +191,70 @@ namespace Capstone.Web.DALs
                 Console.WriteLine(e.Message);
             }
             return itinerary;
+        }
+
+        public ItineraryModel GetItineraryByID(int itineraryID)
+        {
+            ItineraryModel itinerary = new Models.ItineraryModel();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(@"SELECT * 
+                                                  FROM itinerary
+                                                  WHERE itinerary_id = @itineraryID", conn);
+
+                    cmd.Parameters.AddWithValue("@itineraryID", itineraryID);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        itinerary.UserID = Convert.ToInt32(reader["user_id"]);
+                        itinerary.Name = Convert.ToString(reader["name"]);
+                        itinerary.Date = Convert.ToDateTime(reader["intinerary_DATE"]);
+                        itinerary.StartingLatitude = Convert.ToDouble(reader["starting_latitude"]);
+                        itinerary.StartingLongitude = Convert.ToDouble(reader["starting_longitude"]);
+                    }
+
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return itinerary;
+        }
+
+        public bool DeleteLandmarkFromItinerary(int landmarkID, int itineraryID)
+        {
+            int deletedRows = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(@"DELETE FROM itinerary_landmark 
+                                                      WHERE itinerary_landmark.itinerary_id = @itineraryID
+                                                      AND itinerary_landmark.landmark_id = @landmarkID", conn);
+                    cmd.Parameters.AddWithValue("@itineraryID", itineraryID);
+                    cmd.Parameters.AddWithValue("@landmarkID", landmarkID);
+                    deletedRows = cmd.ExecuteNonQuery();
+
+
+                }
+            }
+            catch(SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+
+                    return (deletedRows==1);
         }
 
     }

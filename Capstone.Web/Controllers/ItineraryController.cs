@@ -27,7 +27,7 @@ namespace Capstone.Web.Controllers
             return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
         }
 
-        public ActionResult ItineraryDetails(int itineraryId)
+        public ActionResult ItineraryDetails(int itineraryID)
         {
 
             return View("ItineraryDetail", itineraryDAL.GetItineraryDetail(itineraryID));
@@ -62,9 +62,9 @@ namespace Capstone.Web.Controllers
             List<LandmarkModel> landmarks = new List<LandmarkModel>();
             landmarks = landmarkDAL.GetAllApprovedLandmarks();
             AddLandmarkToItinerary landmarkAndItinerary = new AddLandmarkToItinerary();
-            //look up itinerary based on id.
-            //     landmarkAndItinerary.Itinerary = itinerary;
-            //   landmarkAndItinerary.Landmarks = landmarks;
+            landmarkAndItinerary.Itinerary=itineraryDAL.GetItineraryByID(id);
+            
+            landmarkAndItinerary.Landmarks = landmarks;
             return View("AddLandmarkToItinerary", landmarkAndItinerary);
         }
 
