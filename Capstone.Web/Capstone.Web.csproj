@@ -123,10 +123,12 @@
     <Content Include="Content\imgs\Carousel-Indians1BIG-1024x768.jpg" />
     <Content Include="Content\imgs\Carousel-Skyline.jpg" />
     <Content Include="Content\imgs\ChristmasStoryHouse.jpg" />
+    <Content Include="Content\imgs\cleveland-skyline-black-silhouette.svg" />
     <Content Include="Content\imgs\FranklinCastle.jpg" />
     <Content Include="Content\imgs\GreatLakesBrewingCompany.png" />
     <Content Include="Content\imgs\LeaguePark.jpg" />
     <Content Include="Content\imgs\Logo.png" />
+    <Content Include="Content\imgs\Logo_sm.png" />
     <Content Include="Content\imgs\RockAndRollHallOfFame.jpg" />
     <Content Include="Content\imgs\skyline.png" />
     <Content Include="Content\imgs\WestSideMarket.jpg" />
@@ -196,9 +198,14 @@
     <Content Include="Views\Landmark\LandmarkDetail.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_MapList.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Views\Itinerary\ItineraryDetails.cshtml" />
+    <Content Include="Views\Itinerary\CreateItinerary.cshtml" />
+=======
     <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
     <Content Include="Views\Itinerary\CreateItinerary.cshtml" />
     <Content Include="Views\Itinerary\AddLandmarkToItinerary.cshtml" />
+>>>>>>> c1f87c01dbf24a3067c1a54b022915ea633ff804
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

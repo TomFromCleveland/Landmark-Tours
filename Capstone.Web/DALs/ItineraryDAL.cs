@@ -94,6 +94,7 @@ namespace Capstone.Web.DALs
 
                     while (reader.Read())
                     {
+
                         itineraries.Add(new ItineraryModel()
                         {
                             ID = Convert.ToInt32(reader["id"]),
@@ -151,7 +152,7 @@ namespace Capstone.Web.DALs
             return (itineraryDeletion && (linkTableDeletions == itinerary.LandmarkList.Count));
         }
 
-        public ItineraryModel GetItineraryDetail(int itineraryID)
+        public ItineraryModel GetItineraryDetail(int itineraryId)
         {
             ItineraryModel itinerary = new ItineraryModel();
 
@@ -160,6 +161,7 @@ namespace Capstone.Web.DALs
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
+
                     SqlCommand cmd = new SqlCommand(@"SELECT landmark.* 
                                                   FROM landmark
                                                   INNER JOIN itinerary_landmark ON landmark.id = itinerary_landmark.landmark_id 
@@ -170,6 +172,7 @@ namespace Capstone.Web.DALs
 
                     while (reader.Read())
                     {
+
                         itinerary.LandmarkList.Add(new LandmarkModel()
                         {
                             ID = Convert.ToInt32(reader["id"]),
@@ -182,6 +185,7 @@ namespace Capstone.Web.DALs
                             GooglePlacesID = Convert.ToString(reader["google_api_placeID"])
                         });
                     }
+
                 }
             }
             catch (SqlException e)
@@ -190,6 +194,7 @@ namespace Capstone.Web.DALs
             }
             return itinerary;
         }
+
     }
 }
 

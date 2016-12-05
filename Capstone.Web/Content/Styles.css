@@ -90,3 +90,8 @@
  /* TODO change cursor to hand when hovering over table row: style-cursor {
 
  }*/
+
+  .itinerary_date_detailpage {
+    font-size: 1.5em;
+    text-align: center;
+ }

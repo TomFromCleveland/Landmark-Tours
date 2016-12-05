@@ -41,7 +41,7 @@
 
             foreach (var itinerary in Model)
             {
-                <tr class="itinerary_row" onclick="location.href = '@Url.Action("ItineraryDetail", "Itinerary", new { itineraryID = itinerary.ID })'" >
+                <tr class="itinerary_row" onclick="location.href = '@Url.Action("ItineraryDetails", "Itinerary", new { itineraryID = itinerary.ID })'" >
                     <td class="itinerary_name">
                         <b>@itinerary.Name</b>
                     </td>
