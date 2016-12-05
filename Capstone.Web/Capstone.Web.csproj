@@ -124,6 +124,7 @@
     <Content Include="Content\imgs\Carousel-Skyline.jpg" />
     <Content Include="Content\imgs\ChristmasStoryHouse.jpg" />
     <Content Include="Content\imgs\cleveland-skyline-black-silhouette.svg" />
+    <Content Include="Content\imgs\Cleveland-the-Beautiful-cyanotype.jpg" />
     <Content Include="Content\imgs\FranklinCastle.jpg" />
     <Content Include="Content\imgs\GreatLakesBrewingCompany.png" />
     <Content Include="Content\imgs\LeaguePark.jpg" />
@@ -167,11 +168,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItineraryController.cs" />
     <Compile Include="Controllers\LandmarkController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DALs\IItineraryDAL.cs" />
     <Compile Include="DALs\IReviewDAL.cs" />
     <Compile Include="DALs\ItineraryDAL.cs" />
+    <Compile Include="DALs\IUserDAL.cs" />
     <Compile Include="DALs\LandmarkDAL.cs" />
     <Compile Include="DALs\ReviewDAL.cs" />
+    <Compile Include="DALs\UserDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,9 +205,9 @@
     <Content Include="Views\Landmark\LandmarkDetail.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_MapList.cshtml" />
-    <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
     <Content Include="Views\Itinerary\CreateItinerary.cshtml" />
     <Content Include="Views\Itinerary\AddLandmarkToItinerary.cshtml" />
+    <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -213,7 +217,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+
     <Folder Include="Views\Api\" />
+    <Folder Include="Views\Users\" />
+
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
