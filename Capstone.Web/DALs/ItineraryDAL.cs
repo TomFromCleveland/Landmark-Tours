@@ -70,7 +70,7 @@ namespace Capstone.Web.DALs
             }
             catch (SqlException e)
             {
-                Console.WriteLine(e.Message);                
+                Console.WriteLine(e.Message);
             }
 
             return (additionSucess == itinerary.LandmarkList.Count);
@@ -160,22 +160,26 @@ namespace Capstone.Web.DALs
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"SELECT * 
-                                                      FROM itinerary
-                                                      WHERE itinerary.user_id = @userID", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT landmark.* 
+                                                  FROM landmark
+                                                  INNER JOIN itinerary_landmark ON landmark.id = itinerary_landmark.landmark_id 
+                                                  WHERE itinerary_landmark.itinerary_id = @itineraryID", conn);
 
-                    cmd.Parameters.AddWithValue("@userID", userId);
+                    cmd.Parameters.AddWithValue("@itineraryID", itineraryID);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        itineraries.Add(new ItineraryModel()
+                        itinerary.LandmarkList.Add(new LandmarkModel()
                         {
                             ID = Convert.ToInt32(reader["id"]),
-                            StartingLatitude = Convert.ToDouble(reader["starting_latitude"]),
-                            StartingLongitude = Convert.ToDouble(reader["starting_longitude"]),
-                            Date = Convert.ToDateTime(reader["itinerary_date"]),
-                            Name = Convert.ToString(reader["name"])
+                            ImageName = Convert.ToString(reader["image_name"]),
+                            IsApproved = Convert.ToBoolean(reader["admin_approved"]),
+                            Description = Convert.ToString(reader["landmark_description"]),
+                            Name = Convert.ToString(reader["name"]),
+                            Longitude = Convert.ToDouble(reader["longitude"]),
+                            Latitude = Convert.ToDouble(reader["latitude"]),
+                            GooglePlacesID = Convert.ToString(reader["google_api_placeID"])
                         });
                     }
                 }
@@ -184,7 +188,8 @@ namespace Capstone.Web.DALs
             {
                 Console.WriteLine(e.Message);
             }
-            return itineraries;
+            return itinerary;
         }
     }
 }
+
