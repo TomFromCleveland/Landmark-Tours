@@ -27,7 +27,7 @@ namespace Capstone.Web.Controllers
             return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
         }
 
-        public ActionResult ItineraryDetails(int itineraryId)
+        public ActionResult ItineraryDetails(int itineraryID)
         {
 
             return View("ItineraryDetail", itineraryDAL.GetItineraryDetail(itineraryID));

@@ -152,7 +152,7 @@ namespace Capstone.Web.DALs
             return (itineraryDeletion && (linkTableDeletions == itinerary.LandmarkList.Count));
         }
 
-        public ItineraryModel GetItineraryDetail(int itineraryId)
+        public ItineraryModel GetItineraryDetail(int itineraryID)
         {
             ItineraryModel itinerary = new ItineraryModel();
 
