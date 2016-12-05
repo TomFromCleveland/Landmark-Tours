@@ -1,0 +1,26 @@
+﻿@model Capstone.Web.Models.ItineraryModel
+
+@{
+    ViewBag.Title = "ItineraryDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="pagetitle"> <strong>@Model.Name</strong> </h2>
+
+<p class="itinerary_date_detailpage"> for <br /> <strong>@Model.Date.DayOfWeek @Model.Date.ToShortDateString()</strong> </p>
+
+@if (Model.LandmarkList != null)
+{
+    <table>
+        foreach (var landmark in Model.LandmarkList)
+        {
+        <tr>
+            <td>
+                @*@LandmarkModel.Name*@
+            </td>
+        </tr>
+        }
+    </table>
+
+
+}

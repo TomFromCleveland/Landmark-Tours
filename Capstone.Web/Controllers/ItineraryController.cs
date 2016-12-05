@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Capstone.Web.Controllers
 {
+
     public class ItineraryController : Controller
     {
         private IItineraryDAL itineraryDAL;
@@ -26,16 +27,17 @@ namespace Capstone.Web.Controllers
             return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
         }
 
+        public ActionResult ItineraryDetails(int itineraryID)
+        {
 
-        //public ActionResult ItineraryDetail(int itineraryID)
-        //{
-        //    return View("ItineraryDetail", itineraryDAL.GetItineraryDetail(itineraryID);
-        //}
+            return View("ItineraryDetail", itineraryDAL.GetItineraryDetail(itineraryID));
+
+        }
 
         public ActionResult CreateItinerary()
         {
             ModelState.Clear();
-            ItineraryModel itinerary =new ItineraryModel();
+            ItineraryModel itinerary = new ItineraryModel();
             //itinerary.UserID=;
             return View("CreateItinerary", itinerary);
         }
@@ -47,17 +49,24 @@ namespace Capstone.Web.Controllers
             {
 
                 return RedirectToAction("CreateItinerary");
-            }else
+            }
+            else
             {
-                List<LandmarkModel> landmarks = new List<LandmarkModel>();
-                    landmarks=landmarkDAL.GetAllApprovedLandmarks();
-                AddLandmarkToItinerary landmarkAndItinerary = new AddLandmarkToItinerary();
-                landmarkAndItinerary.Itinerary = itinerary;
-                landmarkAndItinerary.Landmarks = landmarks;
-                return View("AddLandmarkToItinerary", landmarkAndItinerary);
+                ItineraryModel newItinerary = itineraryDAL.CreateNewItinerary(itinerary);
+                return RedirectToAction("AddLandmarkToItinerary", new { id = newItinerary.ID });
             }
         }
 
+        public ActionResult AddLandmarkToItinerary(int id)
+        {
+            List<LandmarkModel> landmarks = new List<LandmarkModel>();
+            landmarks = landmarkDAL.GetAllApprovedLandmarks();
+            AddLandmarkToItinerary landmarkAndItinerary = new AddLandmarkToItinerary();
+            //look up itinerary based on id.
+            //     landmarkAndItinerary.Itinerary = itinerary;
+            //   landmarkAndItinerary.Landmarks = landmarks;
+            return View("AddLandmarkToItinerary", landmarkAndItinerary);
+        }
 
 
     }

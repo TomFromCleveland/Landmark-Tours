@@ -190,7 +190,28 @@ $(document).ready(function () {
         $("#StartingLatitude").val(startingLocation.Lat);
         $("#StartingLongitude").val(startingLocation.Lng);
         $(".NewItineraryForm").submit();
-    });
+        });
+
+        var jsonStr = '{"landmarks":[{}]}';
+        var obj = JSON.parse(jsonStr);
+        $(".add").click(function () {
+            var id = this.parentNode.id;
+            var numID = id.replace('lmID', '');
+
+            var jsonArrayText = { id: numID };
+            obj["landmarks"].push(jsonArrayText);
+            this.className = "delete";
+            this.text = "Remove";
+
+        });
+
+        $(".delete").click(function () {
+            var id = this.parentNode.id;
+            var numID = id.replace('lmID', '');
+            delete obj["landmarks"][id];
+            this.className = "add";
+            this.text = "Add";
+        });
 
 });
 
@@ -231,5 +252,6 @@ function addLandmarks() {
     $("tr").prop('onclick',null).off('click');
     $("#distance_header").text("Add to Itinerary");
     $(".landmark_distance").append("<input class=add type=button value=Add More />")
-
+   
+ 
 }
