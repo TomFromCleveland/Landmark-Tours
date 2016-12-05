@@ -12,10 +12,12 @@ namespace Capstone.Web.Controllers
     public class ItineraryController : Controller
     {
         private IItineraryDAL itineraryDAL;
+        private ILandmarkDAL landmarkDAL;
 
-        public ItineraryController(IItineraryDAL itineraryDAL)
+        public ItineraryController(IItineraryDAL itineraryDAL, ILandmarkDAL landmarkDAL)
         {
             this.itineraryDAL = itineraryDAL;
+            this.landmarkDAL = landmarkDAL;
         }
 
         // GET: Itinerary
@@ -24,7 +26,6 @@ namespace Capstone.Web.Controllers
             int userID = 1; //TODO Make this (int)Session["UserID"];
             return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
         }
-
 
         public ActionResult ItineraryDetails(int itineraryId)
         {
@@ -48,8 +49,12 @@ namespace Capstone.Web.Controllers
                 return RedirectToAction("CreateItinerary");
             }else
             {
-
-                return RedirectToAction("Index","Home");
+                List<LandmarkModel> landmarks = new List<LandmarkModel>();
+                    landmarks=landmarkDAL.GetAllApprovedLandmarks();
+                AddLandmarkToItinerary landmarkAndItinerary = new AddLandmarkToItinerary();
+                landmarkAndItinerary.Itinerary = itinerary;
+                landmarkAndItinerary.Landmarks = landmarks;
+                return View("AddLandmarkToItinerary", landmarkAndItinerary);
             }
         }
 

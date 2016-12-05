@@ -225,3 +225,11 @@ function giveSuggestions() {
 
 
 }
+
+
+function addLandmarks() {
+    $("tr").prop('onclick',null).off('click');
+    $("#distance_header").text("Add to Itinerary");
+    $(".landmark_distance").append("<input class=add type=button value=Add More />")
+
+}

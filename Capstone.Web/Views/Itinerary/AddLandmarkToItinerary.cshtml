@@ -1,0 +1,24 @@
+﻿@model Capstone.Web.Models.AddLandmarkToItinerary
+@{
+    ViewBag.Title = "AddLandmarkToItinerary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  
+}
+
+
+
+
+<h2>Select Landmarks To Add To Itinerary</h2>
+@Html.Partial("_MapList", Model.Landmarks);
+
+
+
+<script>
+    var pos;
+    var landmarkLatLng=[];
+    generateMap(@Html.Raw(Json.Encode(Model.Landmarks)));
+    addLandmarks();
+
+</script>
+
+

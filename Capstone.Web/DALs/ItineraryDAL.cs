@@ -187,36 +187,6 @@ namespace Capstone.Web.DALs
             }
 
             return itinerary;
-            //try
-            //{
-            //    using (SqlConnection conn = new SqlConnection(_connectionString))
-            //    {
-            //        conn.Open();
-            //        SqlCommand cmd = new SqlCommand(@"SELECT * 
-            //                                          FROM itinerary
-            //                                          WHERE itinerary.id = @itineraryID", conn);
-
-            //        cmd.Parameters.AddWithValue("@itineraryID", itineraryId);
-            //        SqlDataReader reader = cmd.ExecuteReader();
-
-            //        while (reader.Read())
-            //        {
-
-            //            {
-            //                ID = Convert.ToInt32(reader["id"]),
-            //                StartingLatitude = Convert.ToDouble(reader["starting_latitude"]),
-            //                StartingLongitude = Convert.ToDouble(reader["starting_longitude"]),
-            //                Date = Convert.ToDateTime(reader["itinerary_date"]),
-            //                Name = Convert.ToString(reader["name"])
-            //            });
-            //        }
-            //    }
-            //}
-            //catch (SqlException e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
-            //return itinerary;
-        }
+            
     }
 }
