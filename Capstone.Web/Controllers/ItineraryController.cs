@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Capstone.Web.Controllers
 {
+
     public class ItineraryController : Controller
     {
         private IItineraryDAL itineraryDAL;
@@ -25,9 +26,9 @@ namespace Capstone.Web.Controllers
         }
 
 
-        public ActionResult ItineraryDetail(int itineraryID)
+        public ActionResult ItineraryDetails(int itineraryId)
         {
-            return View("ItineraryDetail", itineraryDAL.GetItineraryDetail(itineraryID);
+            return View("ItineraryDetails", itineraryDAL.GetItineraryDetails(itineraryId));
         }
 
         public ActionResult CreateItinerary()
