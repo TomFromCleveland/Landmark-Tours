@@ -198,9 +198,9 @@
     <Content Include="Views\Landmark\LandmarkDetail.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_MapList.cshtml" />
-    <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
     <Content Include="Views\Itinerary\CreateItinerary.cshtml" />
     <Content Include="Views\Itinerary\AddLandmarkToItinerary.cshtml" />
+    <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
