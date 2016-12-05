@@ -166,11 +166,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItineraryController.cs" />
     <Compile Include="Controllers\LandmarkController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DALs\IItineraryDAL.cs" />
     <Compile Include="DALs\IReviewDAL.cs" />
     <Compile Include="DALs\ItineraryDAL.cs" />
+    <Compile Include="DALs\IUserDAL.cs" />
     <Compile Include="DALs\LandmarkDAL.cs" />
     <Compile Include="DALs\ReviewDAL.cs" />
+    <Compile Include="DALs\UserDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Users\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
