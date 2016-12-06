@@ -13,7 +13,7 @@ namespace Capstone.Web.Controllers
 
         public HomeController(IUserDAL userDAL) : base(userDAL)
         {
-
+            this.userDAL = userDAL;
         }
 
         // GET: Home

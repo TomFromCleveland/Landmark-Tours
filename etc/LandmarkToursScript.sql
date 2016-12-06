@@ -20,10 +20,10 @@ CONSTRAINT pk_landmark_id PRIMARY KEY (id)
 
 CREATE TABLE app_user (
 id INTEGER IDENTITY(1,1) not null,
-user_type VARCHAR(64) not null,
+is_admin BIT not null,
 username VARCHAR(64) not null,
 user_password VARCHAR(64) not null,
-salt varchar(8000) not null,
+salt VARCHAR(8000) not null,
 
 CONSTRAINT pk_app_user_id PRIMARY KEY (id)
 );
@@ -72,8 +72,8 @@ INSERT INTO landmark ( image_name, landmark_description, name, admin_approved, l
 INSERT INTO landmark ( image_name, landmark_description, name, admin_approved, longitude, latitude, google_api_placeID) VALUES ('GreatLakesBrewingCompany.png', 'Great Lakes Brewing Company is a brewery and brewpub in Cleveland, Ohio. The first brewpub and microbrewery in the state, Great Lakes Brewing has been named important both to Cleveland''s local IDENTITY, as well one of the initial forces behind the revival of the Ohio City neighborhood on the near West Side. In 2015, it was the 21st-largest craft brewery by volume and the 28th-largest overall brewery in the United States. The company was established in 1988 by brothers Patrick and Daniel Conway, both St. Edward High School graduates, in Cleveland''s Ohio City neighborhood, located near St. Ignatius High School and the West Side Market. The brewpub and restaurant remain in their original locations, while production has expanded to adjacent properties.', 'Great Lakes Brewing Company', 0, -81.704605, 41.485377,'ChIJA-V2u23wMIgRe6rtMBxi8uQ');
 INSERT INTO landmark ( image_name, landmark_description, name, admin_approved, longitude, latitude, google_api_placeID) VALUES ('BorderlineCafe.jpg', 'Where all your breakfast dreams come true.', 'Borderline Cafe', 0, -81.827142, 41.482161,'ChIJo41G2ojyMIgRnIlYYTTlbJIs'); 
 
-INSERT INTO app_user (user_type, username, user_password) VALUES ('city visitor', 'visitor', 'password');
-INSERT INTO app_user (user_type, username, user_password) VALUES ('city administrator', 'admin', 'password');
+INSERT INTO app_user (is_admin, username, user_password) VALUES (0, 'visitor', 'password');
+INSERT INTO app_user (is_admin, username, user_password) VALUES (1, 'admin', 'password');
 
 INSERT INTO itinerary (user_id, name, itinerary_DATE, starting_latitude, starting_longitude) VALUES (1, 'Itinerary 1', '20161201', -81.687451, 41.468737);
 INSERT INTO itinerary (user_id, name, itinerary_DATE, starting_latitude, starting_longitude) VALUES (1, 'Cleveland Rocks Itinerary', '20161202', -81.687451, 41.468737);
@@ -89,6 +89,4 @@ INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 6);
 INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 7);
 
 INSERT INTO review (landmark_id, user_id, review_DATE, review_text, thumbs_up, thumbs_down) VALUES (1, 1, '20161201', 'Christmas Story House? More like the lamp house!', 0, 1);
-
-
 INSERT INTO review (landmark_id, user_id, review_DATE, review_text, thumbs_up, thumbs_down) VALUES (1, 2, '20161202', '''I love lamp '' - Brick Tamland, City Administrator', 1, 0);

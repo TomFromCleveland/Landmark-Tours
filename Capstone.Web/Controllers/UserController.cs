@@ -18,10 +18,7 @@ namespace Capstone.Web.Controllers
             this.userDAL = userDAL;
         }
 
-
-
         [HttpGet]
-        [Route("login")]
         public ActionResult Login()
         {
             if (base.IsAuthenticated)
@@ -33,7 +30,6 @@ namespace Capstone.Web.Controllers
         }
 
         [HttpPost]
-        [Route("login")]
         public ActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -59,23 +55,69 @@ namespace Capstone.Web.Controllers
                 return View("Login", model);
             }
         }
+        
+            [HttpGet]
+            public ActionResult CreateUser()
+        {
+            if (base.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home", new { username = base.CurrentUser });
+            }
+            else
+            {
+                CreateUserViewModel newUser = new CreateUserViewModel();
+                return View("CreateUser", newUser);
+            }
+            
+        }
 
+        [HttpPost]
+        public ActionResult CreateUser(CreateUserViewModel viewModel)
+        {
+            if (base.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home", new { username = base.CurrentUser });
+            }
 
+            if (ModelState.IsValid)
+            {
+                var currentUser = userDAL.GetUser(viewModel.Username);
 
+                if (currentUser != null)
+                {
+                    viewModel.ErrorMessage = "This username is already taken.";
+                    return View("CreateUser", viewModel);
+                }
 
-        //Login()
-        //Login(LoginViewModel??)[HttpPost] - actually logs user in, calls hash provider, hashes password
+                var hashProvider = new HashProvider();
+                var hashedPassword = hashProvider.HashPassword(viewModel.Password);
+                var salt = hashProvider.SaltValue;
 
-        //CreateNewUser()
-        //CreateNewUser(NewUserViewModel??)[HttpPost] - writes new user to DB
+                var newUser = new UserModel
+                {
+                    Username = viewModel.Username,
+                    Password = hashedPassword,
+                    Salt = salt
+                };
+
+                userDAL.CreateNewUser(newUser);
+
+                base.LogUserIn(viewModel.Username);
+
+                return RedirectToAction("Index", "Home", new { username = viewModel.Username });
+            }
+            else
+            {
+                return View("CreateUser", viewModel);
+            }
+        }
+
         [HttpGet]
-        [Route("logout")]
         public ActionResult Logout()
         {
             base.LogUserOut();
 
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

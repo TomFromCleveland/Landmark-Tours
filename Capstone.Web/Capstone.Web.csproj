@@ -213,7 +213,7 @@
     <Content Include="Views\Itinerary\AddLandmarkToItinerary.cshtml" />
     <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
-    <Content Include="Views\Users\Register.cshtml" />
+    <Content Include="Views\Users\CreateUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
