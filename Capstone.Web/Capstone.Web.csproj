@@ -212,8 +212,8 @@
     <Content Include="Views\Itinerary\CreateItinerary.cshtml" />
     <Content Include="Views\Itinerary\AddLandmarkToItinerary.cshtml" />
     <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
-    <Content Include="Views\Users\Login.cshtml" />
-    <Content Include="Views\Users\CreateUser.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\CreateUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
