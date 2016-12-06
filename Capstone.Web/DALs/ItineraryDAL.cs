@@ -153,6 +153,7 @@ namespace Capstone.Web.DALs
         public ItineraryModel GetItineraryDetail(int itineraryID)
         {
             ItineraryModel itinerary = new ItineraryModel();
+            itinerary.LandmarkList = new List<LandmarkModel>();
 
             try
             {

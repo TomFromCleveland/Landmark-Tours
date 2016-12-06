@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -15,7 +16,42 @@ namespace Capstone.Web.DALs
             _connectionString = connectionString;
         }
 
-        public bool CreateNewUser(string username, string password)
+        public UserModel GetUser(string username)
+        {
+            UserModel user = null;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM app_user WHERE app_user.username = @username", conn);
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        user = new UserModel
+                        {
+                            ID = Convert.ToInt32(reader["id"]),
+                            Password = Convert.ToString(reader["password"]),
+                            Username = Convert.ToString(reader["username"]),
+                            Salt = Convert.ToString(reader["salt"]),
+                            UserType = Convert.ToString(reader["user_type"])
+                        };
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return user;
+        }
+
+        public bool CreateNewUser(UserModel user)
         {
             int creationSuccessful = 0;
 
@@ -25,10 +61,12 @@ namespace Capstone.Web.DALs
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("sql goes here", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO app_user VALUES (@username, @password, @salt, @userType)", conn);
 
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@username", user.Username);
+                    cmd.Parameters.AddWithValue("@password", user.Password);
+                    cmd.Parameters.AddWithValue("@salt", user.Salt);
+                    cmd.Parameters.AddWithValue("@userType", user.UserType);
 
                     creationSuccessful = cmd.ExecuteNonQuery();
                 }
@@ -40,8 +78,5 @@ namespace Capstone.Web.DALs
 
             return (creationSuccessful == 1);
         }
-
-
-
     }
 }

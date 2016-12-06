@@ -23,6 +23,7 @@ id INTEGER IDENTITY(1,1) not null,
 user_type VARCHAR(64) not null,
 username VARCHAR(64) not null,
 user_password VARCHAR(64) not null,
+salt varchar(8000) not null,
 
 CONSTRAINT pk_app_user_id PRIMARY KEY (id)
 );
@@ -88,4 +89,6 @@ INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 6);
 INSERT INTO itinerary_landmark (itinerary_id, landmark_id) VALUES (1, 7);
 
 INSERT INTO review (landmark_id, user_id, review_DATE, review_text, thumbs_up, thumbs_down) VALUES (1, 1, '20161201', 'Christmas Story House? More like the lamp house!', 0, 1);
+
+
 INSERT INTO review (landmark_id, user_id, review_DATE, review_text, thumbs_up, thumbs_down) VALUES (1, 2, '20161202', '''I love lamp '' - Brick Tamland, City Administrator', 1, 0);
