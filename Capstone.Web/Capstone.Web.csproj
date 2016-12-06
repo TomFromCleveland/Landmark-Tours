@@ -222,7 +222,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Properties\App_Data\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\Authorization\" />
   </ItemGroup>

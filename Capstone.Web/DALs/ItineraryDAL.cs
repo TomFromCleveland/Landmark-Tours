@@ -29,7 +29,7 @@ namespace Capstone.Web.DALs
                     SqlCommand cmd = new SqlCommand(@"INSERT INTO itinerary (name, itinerary_date, user_id, startingLatitude, startingLongitude) 
                                                       VALUES (@name, @itineraryDate, @userID, @startingLatitude, @startingLongitude); SELECT cast(Scope_Identity() as int)", conn);
 
-                    cmd.Parameters.AddWithValue("@name", itinerary.Name);
+                    cmd.Parameters.AddWithValue("@name", itinerary.Itinerary_Name);
                     cmd.Parameters.AddWithValue("@itineraryDate", itinerary.Date);
                     cmd.Parameters.AddWithValue("@userID", itinerary.UserID);
                     cmd.Parameters.AddWithValue("@startingLatitude", itinerary.StartingLatitude);
@@ -99,7 +99,7 @@ namespace Capstone.Web.DALs
                             StartingLatitude = Convert.ToDouble(reader["starting_latitude"]),
                             StartingLongitude = Convert.ToDouble(reader["starting_longitude"]),
                             Date = Convert.ToDateTime(reader["itinerary_date"]),
-                            Name = Convert.ToString(reader["name"])
+                            Itinerary_Name = Convert.ToString(reader["name"])
                         });
                     }
                 }
@@ -161,16 +161,23 @@ namespace Capstone.Web.DALs
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(@"SELECT landmark.* 
+                    SqlCommand cmd = new SqlCommand(@"SELECT landmark.*, itinerary.*, itinerary.name as itinerary_name 
                                                   FROM landmark
                                                   INNER JOIN itinerary_landmark ON landmark.id = itinerary_landmark.landmark_id 
+                                                  INNER JOIN itinerary ON itinerary_landmark.itinerary_id = itinerary.id
                                                   WHERE itinerary_landmark.itinerary_id = @itineraryID", conn);
-
+                    
                     cmd.Parameters.AddWithValue("@itineraryID", itineraryID);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
+                        itinerary.ID = itineraryID;
+                        itinerary.Date = Convert.ToDateTime(reader["itinerary_DATE"]);
+                        itinerary.Itinerary_Name = Convert.ToString(reader["itinerary_name"]);
+                        itinerary.StartingLatitude = Convert.ToInt32(reader["starting_latitude"]);
+                        itinerary.StartingLongitude = Convert.ToInt32(reader["starting_longitude"]);
+                        itinerary.UserID = Convert.ToInt32(reader["user_id"]);
 
                         itinerary.LandmarkList.Add(new LandmarkModel()
                         {
@@ -214,7 +221,7 @@ namespace Capstone.Web.DALs
                     while (reader.Read())
                     {
                         itinerary.UserID = Convert.ToInt32(reader["user_id"]);
-                        itinerary.Name = Convert.ToString(reader["name"]);
+                        itinerary.Itinerary_Name = Convert.ToString(reader["name"]);
                         itinerary.Date = Convert.ToDateTime(reader["intinerary_DATE"]);
                         itinerary.StartingLatitude = Convert.ToDouble(reader["starting_latitude"]);
                         itinerary.StartingLongitude = Convert.ToDouble(reader["starting_longitude"]);

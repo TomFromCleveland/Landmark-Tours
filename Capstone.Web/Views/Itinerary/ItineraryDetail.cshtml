@@ -5,18 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="pagetitle"> <strong>@Model.Name</strong> </h2>
+<h2 class="pagetitle"> <strong>@Model.Itinerary_Name</strong> </h2>
 
 <p class="itinerary_date_detailpage"> for <br /> <strong>@Model.Date.DayOfWeek @Model.Date.ToShortDateString()</strong> </p>
 
 @if (Model.LandmarkList != null)
 {
+    int stop_number = 0;
+
     <table>
-        foreach (var landmark in Model.LandmarkList)
+        @foreach (var landmark in Model.LandmarkList)
         {
+
+        stop_number = stop_number + 1;
         <tr>
             <td>
-                @*@LandmarkModel.Name*@
+             <strong>Stop @stop_number</strong>
+                   @landmark.Name
             </td>
         </tr>
         }
