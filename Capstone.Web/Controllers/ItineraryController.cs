@@ -9,12 +9,12 @@ using System.Web.Mvc;
 namespace Capstone.Web.Controllers
 {
 
-    public class ItineraryController : Controller
+    public class ItineraryController : BaseController
     {
         private IItineraryDAL itineraryDAL;
         private ILandmarkDAL landmarkDAL;
 
-        public ItineraryController(IItineraryDAL itineraryDAL, ILandmarkDAL landmarkDAL)
+        public ItineraryController(IItineraryDAL itineraryDAL, ILandmarkDAL landmarkDAL, IUserDAL userDAL) : base(userDAL)
         {
             this.itineraryDAL = itineraryDAL;
             this.landmarkDAL = landmarkDAL;
@@ -62,8 +62,8 @@ namespace Capstone.Web.Controllers
             List<LandmarkModel> landmarks = new List<LandmarkModel>();
             landmarks = landmarkDAL.GetAllApprovedLandmarks();
             AddLandmarkToItinerary landmarkAndItinerary = new AddLandmarkToItinerary();
-            landmarkAndItinerary.Itinerary=itineraryDAL.GetItineraryByID(id);
-            
+            landmarkAndItinerary.Itinerary = itineraryDAL.GetItineraryByID(id);
+
             landmarkAndItinerary.Landmarks = landmarks;
             return View("AddLandmarkToItinerary", landmarkAndItinerary);
         }

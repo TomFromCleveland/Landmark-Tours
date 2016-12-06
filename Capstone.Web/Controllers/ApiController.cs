@@ -9,12 +9,12 @@ using System.Web.Mvc;
 
 namespace Capstone.Web.Controllers
 {
-    public class ApiController : Controller
+    public class ApiController : BaseController
     {
         private IItineraryDAL itineraryDAL;
         private ILandmarkDAL landmarkDAL;
 
-        public ApiController(IItineraryDAL itineraryDAL, ILandmarkDAL landmarkDAL)
+        public ApiController(IItineraryDAL itineraryDAL, ILandmarkDAL landmarkDAL, IUserDAL userDAL) : base(userDAL)
         {
             this.itineraryDAL = itineraryDAL;
             this.landmarkDAL = landmarkDAL;
@@ -25,13 +25,13 @@ namespace Capstone.Web.Controllers
         public ActionResult LandmarkToItinerary(ItineraryIDLandmarkIDModel model)
         {
 
-            if(itineraryDAL.AddItineraryLandmarks(model.LandmarkID, model.ItineraryID))
+            if (itineraryDAL.AddItineraryLandmarks(model.LandmarkID, model.ItineraryID))
             {
                 return Json(true);
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-             
+
         }
 
         [Route("api/delete")]

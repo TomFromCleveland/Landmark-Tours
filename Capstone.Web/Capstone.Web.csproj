@@ -165,10 +165,12 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ApiController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItineraryController.cs" />
     <Compile Include="Controllers\LandmarkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Crypto\HashProvider.cs" />
     <Compile Include="DALs\IItineraryDAL.cs" />
     <Compile Include="DALs\IReviewDAL.cs" />
     <Compile Include="DALs\ItineraryDAL.cs" />
@@ -181,10 +183,12 @@
     </Compile>
     <Compile Include="DALs\ILandmarkDAL.cs" />
     <Compile Include="Models\AddLandmarkToItinerary.cs" />
+    <Compile Include="Models\CreateUserViewModel.cs" />
     <Compile Include="Models\CurrentDateAttribute.cs" />
     <Compile Include="Models\ItineraryIDLandmarkIDModel.cs" />
     <Compile Include="Models\ItineraryModel.cs" />
     <Compile Include="Models\LandmarkModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -208,6 +212,8 @@
     <Content Include="Views\Itinerary\CreateItinerary.cshtml" />
     <Content Include="Views\Itinerary\AddLandmarkToItinerary.cshtml" />
     <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -217,10 +223,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-
     <Folder Include="Views\Api\" />
-    <Folder Include="Views\Users\" />
-
+    <Folder Include="Views\Authorization\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

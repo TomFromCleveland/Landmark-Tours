@@ -13,11 +13,11 @@ using System.Xml.Linq;
 
 namespace Capstone.Web.Controllers
 {
-    public class LandmarkController : Controller
+    public class LandmarkController : BaseController
     {
         private ILandmarkDAL landmarkDAL;
         // GET: Landmark
-        public LandmarkController(ILandmarkDAL landmarkDAL)
+        public LandmarkController(ILandmarkDAL landmarkDAL, IUserDAL userDAL) : base(userDAL)
         {
             this.landmarkDAL = landmarkDAL;
         }
