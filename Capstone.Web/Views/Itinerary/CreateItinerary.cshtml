@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create New Itinerary</h2>
+<h2 class="pagetitle">Create New Itinerary</h2>
 @using (Html.BeginForm("SubmitItinerary","Itinerary", new { @class = "NewItineraryForm" }))
 {
     @Html.Label("itinerary_name","Please name your itinerary")
@@ -19,8 +19,8 @@
     @Html.TextBox("SearchBox", null, new { @id="itinerary_search"})
     @Html.HiddenFor(m => m.StartingLatitude)
     @Html.HiddenFor(m => m.StartingLongitude)
-    <button id="itinerary_submit">Submit</button>
-}
+    <button  class="btn btn-default btn-primary" id="itinerary_submit">Submit</button>
+} 
 <script>
     var startingLocation = new Object();
     startingLocation.Lat = 0;

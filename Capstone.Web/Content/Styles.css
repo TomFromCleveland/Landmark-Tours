@@ -42,6 +42,14 @@
      padding-left: 5%;
  }
 
+ .text-black {
+      color: black;
+    }
+
+ .text-white {
+     color: white;
+ }
+
  #descriptionHelp {
      color:black;
  }
@@ -106,9 +114,6 @@
     font-size: 1em;
  }
 
- /* TODO change cursor to hand when hovering over table row: style-cursor {
-
- }*/
 
   .itinerary_date_detailpage {
     font-size: 1.5em;
