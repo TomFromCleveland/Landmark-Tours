@@ -5,22 +5,35 @@
 }
 
 <h2 class="pagetitle">Create New Itinerary</h2>
-@using (Html.BeginForm("SubmitItinerary","Itinerary", new { @class = "NewItineraryForm" }))
-{
-    @Html.Label("itinerary_name","Please name your itinerary")
-    @Html.TextBoxFor(m => m.Name, new {name="itinerary_name" })
-    @Html.ValidationMessageFor(m => m.Name)
-
-    @Html.Label("itinerary_date","Please select a date for your tour")
-    @Html.EditorFor(m => m.Date, new {name="itinerary_date" })
-    @Html.ValidationMessageFor(m => m.Date)
-
-    @Html.Label("starting_location", "Enter Starting Address or Name of place")
-    @Html.TextBox("SearchBox", null, new { @id="itinerary_search"})
-    @Html.HiddenFor(m => m.StartingLatitude)
-    @Html.HiddenFor(m => m.StartingLongitude)
-    <button  class="btn btn-default btn-primary" id="itinerary_submit">Submit</button>
-} 
+<div>
+    @using (Html.BeginForm("SubmitItinerary", "Itinerary", new { @class = "NewItineraryForm" }))
+    {
+        <div class="row">
+            <div class="col-md-3">
+               <span class="outline">@Html.Label("itinerary_name", "Please name your itinerary")</span>
+                @Html.TextBoxFor(m => m.Name, new { name = "itinerary_name" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+            <div class="col-md-4">
+                <span class="outline">@Html.Label("itinerary_date", "Please select a date for your tour")</span>
+                @Html.EditorFor(m => m.Date, new { name = "itinerary_date" })
+                @Html.ValidationMessageFor(m => m.Date)
+</div>
+            <div class="col-md-5">
+                <span class="outline">@Html.Label("starting_location", "Enter Starting Address or Name of place")</span>
+                @Html.TextBox("SearchBox", null, new { @id = "itinerary_search" })
+                @Html.HiddenFor(m => m.StartingLatitude)
+                @Html.HiddenFor(m => m.StartingLongitude)
+</div>
+        </div>
+        <div class="row">
+            <br />
+            <div class="col-xs-12 text-center">
+                <button class="btn btn-default btn-primary" id="itinerary_submit">Submit</button>
+            </div>
+        </div>
+    }
+</div>
 <script>
     var startingLocation = new Object();
     startingLocation.Lat = 0;

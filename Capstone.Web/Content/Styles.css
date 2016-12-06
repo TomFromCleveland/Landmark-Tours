@@ -20,7 +20,16 @@
        border: 1px solid transparent;
        border-radius: 4px 4px 0 0;
  }
-
+ .outline
+  {
+     text-align: center;
+     color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+ }
  .pagetitle {
      text-align: center;
      color: white;
@@ -119,3 +128,7 @@
     font-size: 1.5em;
     text-align: center;
  }
+
+  table {
+      gutt
+  }

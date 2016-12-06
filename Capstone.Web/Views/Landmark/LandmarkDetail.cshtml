@@ -4,14 +4,20 @@
     ViewBag.Title = "LandmarkDetail";
 }
 
-<h1>@Model.Name</h1>
 
-<img src="~/Content/imgs/@Model.ImageName" />
+<div class="container row">
+    <div class="col-lg-8 col-sm-8">
+        <img class="img-responsive img-thumbnail" src="~/Content/imgs/@Model.ImageName" />
+    </div>
+    <div class="col-lg-offset-1 col-lg-3 col-sm-4 well well-sm">
+        <h2>@Model.Name</h2>
+        <p>@Model.Description</p>
+    </div>
+</div>
 
-<p>@Model.Description</p>
 
 
 <div id="reviews_container">
-    <h2>Reviews</h2>
-    <p> Username says:<br />5 stars! This is the greatest landmark detail view I've ever seen!</p>
+    <h2 class="pagetitle">Reviews</h2>
+    <p class="well well-sm"> Username says:<br />5 stars! This is the greatest landmark detail view I've ever seen!</p>
 </div>

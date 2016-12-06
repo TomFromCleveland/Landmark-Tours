@@ -35,7 +35,7 @@
                     <label for="inputLocation">Description</label>
                     @Html.TextAreaFor(m => m.Description, new { @class="form-control", @id="location", @rows="3", @placeholder="Enter Description of Landmark"})
                     @*<textarea class="form-control" id="location" rows="3" placeholder="Enter Description of Landmark"></textarea>*@
-                    <small id="descriptionHelp" class="form-text text-muted">Please enter a brief description of the landmark.</small>
+                    <small id="descriptionHelp" class="form-text">Please enter a brief description of the landmark.</small>
 
 
                     @Html.ValidationMessageFor(m => m.Description)
