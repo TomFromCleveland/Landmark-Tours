@@ -171,6 +171,7 @@
     <Compile Include="Controllers\LandmarkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Crypto\HashProvider.cs" />
+    <Compile Include="Crypto\PasswordRegex.cs" />
     <Compile Include="DALs\IItineraryDAL.cs" />
     <Compile Include="DALs\IReviewDAL.cs" />
     <Compile Include="DALs\ItineraryDAL.cs" />
@@ -214,6 +215,7 @@
     <Content Include="Views\Itinerary\ItineraryDetail.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\CreateUser.cshtml" />
+    <Content Include="Views\Shared\_AuthenticationBar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -222,7 +224,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Properties\App_Data\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\Authorization\" />
   </ItemGroup>

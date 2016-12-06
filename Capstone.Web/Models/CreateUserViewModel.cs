@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone.Web.Crypto;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,8 +18,10 @@ namespace Capstone.Web.Models
         [Display(Name = "Password:")]
 
         //TODO: Make mroe reg expression for password validations
-
-        [RegularExpression(@"(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$", ErrorMessage = "You need a stronger password")]
+        [RegExContainsNumber("/(?=.\\d)/", ErrorMessage = "Password must contain a number.")]
+        [RegExContainsLowercase("/(?=.[a-z])/", ErrorMessage = "Password must contain a lowercase letter.")]
+        [RegExContainsUppercase("/(?=.[A-Z])/", ErrorMessage = "Password must contain a capital letter.")]
+        [RegExNoWhiteSpace("/(?!.\\s)/", ErrorMessage = "Password cannot contain whitespace.")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
