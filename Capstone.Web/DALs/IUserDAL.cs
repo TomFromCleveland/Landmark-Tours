@@ -8,6 +8,6 @@ namespace Capstone.Web.DALs
 {
     public interface IUserDAL
     {
-
+        bool CreateNewUser(string username, string password);
     }
 }
