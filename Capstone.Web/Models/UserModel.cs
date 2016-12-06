@@ -14,6 +14,6 @@ namespace Capstone.Web.Models
         public string Password { get; set; }
         public string Username { get; set; }
         public string Salt { get; set; }
-        public string UserType { get; set; }
+        public bool IsAdmin { get; set; } = false;
     }
 }

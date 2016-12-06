@@ -36,10 +36,10 @@ namespace Capstone.Web.DALs
                         user = new UserModel
                         {
                             ID = Convert.ToInt32(reader["id"]),
-                            Password = Convert.ToString(reader["password"]),
+                            Password = Convert.ToString(reader["user_password"]),
                             Username = Convert.ToString(reader["username"]),
                             Salt = Convert.ToString(reader["salt"]),
-                            UserType = Convert.ToString(reader["user_type"])
+                            IsAdmin = Convert.ToBoolean(reader["is_admin"])
                         };
                     }
                 }
@@ -61,12 +61,12 @@ namespace Capstone.Web.DALs
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO app_user VALUES (@username, @password, @salt, @userType)", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO app_user VALUES (@username, @password, @salt, @isAdmin)", conn);
 
                     cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
-                    cmd.Parameters.AddWithValue("@userType", user.UserType);
+                    cmd.Parameters.AddWithValue("@isAdmin", user.IsAdmin);
 
                     creationSuccessful = cmd.ExecuteNonQuery();
                 }

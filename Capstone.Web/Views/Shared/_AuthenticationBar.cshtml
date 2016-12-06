@@ -1,0 +1,76 @@
+﻿@model Capstone.Web.Models.UserModel
+
+@{
+    Layout = null;
+}
+
+
+
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid row">
+        <div class="col-md-5 hidden-sm hidden-xs">
+            <img src="~/Content/imgs/cleveland-skyline-black-silhouette.svg" />
+        </div>
+        <div class="col-md-2 col-sm-3 center-block">
+            <img class="img-responsive" src="~/Content/imgs/Logo_sm.png" />
+        </div>
+        <div class="col-md-5 col-sm-9 hidden-xs">
+            <img src="~/Content/imgs/cleveland-skyline-black-silhouette.svg" />
+        </div>
+    </div>
+
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="container-fluid collapse navbar-collapse">
+        @if (Model == null)
+        {
+            <ul class="nav navbar-nav">
+                <li name="home" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li name="viewLandmarks" class="@(ViewContext.RouteData.Values["Action"].ToString() == "LandmarkList" ? "active" : "")">@Html.ActionLink("View Landmarks", "LandmarkList", "Landmark")</li>
+
+                <li name="newUser" class="@(ViewContext.RouteData.Values["Action"].ToString() == "User" ? "active" : "")">@Html.ActionLink("Create Account", "CreateUser", "User")</li>
+                <li name="login" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Login" ? "active" : "")">@Html.ActionLink("Log In", "Login", "User")</li>
+            </ul>
+ 
+        }
+        else if (Model.IsAdmin)
+        {
+            <ul class="nav navbar-nav">
+                <li name="home" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li name="viewLandmarks" class="@(ViewContext.RouteData.Values["Action"].ToString() == "LandmarkList" ? "active" : "")">@Html.ActionLink("View Landmarks", "LandmarkList", "Landmark")</li>
+                <li name="approveLandmark" class="@(ViewContext.RouteData.Values["Action"].ToString() == "UnapprovedLandmarkList" ? "active" : "")">@Html.ActionLink("Approve Landmark", "UnapprovedLandmarkList", "Landmark")</li>
+                <li name="addLandmark" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SubmitNewLandmark" ? "active" : "")">@Html.ActionLink("Add Landmark", "SubmitNewLandmark", "Landmark")</li>
+                <li name="viewItineraries" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ViewItineraries" ? "active" : "")">@Html.ActionLink("View Itineraries", "ViewItineraries", "Itinerary")</li>
+                <li name="createItinerary" class="@(ViewContext.RouteData.Values["Action"].ToString() == "CreateItinerary" ? "active" : "")">@Html.ActionLink("Create Itinerary", "CreateItinerary", "Itinerary")</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Hello @Model.Username</a></li>
+                <li>@Html.ActionLink("Log Out", "Logout", "User")</li>
+            </ul>
+        }
+        else if (!Model.IsAdmin)
+        {
+            <ul class="nav navbar-nav">
+                <li name="home" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li name="viewLandmarks" class="@(ViewContext.RouteData.Values["Action"].ToString() == "LandmarkList" ? "active" : "")">@Html.ActionLink("View Landmarks", "LandmarkList", "Landmark")</li>
+                <li name="addLandmark" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SubmitNewLandmark" ? "active" : "")">@Html.ActionLink("Add Landmark", "SubmitNewLandmark", "Landmark")</li>
+                <li name="viewItineraries" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ViewItineraries" ? "active" : "")">@Html.ActionLink("View Itineraries", "ViewItineraries", "Itinerary")</li>
+                <li name="createItinerary" class="@(ViewContext.RouteData.Values["Action"].ToString() == "CreateItinerary" ? "active" : "")">@Html.ActionLink("Create Itinerary", "CreateItinerary", "Itinerary")</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Hello @Model.Username</a></li>
+                <li>@Html.ActionLink("Log Out", "Logout", "User")</li>
+            </ul>
+        }
+
+
+
+    </div>
+</nav>
