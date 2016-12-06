@@ -13,11 +13,13 @@ namespace Capstone.Web.Controllers
     {
         private IItineraryDAL itineraryDAL;
         private ILandmarkDAL landmarkDAL;
+        private IUserDAL userDAL;
 
         public ItineraryController(IItineraryDAL itineraryDAL, ILandmarkDAL landmarkDAL, IUserDAL userDAL) : base(userDAL)
         {
             this.itineraryDAL = itineraryDAL;
             this.landmarkDAL = landmarkDAL;
+            this.userDAL=userDAL;
         }
 
         // GET: Itinerary
@@ -38,7 +40,7 @@ namespace Capstone.Web.Controllers
         {
             ModelState.Clear();
             ItineraryModel itinerary = new ItineraryModel();
-            //itinerary.UserID=;
+            itinerary.UserID = userDAL.GetUser(CurrentUser).ID;
             return View("CreateItinerary", itinerary);
         }
 

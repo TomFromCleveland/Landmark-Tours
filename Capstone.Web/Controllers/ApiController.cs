@@ -20,7 +20,7 @@ namespace Capstone.Web.Controllers
             this.landmarkDAL = landmarkDAL;
         }
 
-        [Route("api/add")]
+        [Route("api/add/{id}")]
         [HttpPost]
         public ActionResult LandmarkToItinerary(ItineraryIDLandmarkIDModel model)
         {

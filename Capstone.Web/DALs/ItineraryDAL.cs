@@ -26,7 +26,7 @@ namespace Capstone.Web.DALs
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(@"INSERT INTO itinerary (name, itinerary_date, user_id, startingLatitude, startingLongitude) 
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO itinerary (name, itinerary_date, user_id, starting_latitude, starting_longitude) 
                                                       VALUES (@name, @itineraryDate, @userID, @startingLatitude, @startingLongitude); SELECT cast(Scope_Identity() as int)", conn);
 
                     cmd.Parameters.AddWithValue("@name", itinerary.Itinerary_Name);

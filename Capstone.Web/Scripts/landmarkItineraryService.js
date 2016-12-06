@@ -2,7 +2,7 @@
     this.addLandmarkToItinerary = function (landmarkID, itineraryID, successCallback) {
 
         $.ajax({
-            url: baseUrl + "api/add",
+            url: baseUrl + "api/add" +$("#ID").val(),
             data: {
                 LandmarkID: landmarkID,
                 ItineraryID: itineraryID
