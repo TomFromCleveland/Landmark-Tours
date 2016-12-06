@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Capstone.Web.DALs
 {
     public interface IUserDAL
     {
-        bool CreateNewUser(string username, string password);
+        bool CreateNewUser(UserModel user);
+        UserModel GetUser(string username);
     }
 }
