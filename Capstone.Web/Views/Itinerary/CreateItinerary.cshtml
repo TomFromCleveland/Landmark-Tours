@@ -4,38 +4,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="pagetitle">Create New Itinerary</h2>
 <div>
     @using (Html.BeginForm("SubmitItinerary", "Itinerary", new { @class = "NewItineraryForm" }))
     {
         <div class="row">
-            <div class="col-md-3">
-               <span class="outline">@Html.Label("itinerary_name", "Please name your itinerary")</span>
+            <div class="col-md-4 col-sm-6 col-xs-10 col-md-offset-4 col-sm-offset-3 col-xs-offset-1 well well-sm">
+                <h2 class="pagetitle">Create New Itinerary</h2>
+                <span>@Html.Label("itinerary_name", "Please name your itinerary")</span>
                 @Html.TextBoxFor(m => m.Itinerary_Name, new { name = "itinerary_name" })
                 @Html.ValidationMessageFor(m => m.Itinerary_Name)
-            </div>
-            <div class="col-md-4">
-                <span class="outline">@Html.Label("itinerary_date", "Please select a date for your tour")</span>
+                <span>@Html.Label("itinerary_date", "Please select a date for your tour")</span>
                 @Html.EditorFor(m => m.Date, new { name = "itinerary_date" })
                 @Html.ValidationMessageFor(m => m.Date)
-</div>
-            <div class="col-md-5">
-                <span class="outline">@Html.Label("starting_location", "Enter Starting Address or Name of place")</span>
+                <span>@Html.Label("starting_location", "Enter Starting Address or Name of place")</span>
                 @Html.TextBox("SearchBox", null, new { @id = "itinerary_search" })
                 @Html.HiddenFor(m => m.StartingLatitude)
                 @Html.HiddenFor(m => m.StartingLongitude)
-                @Html.HiddenFor(m=>m.UserID)
-                
-</div>
-        </div>
-        <div class="row">
-            <br />
-            <div class="col-xs-12 text-center">
+                @Html.HiddenFor(m => m.UserID)
+                <br />
                 <button class="btn btn-default btn-primary" id="itinerary_submit">Submit</button>
             </div>
         </div>
     }
 </div>
+
 <script>
     var startingLocation = new Object();
     startingLocation.Lat = 0;
