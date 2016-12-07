@@ -197,44 +197,54 @@ $(document).ready(function () {
         $('.submission_form').submit();
     });
     $("#landmark_table").DataTable();
-        $("#itinerary_submit").click(function () {
+    $("#itinerary_submit").click(function () {
         $("#StartingLatitude").val(startingLocation.Lat);
         $("#StartingLongitude").val(startingLocation.Lng);
         $(".NewItineraryForm").submit();
-        });
+    }); 
 
-        var jsonStr = '{"landmarks":[{}]}';
-        var obj = JSON.parse(jsonStr);
-        $(".add").click(function () {
-            var id = this.parentNode.id;
-            var itineraryID=$("#itinerary_id").val();
-            var numID = id.replace('lmID', '');
-            var service = new landmarkItineraryService(serviceUrl);
-            service.addLandmarkToItinerary(numID, itineraryID, function (jsonData) {
-                console.log(jsonData)
-            });
+    var jsonStr = '{"landmarks":[{}]}';
+    var obj = JSON.parse(jsonStr);
 
-            this.removeClass("add");            
-            this.addClass("delete");
-            this.text("Remove");
+    $(".add").on("click", addClick);
 
-        });
-
-        $(".delete").click(function () {
-            var id = this.parentNode.id;
-            var itineraryID = $("#itinerary_id").val();
-            var numID = id.replace('lmID', '');
-            var service = new landmarkItineraryService(serviceUrl);
-            service.removeLandmark(numID, itineraryID, function (jsonData) {
-                console.log(jsonData)
-            });
-
-            this.removeClass("delete");
-            this.addClass("add");
-            this.text = "Add";
-        });
+    $(".delete").on("click", removeClick);
 
 });
+
+function addClick() {
+    var id = this.parentNode.id;
+    var itineraryID=$("#itinerary_id").val();
+    var numID = id.replace('lmID', '');
+    var service = new landmarkItineraryService(serviceUrl);
+    service.addLandmarkToItinerary(numID, itineraryID, function (jsonData) {
+        console.log(jsonData)
+    });
+
+    $(this).toggleClass("delete");
+    $(this).toggleClass("add");
+    $(this).val("Remove");
+    $(this).off("click");
+    $(this).on("click", removeClick);
+
+}
+
+
+function removeClick() {
+    var id = this.parentNode.id;
+    var itineraryID = $("#itinerary_id").val();
+    var numID = id.replace('lmID', '');
+    var service = new landmarkItineraryService(serviceUrl);
+    service.removeLandmark(numID, itineraryID, function (jsonData) {
+        console.log(jsonData)
+    });
+
+    $(this).toggleClass("add");
+    $(this).toggleClass("delete");
+    $(this).text("Add");
+    $(this).off("click");
+    $(this).on("click", addClick);
+}
 
 
 function redirect() {
@@ -262,17 +272,17 @@ function giveSuggestions() {
         startingLocation.Lng = places[0].geometry.location.lng();
 
         return startingLocation;
-        });
+    });
 
 
 
 }
 
 
-function addLandmarks() {
-    $("tr").prop('onclick',null).off('click');
-    $("#distance_header").text("Add to Itinerary");
-    $(".landmark_distance").append("<input class=add type=button value=Add More />")
-   
- 
-}
+//function addLandmarks() {
+//    $("tr").prop('onclick', null).off('click');
+//    $("#distance_header").text("Add to Itinerary");
+//    $(".landmark_distance").append("<input class=add type=button value=Add More />")
+
+
+//}

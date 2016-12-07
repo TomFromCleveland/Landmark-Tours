@@ -57,7 +57,7 @@ namespace Capstone.Web.DALs
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
-                    
+
                     SqlCommand cmd = new SqlCommand(@"INSERT INTO itinerary_landmark (itinerary_id, landmark_id)
                                                       VALUES (@itineraryID, @landmarkID)", conn);
 
@@ -166,7 +166,7 @@ namespace Capstone.Web.DALs
                                                   INNER JOIN itinerary_landmark ON landmark.id = itinerary_landmark.landmark_id 
                                                   INNER JOIN itinerary ON itinerary_landmark.itinerary_id = itinerary.id
                                                   WHERE itinerary_landmark.itinerary_id = @itineraryID", conn);
-                    
+
                     cmd.Parameters.AddWithValue("@itineraryID", itineraryID);
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -257,13 +257,13 @@ namespace Capstone.Web.DALs
 
                 }
             }
-            catch(SqlException e)
+            catch (SqlException e)
             {
                 Console.WriteLine(e.Message);
             }
 
 
-                    return (deletedRows==1);
+            return (deletedRows == 1);
         }
 
     }

@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Capstone.Web.Models
 {
-    public class AddLandmarkToItinerary
+    public class AddLandmarkToItineraryViewModel
     {
-        public List<LandmarkModel> Landmarks { get; set; }
+        public List<LandmarkModel> AvailableLandmarks { get; set; }
         public ItineraryModel Itinerary { get; set; }
     }
 }
