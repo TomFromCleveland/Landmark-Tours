@@ -1,9 +1,8 @@
 ﻿body {
-    /*background-image: url('imgs/Cleveland-the-Beautiful-cyanotype.jpg');*/
-    background-image: url('imgs/Carousel-Cleveland-the-Beautiful.jpg');
+    background-image: url('imgs/Cleveland-the-Beautiful.jpg');
     background-size: 100%;
     background-repeat: repeat-y;
-    font-family:Verdana;
+    font-family: Verdana;
     border-color: #A39C87;
 }
 
@@ -141,10 +140,13 @@
   
   .well {
       opacity :.94;
+      border-color: #A39C87;
   }
   .panel {
       opacity: .94;
   }
-  .well {
-      border-color: #A39C87;
- d  }
+
+  .itin_details_table{
+      
+      text-align:center;
+  }

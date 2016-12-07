@@ -5,27 +5,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="pagetitle"> <strong>@Model.Itinerary_Name</strong> </h2>
 
-<p class="itinerary_date_detailpage"> for <br /> <strong>@Model.Date.DayOfWeek @Model.Date.ToShortDateString()</strong> </p>
+<div class="well well-sm">
 
-@if (Model.LandmarkList != null)
-{
-    int stop_number = 0;
+    <h2 class="pagetitle"> <strong>@Model.Itinerary_Name</strong> </h2>
 
-    <table>
-        @foreach (var landmark in Model.LandmarkList)
-        {
+    <p class="itinerary_date_detailpage"> for <br /> <strong>@Model.Date.DayOfWeek @Model.Date.ToShortDateString()</strong> </p>
 
-        stop_number = stop_number + 1;
-        <tr>
-            <td>
-             <strong>Stop @stop_number</strong>
-                   @landmark.Name
-            </td>
-        </tr>
-        }
-    </table>
+    @if (Model.LandmarkList != null)
+    {
+        int stop_number = 0;
+
+        <table class="itin_details_table" align="center">
+            @foreach (var landmark in Model.LandmarkList)
+            {
+
+                stop_number = stop_number + 1;
+                <tr>
+                    <td>
+                        <strong>Stop @stop_number</strong>
+                        <br />
+                        @landmark.Name
+                        <br />
+                        <button class="btn btn-primary btn-lg center-block"> Check In </button>
+                        <br />
+                    </td>
+                </tr>
+            }
+        </table>
 
 
-}
+    }
+</div>
