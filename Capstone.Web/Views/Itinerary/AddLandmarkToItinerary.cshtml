@@ -1,8 +1,8 @@
-﻿@model Capstone.Web.Models.AddLandmarkToItinerary
+﻿@model Capstone.Web.Models.AddLandmarkToItineraryViewModel
 @{
     ViewBag.Title = "AddLandmarkToItinerary";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    string imageSource;
 }
 
 
@@ -10,15 +10,54 @@
 
 <h2>Select Landmarks To Add To Itinerary</h2>
 @Html.Hidden("itinerary_id", Model.Itinerary.ID);
-@Html.Partial("_MapList", Model.Landmarks);
+<div class="col-lg-5 col-sm-6 well well-sm">
+    @Html.Partial("_Map")
+</div>
+<div class="col-lg-5 col-lg-offset-1 col-sm-6 well">
+    <table class="table table-responsive table-bordered table-hover panel panel-default" id="landmark_table">
+        <thead>
+            <tr>
+                <th> </th>
+                <th>Landmark Name</th>
+                <th id="distance_header">Distance</th>
+            </tr>
+        </thead>
+
+        @foreach (var landmark in Model.AvailableLandmarks)
+            {
+            <tr>
+
+                <td class="landmark_list">
+                    @if (landmark.ImageName.StartsWith("https://"))
+                {
+                    imageSource = landmark.ImageName;
+                }
+                else
+                {
+                    imageSource = "/Content/imgs/" + landmark.ImageName;
+                }
+
+                    <img class="img-responsive img-thumbnail" src=@imageSource />
+                </td>
+                <td class="landmark_name">
+                    @landmark.Name
+                </td>
+                <td id="lmID@(landmark.ID)">
+                    <button class="add">Add</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
 
 
 
 <script>
     var pos;
-    var landmarkLatLng=[];
-    generateMap(@Html.Raw(Json.Encode(Model.Landmarks)));
-    addLandmarks();
+    var landmarkLatLng = [];
+    generateMap(@Html.Raw(Json.Encode(Model.AvailableLandmarks)));
 
 </script>
 

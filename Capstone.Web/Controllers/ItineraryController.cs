@@ -63,10 +63,10 @@ namespace Capstone.Web.Controllers
         {
             List<LandmarkModel> landmarks = new List<LandmarkModel>();
             landmarks = landmarkDAL.GetAllApprovedLandmarks();
-            AddLandmarkToItinerary landmarkAndItinerary = new AddLandmarkToItinerary();
+            AddLandmarkToItineraryViewModel landmarkAndItinerary = new AddLandmarkToItineraryViewModel();
             landmarkAndItinerary.Itinerary = itineraryDAL.GetItineraryByID(id);
 
-            landmarkAndItinerary.Landmarks = landmarks;
+            landmarkAndItinerary.AvailableLandmarks = landmarks;
             return View("AddLandmarkToItinerary", landmarkAndItinerary);
         }
 

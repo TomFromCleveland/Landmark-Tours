@@ -187,7 +187,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="DALs\ILandmarkDAL.cs" />
-    <Compile Include="Models\AddLandmarkToItinerary.cs" />
+    <Compile Include="Models\AddLandmarkToItineraryViewModel.cs" />
     <Compile Include="Models\CreateUserViewModel.cs" />
     <Compile Include="Models\CurrentDateAttribute.cs" />
     <Compile Include="Models\ItineraryIDLandmarkIDModel.cs" />
