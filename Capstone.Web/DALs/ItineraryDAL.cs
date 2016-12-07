@@ -175,8 +175,8 @@ namespace Capstone.Web.DALs
                         itinerary.ID = itineraryID;
                         itinerary.Date = Convert.ToDateTime(reader["itinerary_DATE"]);
                         itinerary.Itinerary_Name = Convert.ToString(reader["itinerary_name"]);
-                        itinerary.StartingLatitude = Convert.ToInt32(reader["starting_latitude"]);
-                        itinerary.StartingLongitude = Convert.ToInt32(reader["starting_longitude"]);
+                        itinerary.StartingLatitude = Convert.ToDouble(reader["starting_latitude"]);
+                        itinerary.StartingLongitude = Convert.ToDouble(reader["starting_longitude"]);
                         itinerary.UserID = Convert.ToInt32(reader["user_id"]);
 
                         itinerary.LandmarkList.Add(new LandmarkModel()

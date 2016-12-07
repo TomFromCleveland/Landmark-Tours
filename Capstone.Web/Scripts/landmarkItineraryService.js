@@ -1,4 +1,5 @@
 ﻿function landmarkItineraryService(baseUrl) {
+    
     this.addLandmarkToItinerary = function (landmarkID, itineraryID, successCallback) {
 
         $.ajax({

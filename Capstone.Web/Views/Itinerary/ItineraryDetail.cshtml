@@ -16,24 +16,61 @@
     {
         int stop_number = 0;
 
-        <table class="itin_details_table" align="center">
+        <table class="itin_details_table table-bordered col-sm-8 center-table" align="center">
+
             @foreach (var landmark in Model.LandmarkList)
             {
-
-                stop_number = stop_number + 1;
                 <tr>
-                    <td>
-                        <strong>Stop @stop_number</strong>
+                    @if (stop_number == 0)
+                    {
+
+                        <th class="stops">
+                            <strong>Start:</strong>
+                        </th>
+                    <td class="itin_detail_col" @*id="startingAddress"*@>
+                        
+                        Address Placeholder 
+                        <br />
+                        0000 Street Name Rd
+                        <br />
+                        City Name, St 00000
+                    </td>
+                    }
+                    else
+                    {
+                        <th class="stops"> 
+                            <strong>Stop @stop_number:</strong>
+                        </th>
+                    <td class="itin_detail_col" style="word-wrap: break-word; max-width: 10px;">
                         <br />
                         @landmark.Name
                         <br />
-                        <button class="btn btn-primary btn-lg center-block"> Check In </button>
+                    </td>
+                    }
+
+                    <td class="itin_detail_col directions_column">
+                        <br />
+                        Directions Placeholder <br />
+                        - Turn 1 <br />
+                        - Turn 2 <br />
+                        - Turn 3 <br /> 
                         <br />
                     </td>
+
+                    <td class="itin_detail_col">
+                        <button class="check_in_button btn btn-primary btn-lg"> Check In </button>
+                    </td>
+
                 </tr>
+
+                stop_number = stop_number + 1;
             }
         </table>
 
 
     }
 </div>
+
+<script>
+    showStartingLocation (@Model.StartingLatitude, @Model.StartingLongitude)
+</script>

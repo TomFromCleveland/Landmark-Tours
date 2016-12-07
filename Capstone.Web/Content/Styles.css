@@ -147,7 +147,11 @@
       opacity: .94;
   }
 
-  .itin_details_table{
+  .itin_details_table {
       
       text-align:center;
+  }
+
+  .stops {
+      text-align: center;
   }

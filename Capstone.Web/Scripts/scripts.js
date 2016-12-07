@@ -36,7 +36,6 @@ function generateMap(mapPins) {
 
 };
 
-
 function addLandmark() {
     var map = newMap();
     var input = document.getElementById('pac-input');
@@ -152,12 +151,24 @@ function showLocation(position) {
             travelMode: google.maps.DirectionsTravelMode.DRIVING
         };
 
-
-
         directionService.route(request, makeCallback(locations[i][3]));
 
     }
 }
+
+//TO DO: Delete once directions works
+//function showStartingLocation(startingLatitude, startingLongitude) {
+//    var geocoder = new google.maps.Geocoder;
+//    var latlng = {lat: parseFloat(startingLatitude), lng: parseFloat(startingLongitude)};
+//    geocoder.geocode({'location': latlng}, function (results, status) {
+//        if (status === 'OK') {
+//            if (results[0]) {
+//                $("#startingAddress").val("Your starting location:" + results[0].formatted_address);
+//            }
+//        };
+//    });
+//};
+
 
 
 function errorHandler(err) {
