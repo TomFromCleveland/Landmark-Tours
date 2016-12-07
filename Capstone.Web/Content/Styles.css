@@ -144,3 +144,8 @@
   .panel {
       opacity: .94;
   }
+
+  .itin_details_table{
+      
+      text-align:center;
+  }
