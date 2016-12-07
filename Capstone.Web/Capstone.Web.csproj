@@ -169,6 +169,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItineraryController.cs" />
     <Compile Include="Controllers\LandmarkController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Crypto\HashProvider.cs" />
     <Compile Include="Crypto\PasswordRegex.cs" />
@@ -216,6 +217,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\CreateUser.cshtml" />
     <Content Include="Views\Shared\_AuthenticationBar.cshtml" />
+    <Content Include="Views\Review\SubmitNewReview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -202,9 +202,10 @@ $(document).ready(function () {
             service.addLandmarkToItinerary(numID, itineraryID, function (jsonData) {
                 console.log(jsonData)
             });
-            
-            this.className = "delete";
-            this.text = "Remove";
+
+            this.removeClass("add");            
+            this.addClass("delete");
+            this.text("Remove");
 
         });
 
@@ -216,7 +217,9 @@ $(document).ready(function () {
             service.removeLandmark(numID, itineraryID, function (jsonData) {
                 console.log(jsonData)
             });
-            this.className = "add";
+
+            this.removeClass("delete");
+            this.addClass("add");
             this.text = "Add";
         });
 
