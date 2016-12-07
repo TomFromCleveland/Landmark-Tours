@@ -57,7 +57,7 @@ namespace Capstone.Web.DALs
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
-                    
+
                     SqlCommand cmd = new SqlCommand(@"INSERT INTO itinerary_landmark (itinerary_id, landmark_id)
                                                       VALUES (@itineraryID, @landmarkID)", conn);
 
@@ -166,7 +166,7 @@ namespace Capstone.Web.DALs
                                                   INNER JOIN itinerary_landmark ON landmark.id = itinerary_landmark.landmark_id 
                                                   INNER JOIN itinerary ON itinerary_landmark.itinerary_id = itinerary.id
                                                   WHERE itinerary_landmark.itinerary_id = @itineraryID", conn);
-                    
+
                     cmd.Parameters.AddWithValue("@itineraryID", itineraryID);
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -175,8 +175,8 @@ namespace Capstone.Web.DALs
                         itinerary.ID = itineraryID;
                         itinerary.Date = Convert.ToDateTime(reader["itinerary_DATE"]);
                         itinerary.Itinerary_Name = Convert.ToString(reader["itinerary_name"]);
-                        itinerary.StartingLatitude = Convert.ToInt32(reader["starting_latitude"]);
-                        itinerary.StartingLongitude = Convert.ToInt32(reader["starting_longitude"]);
+                        itinerary.StartingLatitude = Convert.ToDouble(reader["starting_latitude"]);
+                        itinerary.StartingLongitude = Convert.ToDouble(reader["starting_longitude"]);
                         itinerary.UserID = Convert.ToInt32(reader["user_id"]);
 
                         itinerary.LandmarkList.Add(new LandmarkModel()
@@ -257,13 +257,13 @@ namespace Capstone.Web.DALs
 
                 }
             }
-            catch(SqlException e)
+            catch (SqlException e)
             {
                 Console.WriteLine(e.Message);
             }
 
 
-                    return (deletedRows==1);
+            return (deletedRows == 1);
         }
 
     }
