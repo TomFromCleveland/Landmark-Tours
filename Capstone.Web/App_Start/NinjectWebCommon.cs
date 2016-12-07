@@ -66,6 +66,7 @@ namespace Capstone.Web.App_Start
             kernel.Bind<ILandmarkDAL>().To<LandmarkDAL>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["LandmarkTours"].ConnectionString);
             kernel.Bind<IItineraryDAL>().To<ItineraryDAL>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["LandmarkTours"].ConnectionString);
             kernel.Bind<IUserDAL>().To<UserDAL>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["LandmarkTours"].ConnectionString);
+            kernel.Bind<IReviewDAL>().To<ReviewDAL>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["LandmarkTours"].ConnectionString);
         }
     }
 }

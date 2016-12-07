@@ -27,13 +27,14 @@
     </script>
     <script src="~/Scripts/landmarkItineraryService.js"></script>
 </head>
-<body>
 
-@Html.Action("GetAuthenticatedUser", "Base")
-<section id="main_content">
+<body>
+    @Html.Action("GetAuthenticatedUser", "Base")
+    <section id="main_content">
         <div class="container-fluid">
             @RenderBody()
         </div>
     </section>
 </body>
+
 </html>
