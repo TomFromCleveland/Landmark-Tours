@@ -213,16 +213,17 @@ namespace Capstone.Web.DALs
 
                     SqlCommand cmd = new SqlCommand(@"SELECT * 
                                                   FROM itinerary
-                                                  WHERE itinerary_id = @itineraryID", conn);
+                                                  WHERE id = @itineraryID", conn);
 
                     cmd.Parameters.AddWithValue("@itineraryID", itineraryID);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
+                        itinerary.ID = Convert.ToInt32(reader["id"]);
                         itinerary.UserID = Convert.ToInt32(reader["user_id"]);
                         itinerary.Itinerary_Name = Convert.ToString(reader["name"]);
-                        itinerary.Date = Convert.ToDateTime(reader["intinerary_DATE"]);
+                        itinerary.Date = Convert.ToDateTime(reader["itinerary_DATE"]);
                         itinerary.StartingLatitude = Convert.ToDouble(reader["starting_latitude"]);
                         itinerary.StartingLongitude = Convert.ToDouble(reader["starting_longitude"]);
                     }

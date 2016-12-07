@@ -50,7 +50,7 @@ name VARCHAR(64) not null,
 itinerary_DATE DATE not null,
 user_id INTEGER not null,
 starting_latitude FLOAT not null,
-starting_longitude FLOAT not null
+starting_longitude FLOAT not null,
 
 CONSTRAINT pk_itinerary_id PRIMARY KEY (id),
 CONSTRAINT fk_itinerary_user_id FOREIGN KEY (user_id) REFERENCES app_user(id)
