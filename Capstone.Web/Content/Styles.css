@@ -33,21 +33,25 @@
     -1px 1px 0 #000,
     1px 1px 0 #000; 
  }
- .pagetitle {
-     text-align: center;
-     color: darkslategrey
-     /*color: white;
+.pagetitle {
+    text-align: center;
+    color: darkslategrey;
+    /*color: white;
     text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    1px 1px 0 #000* 
+    1px 1px 0 #000;*/
+}
 
-
- .landmark_list {
-     width:30%;
+ #landmark_table {
      cursor: pointer;
  }
+
+ /*.landmark_list {
+     width:30%;
+     cursor: pointer;
+ }*/
  
  .landmark_name {
      width: 60%;
