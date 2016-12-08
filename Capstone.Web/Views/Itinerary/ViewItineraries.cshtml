@@ -11,7 +11,8 @@
         <tr>
             <td>
                 <br />
-                <button type="button" class="btn btn-primary btn-lg center-block" id="create_itin_button">Create Itinerary</button>
+                <input type="button" class="btn btn-primary btn-lg center-block" value="Create Itinerary" onclick="@("window.location.href='" + @Url.Action("CreateItinerary", "Itinerary") + "'");" />
+                
             </td>
         </tr>
         <tr>
