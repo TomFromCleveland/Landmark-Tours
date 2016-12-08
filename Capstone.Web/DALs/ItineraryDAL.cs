@@ -204,28 +204,42 @@ namespace Capstone.Web.DALs
         public ItineraryModel GetItineraryByID(int itineraryID)
         {
             ItineraryModel itinerary = new Models.ItineraryModel();
-
+            itinerary.LandmarkList = new List<LandmarkModel>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(@"SELECT * 
-                                                  FROM itinerary
-                                                  WHERE id = @itineraryID", conn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT landmark.*, itinerary.*, itinerary.name as itinerary_name 
+                                                  FROM landmark
+                                                  INNER JOIN itinerary_landmark ON landmark.id = itinerary_landmark.landmark_id 
+                                                  INNER JOIN itinerary ON itinerary_landmark.itinerary_id = itinerary.id
+                                                  WHERE itinerary_landmark.itinerary_id = @itineraryID", conn);
 
                     cmd.Parameters.AddWithValue("@itineraryID", itineraryID);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        itinerary.ID = Convert.ToInt32(reader["id"]);
-                        itinerary.UserID = Convert.ToInt32(reader["user_id"]);
-                        itinerary.Itinerary_Name = Convert.ToString(reader["name"]);
+                        itinerary.ID = itineraryID;
                         itinerary.Date = Convert.ToDateTime(reader["itinerary_DATE"]);
+                        itinerary.Itinerary_Name = Convert.ToString(reader["itinerary_name"]);
                         itinerary.StartingLatitude = Convert.ToDouble(reader["starting_latitude"]);
                         itinerary.StartingLongitude = Convert.ToDouble(reader["starting_longitude"]);
+                        itinerary.UserID = Convert.ToInt32(reader["user_id"]);
+
+                        itinerary.LandmarkList.Add(new LandmarkModel()
+                        {
+                            ID = Convert.ToInt32(reader["id"]),
+                            ImageName = Convert.ToString(reader["image_name"]),
+                            IsApproved = Convert.ToBoolean(reader["admin_approved"]),
+                            Description = Convert.ToString(reader["landmark_description"]),
+                            Name = Convert.ToString(reader["name"]),
+                            Longitude = Convert.ToDouble(reader["longitude"]),
+                            Latitude = Convert.ToDouble(reader["latitude"]),
+                            GooglePlacesID = Convert.ToString(reader["google_api_placeID"])
+                        });
                     }
 
                 }

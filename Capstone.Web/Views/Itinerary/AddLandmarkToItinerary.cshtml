@@ -3,6 +3,7 @@
     ViewBag.Title = "AddLandmarkToItinerary";
     Layout = "~/Views/Shared/_Layout.cshtml";
     string imageSource;
+    bool hasLandmark;
 }
 
 
@@ -24,38 +25,41 @@
         </thead>
 
         @foreach (var landmark in Model.AvailableLandmarks)
-            {
+        {
             <tr>
 
                 <td class="landmark_list">
                     @if (landmark.ImageName.StartsWith("https://"))
-                {
-                    imageSource = landmark.ImageName;
-                }
-                else
-                {
-                    imageSource = "/Content/imgs/" + landmark.ImageName;
-                }
+                    {
+                        imageSource = landmark.ImageName;
+                    }
+                    else
+                    {
+                        imageSource = "/Content/imgs/" + landmark.ImageName;
+                    }
 
                     <img class="img-responsive img-thumbnail" src=@imageSource />
                 </td>
                 <td class="landmark_name">
                     @landmark.Name
                 </td>
-                @if (Model.Itinerary.LandmarkList.Contains(landmark))
-                {
-                    <td id="lmID@(landmark.ID)">
-                        <button class="delete btn-primary">Remove</button>
-                    </td>
-                }
-                else
-                {
-                <td id="lmID@(landmark.ID)">
-                    <button class="add btn-primary">Add</button>
-                </td>
+                @{
+                    hasLandmark = Model.Itinerary.LandmarkList.Any( lm=>lm.ID  == landmark.ID );
+                    if (hasLandmark)
+                    {
+                        <td id="lmID@(landmark.ID)">
+                            <button class="delete btn-primary">Remove</button>
+                        </td>
+                    }
+                    else
+                    {
+                        <td id="lmID@(landmark.ID)">
+                            <button class="add btn-primary">Add</button>
+                        </td>
+                    }
                 }
             </tr>
-        }
+                    }
 
     </table>
     <input type="button" class="btn-primary" value="Submit" onclick="@("window.location.href='" + @Url.Action("ItineraryDetails", "Itinerary", new {itineraryID=Model.Itinerary.ID}) + "'");" />

@@ -136,7 +136,6 @@ namespace Capstone.Web.Controllers
                 landmarks = landmarkDAL.GetAllApprovedLandmarks();
                 AddLandmarkToItineraryViewModel landmarkAndItinerary = new AddLandmarkToItineraryViewModel();
                 landmarkAndItinerary.Itinerary = itineraryDAL.GetItineraryByID(id);
-
                 landmarkAndItinerary.AvailableLandmarks = landmarks;
                 return View("AddLandmarkToItinerary", landmarkAndItinerary);
 
