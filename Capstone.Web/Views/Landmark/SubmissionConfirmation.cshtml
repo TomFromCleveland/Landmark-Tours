@@ -4,18 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Submission Confirmation</h2>
+<div class="well well-sm">
+    <h2 class="pagetitle">Submission Confirmation</h2>
 
-@if (Model.SubmissionSuccessful)
-{
-    <h3 class="outline">Thank you for submitting @Model.Name!</h3>
-}
-else
-{
+    @if (Model.SubmissionSuccessful)
+    {
+        <h3 class="outline">Thank you for submitting @Model.Name!</h3>
+    }
+    else
+    {
         <h3 class="outline">@Model.Name has already been submitted.</h3>
-}
-@Html.Hidden("RedirectTo", Url.Action("LandmarkList", "Landmark"));
-
+    }
+    @Html.Hidden("RedirectTo", Url.Action("LandmarkList", "Landmark"));
+</div>
 <script>
     redirect();
 </script>
