@@ -43,13 +43,22 @@
                     @landmark.Name
                 </td>
                 <td id="lmID@(landmark.ID)">
-                    <button class="add">Add</button>
+                    <button class="add btn-primary">Add</button>
                 </td>
             </tr>
         }
 
     </table>
+    <input type="button" class="btn-primary" value="Submit" onclick="@("window.location.href='" + @Url.Action("ItineraryDetails", "Itinerary", new {itineraryID=Model.Itinerary.ID}) + "'");" />
 </div>
+
+<script>
+
+    var pos;
+    var landmarkLatLng = [];
+    generateMap(@Html.Raw(Json.Encode(Model.AvailableLandmarks)));
+
+</script>
 
 
 
