@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav">
                 <li name="home" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
                 <li name="viewLandmarks" class="@(ViewContext.RouteData.Values["Action"].ToString() == "LandmarkList" ? "active" : "")">@Html.ActionLink("View Landmarks", "LandmarkList", "Landmark")</li>
-
+                <li name="addLandmark" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SubmitNewLandmark" ? "active" : "")">@Html.ActionLink("Add Landmark", "SubmitNewLandmark", "Landmark")</li>
                 <li name="newUser" class="@(ViewContext.RouteData.Values["Action"].ToString() == "User" ? "active" : "")">@Html.ActionLink("Create Account", "CreateUser", "User")</li>
                 <li name="login" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Login" ? "active" : "")">@Html.ActionLink("Log In", "Login", "User")</li>
             </ul>

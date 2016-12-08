@@ -47,7 +47,7 @@ namespace Capstone.Web.Controllers
                     return View("Login", model);
                 }
                 base.LogUserIn(user.Username);
-                return RedirectToAction("Index", "Home", new { username = base.CurrentUser });
+                return RedirectToAction("Index", "Home");
 
             }
             else
@@ -76,7 +76,7 @@ namespace Capstone.Web.Controllers
         {
             if (base.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home", new { username = base.CurrentUser });
+                return RedirectToAction("Index", "Home");
             }
 
             if (ModelState.IsValid)
@@ -104,7 +104,7 @@ namespace Capstone.Web.Controllers
 
                 base.LogUserIn(viewModel.Username);
 
-                return RedirectToAction("Index", "Home", new { username = viewModel.Username });
+                return RedirectToAction("Index", "Home");
             }
             else
             {
