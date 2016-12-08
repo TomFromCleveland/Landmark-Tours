@@ -42,9 +42,18 @@
                 <td class="landmark_name">
                     @landmark.Name
                 </td>
+                @if (Model.Itinerary.LandmarkList.Contains(landmark))
+                {
+                    <td id="lmID@(landmark.ID)">
+                        <button class="delete btn-primary">Remove</button>
+                    </td>
+                }
+                else
+                {
                 <td id="lmID@(landmark.ID)">
                     <button class="add btn-primary">Add</button>
                 </td>
+                }
             </tr>
         }
 
