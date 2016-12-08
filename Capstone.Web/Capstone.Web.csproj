@@ -131,6 +131,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\imgs\BorderlineCafe.jpg" />
     <Content Include="Content\imgs\Carousel-cavs-raptors.jpg" />
+    <Content Include="Content\imgs\Carousel-cleveland_cavaliers.jpg" />
     <Content Include="Content\imgs\Carousel-Indians1BIG-1024x768.jpg" />
     <Content Include="Content\imgs\Carousel-Playhouse Square.jpg" />
     <Content Include="Content\imgs\Carousel-Sign and HOF.jpg" />
