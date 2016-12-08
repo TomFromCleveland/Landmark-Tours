@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone.Web.JsonHelper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Capstone.Web.Models
         [DataType(DataType.Date)]
         [CurrentDate(ErrorMessage ="Date must be today or after.")]
         public DateTime Date { get; set; }
+        public DirectionsHelper Directions { get; set; } 
     }
 }
 

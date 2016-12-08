@@ -1,6 +1,8 @@
 ﻿using Capstone.Web.DALs;
 using Capstone.Web.Models;
+using Capstone.Web.JsonHelper;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,8 +38,19 @@ namespace Capstone.Web.Controllers
         {
             ItineraryModel itinerary = new ItineraryModel();
 
+            List<LandmarkModel> optimizedOrder = new List<LandmarkModel>();
+
             itinerary = itineraryDAL.GetItineraryDetail(itineraryID);
-            GetDirections(itinerary);
+
+            itinerary = GetDirections(itinerary);
+
+            for (int i = 0; i < itinerary.LandmarkList.Count; i++)
+            {
+                optimizedOrder.Add(itinerary.LandmarkList[itinerary.Directions.routes[0].waypoint_order[i]]);
+            }
+
+            itinerary.LandmarkList = optimizedOrder;
+            
             return View("ItineraryDetail", itinerary);
 
         }
@@ -76,10 +89,10 @@ namespace Capstone.Web.Controllers
             return View("AddLandmarkToItinerary", landmarkAndItinerary);
         }
 
-        public void GetDirections(ItineraryModel itinerary)
+        public ItineraryModel GetDirections(ItineraryModel itinerary)
         {
 
-            
+
             string requestUrl = "https://maps.googleapis.com/maps/api/directions/json?origin=";
             requestUrl = requestUrl + itinerary.StartingLatitude + "," + itinerary.StartingLongitude;
             requestUrl = requestUrl + "&destination=" + itinerary.LandmarkList[itinerary.LandmarkList.Count - 1].Latitude + ",";
@@ -106,13 +119,15 @@ namespace Capstone.Web.Controllers
                     }
                 }
 
-                var geoData = JsonConvert.DeserializeObject<dynamic>(str);
-                
 
+                DirectionsHelper geoData = JsonConvert.DeserializeObject<DirectionsHelper>(str);
+
+                itinerary.Directions = geoData;
             }
+            return itinerary;
         }
 
 
-       
+
     }
 }

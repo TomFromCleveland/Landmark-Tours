@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "ItineraryDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 
@@ -12,65 +13,60 @@
 
     <p class="itinerary_date_detailpage"> for <br /> <strong>@Model.Date.DayOfWeek @Model.Date.ToShortDateString()</strong> </p>
 
-    @if (Model.LandmarkList != null)
-    {
-        int stop_number = 0;
 
-        <table class="itin_details_table table-bordered col-sm-8 center-table" align="center">
 
-            @foreach (var landmark in Model.LandmarkList)
-            {
-                <tr>
-                    @if (stop_number == 0)
+    <table class="itin_details_table table-bordered col-sm-8 center-table" align="center">
+        <tr>
+
+
+            <th class="stops">
+                <strong>Start:</strong>
+            </th>
+            <td class="itin_detail_col">
+
+
+
+                @Model.Directions.routes[0].legs[0].start_address                    <br />
+
+            </td>
+        </tr>
+        @for (int i = 1; i < Model.Directions.routes[0].legs.Length; i++)
+        {
+
+            <tr>
+                <th class="stops">
+                    <strong>Stop @i:</strong>
+                </th>
+                <td class="itin_detail_col" style="word-wrap: break-word; max-width: 10px;">
+                    @Model.LandmarkList[i - 1].Name
+                    <br />
+                    @Model.Directions.routes[0].legs[i].start_address
+                </td>
+
+
+                <td class="itin_detail_col directions_column">
+
+                    @for (int j = 0; j < Model.Directions.routes[0].legs[i].steps.Length; j++)
                     {
 
-                        <th class="stops">
-                            <strong>Start:</strong>
-                        </th>
-                    <td class="itin_detail_col" @*id="startingAddress"*@>
-                        
-                        Address Placeholder 
-                        <br />
-                        0000 Street Name Rd
-                        <br />
-                        City Name, St 00000
-                    </td>
-                    }
-                    else
-                    {
-                        <th class="stops"> 
-                            <strong>Stop @stop_number:</strong>
-                        </th>
-                    <td class="itin_detail_col" style="word-wrap: break-word; max-width: 10px;">
-                        <br />
-                        @landmark.Name
-                        <br />
-                    </td>
-                    }
 
-                    <td class="itin_detail_col directions_column">
-                        <br />
-                        Directions Placeholder <br />
-                        - Turn 1 <br />
-                        - Turn 2 <br />
-                        - Turn 3 <br /> 
-                        <br />
-                    </td>
+                        @Html.Raw(Model.Directions.routes[0].legs[i].steps[j].html_instructions.ToString()))
 
-                    <td class="itin_detail_col">
-                        <button class="check_in_button btn btn-primary btn-lg"> Check In </button>
-                    </td>
 
-                </tr>
+                        }
 
-                stop_number = stop_number + 1;
-            }
-        </table>
+                </td>
+
+                <td class="itin_detail_col">
+                    <button class="check_in_button btn btn-primary btn-lg"> Check In </button>
+                </td>
+
+            </tr>
 
 
     }
-</div>
+    </table>
 
-<script>
-    showStartingLocation (@Model.StartingLatitude, @Model.StartingLongitude)
-</script>
+
+
+</div>
