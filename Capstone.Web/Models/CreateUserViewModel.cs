@@ -16,13 +16,7 @@ namespace Capstone.Web.Models
 
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Password:")]
-
-        //TODO: Make mroe reg expression for password validations
-        [RegExContainsNumber("/(?=.*\\d)/", ErrorMessage = "Password must contain a number.")]
-        [RegExContainsLowercase("/(?=.*[a-z])/", ErrorMessage = "Password must contain a lowercase letter.")]
-        [RegExContainsUppercase("/(?=.[A-Z])/", ErrorMessage = "Password must contain a capital letter.")]
-        [RegExNoWhiteSpace("/(?!.\\s)/", ErrorMessage = "Password cannot contain whitespace.")]
-        [RegExLength("^.{6,20}$", ErrorMessage = "Password must be between 6-20 characters.")]
+        [RegularExpression(@"(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$", ErrorMessage = "You need a stronger password")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "This field is required")]

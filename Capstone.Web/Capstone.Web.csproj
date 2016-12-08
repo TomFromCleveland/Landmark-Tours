@@ -186,7 +186,6 @@
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Crypto\HashProvider.cs" />
-    <Compile Include="Crypto\PasswordRegex.cs" />
     <Compile Include="DALs\IItineraryDAL.cs" />
     <Compile Include="DALs\IReviewDAL.cs" />
     <Compile Include="DALs\ItineraryDAL.cs" />
