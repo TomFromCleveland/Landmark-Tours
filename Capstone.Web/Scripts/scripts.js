@@ -223,7 +223,7 @@ function addClick() {
 
     $(this).toggleClass("delete");
     $(this).toggleClass("add");
-    $(this).val("Remove");
+    $(this).text("Remove");
     $(this).off("click");
     $(this).on("click", removeClick);
 
