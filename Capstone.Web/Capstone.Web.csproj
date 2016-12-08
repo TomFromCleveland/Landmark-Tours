@@ -193,6 +193,7 @@
     <Compile Include="DALs\LandmarkDAL.cs" />
     <Compile Include="DALs\ReviewDAL.cs" />
     <Compile Include="DALs\UserDAL.cs" />
+    <Compile Include="Filters\BaseAuthorizationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

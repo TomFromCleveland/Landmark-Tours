@@ -1,4 +1,5 @@
 ﻿using Capstone.Web.DALs;
+using Capstone.Web.Filters;
 using Capstone.Web.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -16,10 +17,12 @@ namespace Capstone.Web.Controllers
     public class LandmarkController : BaseController
     {
         private ILandmarkDAL landmarkDAL;
+        private IUserDAL userDAL;
         // GET: Landmark
         public LandmarkController(ILandmarkDAL landmarkDAL, IUserDAL userDAL) : base(userDAL)
         {
             this.landmarkDAL = landmarkDAL;
+            this.userDAL = userDAL;
         }
 
         public ActionResult LandmarkList()
@@ -33,6 +36,7 @@ namespace Capstone.Web.Controllers
             LandmarkModel landmark = landmarkDAL.GetLandmark(landmarkID);
             return View("LandmarkDetail", landmark);
         }
+
 
         public ActionResult SubmitNewLandmark()
         {
@@ -49,21 +53,59 @@ namespace Capstone.Web.Controllers
             landmark.SubmissionSuccessful = landmarkDAL.SubmitNewLandmark(landmark);
             return View("SubmissionConfirmation", landmark);
         }
-        
+
 
         public ActionResult UnapprovedLandmarkList()
         {
-            return View("UnapprovedLandmarkList", landmarkDAL.GetAllUnapprovedLandmarks());
+            if ((string)Session["username"] != null)
+            {
+
+
+                bool admin = userDAL.GetUser((string)Session["username"]).IsAdmin;
+                if (admin)
+                {
+                    return View("UnapprovedLandmarkList", landmarkDAL.GetAllUnapprovedLandmarks());
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(401);
+                }
+            }
+            else
+            {
+                
+                return new HttpStatusCodeResult(401);
+            }
+
         }
 
         [HttpPost]
         public ActionResult ApproveLandmarks(List<LandmarkModel> landmarksList)
         {
-            landmarkDAL.ApproveLandmarks(landmarksList);
 
-            //Ask Josh: should this be a redirect? why or why not?
-            ModelState.Clear();
-            return View("UnapprovedLandmarkList", landmarkDAL.GetAllUnapprovedLandmarks());
+            if ((string)Session["username"] != null)
+            {
+                landmarkDAL.ApproveLandmarks(landmarksList);
+
+                //Ask Josh: should this be a redirect? why or why not?
+                ModelState.Clear();
+                bool admin = userDAL.GetUser((string)Session["username"]).IsAdmin;
+                if (admin)
+                {
+
+
+                    return View("UnapprovedLandmarkList", landmarkDAL.GetAllUnapprovedLandmarks());
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(401);
+                }
+
+            }
+            else
+            {
+                return new HttpStatusCodeResult(401);
+            }
         }
     }
 }

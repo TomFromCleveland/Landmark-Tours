@@ -29,7 +29,7 @@
             type: "POST",
             dataTYpe: "json"
         }).done(function (jsonData) {
-            successCallback(jsondata);
+            successCallback(jsonData);
         }).fail(function (statusCode, xhr, error) {
             console.log(error);
         });
