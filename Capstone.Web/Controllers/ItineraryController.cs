@@ -30,63 +30,124 @@ namespace Capstone.Web.Controllers
         // GET: Itinerary
         public ActionResult ViewItineraries()
         {
-            int userID = (userDAL.GetUser(CurrentUser)).ID;
-            return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
+            if ((string)Session["username"] != null)
+            {
+
+                int userID = (userDAL.GetUser(CurrentUser)).ID;
+                return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
+
+            }
+            else
+            {
+
+                return new HttpStatusCodeResult(401);
+            }
+            
         }
 
         public ActionResult ItineraryDetails(int itineraryID)
         {
-            ItineraryModel itinerary = new ItineraryModel();
-
-            List<LandmarkModel> optimizedOrder = new List<LandmarkModel>();
-
-            itinerary = itineraryDAL.GetItineraryDetail(itineraryID);
-
-            itinerary = GetDirections(itinerary);
-
-            for (int i = 0; i < itinerary.LandmarkList.Count; i++)
+            if ((string)Session["username"] != null)
             {
-                optimizedOrder.Add(itinerary.LandmarkList[itinerary.Directions.routes[0].waypoint_order[i]]);
+
+                ItineraryModel itinerary = new ItineraryModel();
+
+                List<LandmarkModel> optimizedOrder = new List<LandmarkModel>();
+
+                itinerary = itineraryDAL.GetItineraryDetail(itineraryID);
+
+                itinerary = GetDirections(itinerary);
+
+                for (int i = 0; i < itinerary.LandmarkList.Count; i++)
+                {
+                    optimizedOrder.Add(itinerary.LandmarkList[itinerary.Directions.routes[0].waypoint_order[i]]);
+                }
+
+                itinerary.LandmarkList = optimizedOrder;
+
+                return View("ItineraryDetail", itinerary);
+
+
             }
+            else
+            {
 
-            itinerary.LandmarkList = optimizedOrder;
+                return new HttpStatusCodeResult(401);
+            }
             
-            return View("ItineraryDetail", itinerary);
-
         }
 
         public ActionResult CreateItinerary()
         {
-            ModelState.Clear();
-            ItineraryModel itinerary = new ItineraryModel();
-            itinerary.UserID = userDAL.GetUser(CurrentUser).ID;
-            return View("CreateItinerary", itinerary);
+            if ((string)Session["username"] != null)
+            {
+
+
+
+                ModelState.Clear();
+                ItineraryModel itinerary = new ItineraryModel();
+                itinerary.UserID = userDAL.GetUser(CurrentUser).ID;
+                return View("CreateItinerary", itinerary);
+
+            }
+            else
+            {
+
+                return new HttpStatusCodeResult(401);
+            }
+
         }
 
         [HttpPost]
         public ActionResult SubmitItinerary(ItineraryModel itinerary)
         {
-            if (!ModelState.IsValid)
+
+            if ((string)Session["username"] != null)
             {
 
-                return RedirectToAction("CreateItinerary");
+
+                if (!ModelState.IsValid)
+                {
+
+                    return RedirectToAction("CreateItinerary");
+                }
+                else
+                {
+                    ItineraryModel newItinerary = itineraryDAL.CreateNewItinerary(itinerary);
+                    return RedirectToAction("AddLandmarkToItinerary", new { id = newItinerary.ID });
+                }
+
+
             }
             else
             {
-                ItineraryModel newItinerary = itineraryDAL.CreateNewItinerary(itinerary);
-                return RedirectToAction("AddLandmarkToItinerary", new { id = newItinerary.ID });
+
+                return new HttpStatusCodeResult(401);
             }
+
         }
 
         public ActionResult AddLandmarkToItinerary(int id)
         {
-            List<LandmarkModel> landmarks = new List<LandmarkModel>();
-            landmarks = landmarkDAL.GetAllApprovedLandmarks();
-            AddLandmarkToItineraryViewModel landmarkAndItinerary = new AddLandmarkToItineraryViewModel();
-            landmarkAndItinerary.Itinerary = itineraryDAL.GetItineraryByID(id);
+            if ((string)Session["username"] != null)
+            {
 
-            landmarkAndItinerary.AvailableLandmarks = landmarks;
-            return View("AddLandmarkToItinerary", landmarkAndItinerary);
+                List<LandmarkModel> landmarks = new List<LandmarkModel>();
+                landmarks = landmarkDAL.GetAllApprovedLandmarks();
+                AddLandmarkToItineraryViewModel landmarkAndItinerary = new AddLandmarkToItineraryViewModel();
+                landmarkAndItinerary.Itinerary = itineraryDAL.GetItineraryByID(id);
+
+                landmarkAndItinerary.AvailableLandmarks = landmarks;
+                return View("AddLandmarkToItinerary", landmarkAndItinerary);
+
+
+            }
+            else
+            {
+
+                return new HttpStatusCodeResult(401);
+            }
+
         }
 
         public ItineraryModel GetDirections(ItineraryModel itinerary)

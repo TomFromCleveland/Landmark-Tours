@@ -2,21 +2,21 @@
 @{
     ViewBag.Title = "LandmarkList";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
 }
+<div class="container well well-sm">
+    <h2 class="pagetitle">Landmark List</h2>
 
-<h2 class="pagetitle well 
-    well-sm" >Landmark List</h2>
-
-<div class="container">
-    <div class="row">
-        @Html.Partial("_MapList", Model);
-        <script>
+    <div class="container">
+        <div class="row">
+            @Html.Partial("_MapList", Model)
+            <script>
                 var pos;
-                var landmarkLatLng=[];
-                generateMap(@Html.Raw(Json.Encode(Model)));
-        </script>
-        
+                var landmarkLatLng = [];
+                generateMap(@Html.Raw(Json.Encode(Model)))
+            </script>
+
+        </div>
     </div>
 </div>
 <script>getDistances();</script>
