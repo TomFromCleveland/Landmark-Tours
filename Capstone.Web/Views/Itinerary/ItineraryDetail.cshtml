@@ -26,7 +26,7 @@
 
 
 
-                @Model.Directions.routes[0].legs[0].start_address                    <br />
+                @Model.Directions.routes[0].legs[0].start_address               
 
             </td>
         </tr>
@@ -46,14 +46,14 @@
 
                 <td class="itin_detail_col directions_column">
 
-                    @for (int j = 0; j < Model.Directions.routes[0].legs[i].steps.Length; j++)
+                    @for (int j = 0; j < Model.Directions.routes[0].legs[i].steps.Length-1; j++)
                     {
 
+                        
+                        @Html.Raw("Turn " + (j+1) + ": "+ Model.Directions.routes[0].legs[i].steps[j].html_instructions +"<br/>")
 
-                        @Html.Raw(Model.Directions.routes[0].legs[i].steps[j].html_instructions.ToString()))
 
-
-                        }
+                     }
 
                 </td>
 
