@@ -30,7 +30,7 @@ namespace Capstone.Web.Controllers
         // GET: Itinerary
         public ActionResult ViewItineraries()
         {
-            int userID = 1; //TODO Make this (int)Session["UserID"];
+            int userID = (userDAL.GetUser(CurrentUser)).ID;
             return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
         }
 
