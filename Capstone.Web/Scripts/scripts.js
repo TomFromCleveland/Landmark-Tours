@@ -210,6 +210,9 @@ $(document).ready(function () {
 
     $(".delete").on("click", removeClick);
 
+    $(".checkin").on("click", checkin);
+    $(".checkout").on("click", checkout);
+
 });
 
 function addClick() {
@@ -227,6 +230,22 @@ function addClick() {
     $(this).off("click");
     $(this).on("click", removeClick);
 
+}
+
+function checkin() {
+    $(this).toggleClass("checkout");
+    $(this).toggleClass("checkin");
+    $(this).text("Checked In");
+    $(this).off("click");
+    $(this).on("click", checkout);
+}
+
+function checkout() {
+    $(this).toggleClass("checkin");
+    $(this).toggleClass("checkout");
+    $(this).text("Check In");
+    $(this).off("click");
+    $(this).on("click", checkin);
 }
 
 
