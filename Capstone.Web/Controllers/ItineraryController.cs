@@ -87,6 +87,7 @@ namespace Capstone.Web.Controllers
                 ModelState.Clear();
                 ItineraryModel itinerary = new ItineraryModel();
                 itinerary.UserID = userDAL.GetUser(CurrentUser).ID;
+                
                 return View("CreateItinerary", itinerary);
 
             }
