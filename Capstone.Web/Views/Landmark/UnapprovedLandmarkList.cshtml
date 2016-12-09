@@ -3,13 +3,14 @@
     ViewBag.Title = "UnapprovedLandmarkList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container-fluid">
-    <div class="row">
-        <h2 class="pagetitle col-xs-4 col-xs-offset-4 well well-sm">Approve Landmarks</h2>
-    </div>
+<div class="container well well-lg">
+
+        <h2 class="pagetitle">Approve Landmark</h2>
+        <br />
+        <br />
 
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-1 well ">
+        <div class="col-sm-4 well col-sm-offset-1 ">
             @Html.Partial("_Map")
             <script>
 
@@ -17,7 +18,7 @@
             </script>
         </div>
 
-        <div class="col-sm-4 col-sm-offset-1 well">
+        <div class="col-sm-5 col-sm-offset-1 well">
             @using (Html.BeginForm("ApproveLandmarks", "Landmark", FormMethod.Post))
             {
                 for (var i = 0; i < Model.Count; i++)
@@ -30,8 +31,9 @@
                             <p class="landmark_description_pending">@Model[i].Description</p>
                         </div>
 
-                        <div class="col-md-3 checkbox checkbox-inline approve_tab">
+                        <div class="col-md-3 checkbox approve_tab checkbox-inline text-center center-block">
                             @Html.Label("Approve")
+                            <br />
                             @Html.Hidden("landmarksList[" + @i + "].ID", Model[i].ID)
                             <br />
                             @Html.CheckBox("landmarksList[" + @i + "].IsApproved", Model[i].IsApproved)
@@ -39,7 +41,7 @@
                     </div>
                 }
 
-                <button id="submit_approval_button">Submit Approval(s)</button>
+                <button id="submit_approval_button" class="btn btn-primary btn-lg center-block">Submit Approval(s)</button>
             }
         </div>
     </div>

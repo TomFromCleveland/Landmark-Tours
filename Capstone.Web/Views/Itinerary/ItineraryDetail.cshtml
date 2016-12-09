@@ -7,68 +7,111 @@
 }
 
 
-<div class="well well-sm">
+<div class="well well-sm container">
+    <div class="center-table">
 
-    <h2 class="pagetitle"> <strong>@Model.Itinerary_Name</strong> </h2>
+        <h2 class="pagetitle"> <strong>@Model.Itinerary_Name</strong> </h2>
 
-    <p class="itinerary_date_detailpage"> for <br /> <strong>@Model.Date.DayOfWeek @Model.Date.ToShortDateString()</strong> </p>
+        <p class="itinerary_date_detailpage"> <strong>for</strong> <strong>@Model.Date.DayOfWeek (@Model.Date.ToShortDateString())</strong> </p>
 
+        <div style="text-align:center;">
 
-
-    <table class="itin_details_table table-bordered col-sm-8 center-table" align="center">
-        <tr>
-
-
-            <th class="stops">
-                <strong>Start:</strong>
-            </th>
-            <td class="itin_detail_col">
-
-
-
-                @Model.Directions.routes[0].legs[0].start_address               
-
-            </td>
-        </tr>
-        @for (int i = 1; i < Model.Directions.routes[0].legs.Length; i++)
-        {
-
-            <tr>
-                <th class="stops">
-                    <strong>Stop @i:</strong>
-                </th>
-                <td class="itin_detail_col" style="word-wrap: break-word; max-width: 10px;">
-                    @Model.LandmarkList[i - 1].Name
+            <table class="itin_details_table table-bordered col-sm-4 center-table text-center" align="center">
+                <tr>
+                    <hr />
+                    <b>Start:</b>
+                    <br /><br />
+                    @Model.Directions.routes[0].legs[0].start_address
                     <br />
-                    @Model.Directions.routes[0].legs[i].start_address
-                </td>
+                    <br />
+                    <hr />
+                </tr>
+
+                @for (int i = 1; i < Model.Directions.routes[0].legs.Length; i++)
+            {
+                    <tr>
+                        <strong>Stop @i:</strong>
+                        <br />
+                        <br />
+                    </tr>
 
 
-                <td class="itin_detail_col directions_column">
 
-                    @for (int j = 0; j < Model.Directions.routes[0].legs[i].steps.Length-1; j++)
-                    {
+                    <tr class="itin_detail_col" style="word-wrap: break-word; max-width: 10px;">
+                        @Model.LandmarkList[i - 1].Name
+                        <br />
+                        @Model.Directions.routes[0].legs[i].start_address
+                        <br />
+                        <br />
+                    </tr>
+                    <tr class="itin_detail_col">
+                        <button class="check_in_button btn btn-info btn-lg"> Check In </button>
+                        <br />
+                    </tr>
 
-                        
-                        @Html.Raw("Turn " + (j+1) + ": "+ Model.Directions.routes[0].legs[i].steps[j].html_instructions +"<br/>")
+                    <tr class="itin_detail_col directions_column">
+                        <hr />
+                        @if (i < Model.Directions.routes[0].legs.Length-1)
+                        {
+                            <b>Directions to your next location: </b>
+                        }
+
+                        <br />
+                        <br />
+
+                        @for (int j = 0; j < Model.Directions.routes[0].legs[i].steps.Length - 1; j++)
+                        {
+                            @Html.Raw("Turn " + (j + 1) + ": " + Model.Directions.routes[0].legs[i].steps[j].html_instructions + "<br/>")
+
+                        }
+
+                        <br />
+
+                    </tr>
 
 
 
-                     }
-
-                </td>
-
-                <td class="itin_detail_col">
-                    <button class="check_in_button btn btn-primary btn-lg"> Check In </button>
-                </td>
-
-            </tr>
 
 
-    }
-    </table>
-    <input type="button" class="btn-primary" value="Add Additional Landmarks" onclick="@("window.location.href='" + @Url.Action("AddLandmarkToItinerary", "Itinerary", new {Model.ID}) + "'");" />
+                    @*<tr>
+                            <th class="stops">
+                                <strong>Stop @i:</strong>
+                            </th>
+                            <td class="itin_detail_col" style="word-wrap: break-word; max-width: 10px;">
+                                @Model.LandmarkList[i - 1].Name
+                                <br />
+                                @Model.Directions.routes[0].legs[i].start_address
+                            </td>
 
 
+                            <td class="itin_detail_col directions_column">
+
+                                @for (int j = 0; j < Model.Directions.routes[0].legs[i].steps.Length - 1; j++)
+                                {
+
+
+                                    @Html.Raw("Turn " + (j + 1) + ": " + Model.Directions.routes[0].legs[i].steps[j].html_instructions + "<br/>")
+
+
+
+                                }
+
+                            </td>
+
+                            <td class="itin_detail_col">
+                                <button class="check_in_button btn btn-primary btn-lg"> Check In </button>
+                            </td>
+
+                        </tr>*@
+
+
+                }
+            </table>
+        </div>
+
+
+        @*<input type="button" class="btn btn-primary" value="Add Additional Landmarks" onclick="@("window.location.href='" + @Url.Action("AddLandmarkToItinerary", "Itinerary", new {Model.ID}) + "'");" />*@
+
+    </div>
 
 </div>

@@ -7,22 +7,31 @@
 <div>
     @using (Html.BeginForm("SubmitItinerary", "Itinerary", new { @class = "NewItineraryForm" }))
     {
-        <div class="row">
+        <div class="row" style="text-align:center;">
             <div class="col-md-4 col-sm-6 col-xs-10 col-md-offset-4 col-sm-offset-3 col-xs-offset-1 well well-sm">
                 <h2 class="pagetitle">Create New Itinerary</h2>
+                <br />
+                <br />
                 <span>@Html.Label("itinerary_name", "Please name your itinerary")</span>
-                @Html.TextBoxFor(m => m.Itinerary_Name, new { name = "itinerary_name" })
+                @Html.TextBoxFor(m => m.Itinerary_Name, new { name = "itinerary_name", placeholder = "Name of Itinerary"})
                 @Html.ValidationMessageFor(m => m.Itinerary_Name)
-                <span>@Html.Label("itinerary_date", "Please select a date for your tour")</span>
-                @Html.EditorFor(m => m.Date, new { name = "itinerary_date" })
-                @Html.ValidationMessageFor(m => m.Date)
-                <span>@Html.Label("starting_location", "Enter Starting Address or Name of place")</span>
-                @Html.TextBox("SearchBox", null, new { @id = "itinerary_search" })
+                <br />
+                <br />
+                <span>@Html.Label("starting_location", "Please enter your starting location")</span>
+                @Html.TextBox("SearchBox", null, new { @id = "itinerary_search", @placeholder = "Name of Place or Address" })
                 @Html.HiddenFor(m => m.StartingLatitude)
                 @Html.HiddenFor(m => m.StartingLongitude)
                 @Html.HiddenFor(m => m.UserID)
                 <br />
-                <button class="btn btn-default btn-primary" id="itinerary_submit">Submit</button>
+                <br />
+                <span>@Html.Label("itinerary_date", "Please select a date for your tour   ")</span>
+                @Html.EditorFor(m => m.Date, new { name = "itinerary_date" })
+                @Html.ValidationMessageFor(m => m.Date)
+                <br />
+                <br />
+                <button class="btn btn-default btn-primary btn-lg center-block" id="itinerary_submit">Submit</button>
+                <br />
+                <br />
             </div>
         </div>
     }

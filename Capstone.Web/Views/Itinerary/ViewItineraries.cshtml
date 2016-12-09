@@ -5,24 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
+<div class="page_content well well-sm container col-sm-pull-6 center-block">
     <h2 class="pagetitle">Your Itineraries</h2>
-    <table class="center-table">
-        <tr>
-            <td>
-                <br />
-                <button type="button" class="btn btn-primary btn-lg center-block" id="create_itin_button">Create Itinerary</button>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-center text-white outline">
-                Click <b>Create Itinerary</b> to plan your route!
-                <br />
-                <br />
-            </td>
-        </tr>
-    </table>
-
+    <br />
+    <br />
+ 
     <table class="list_of_itineraries table-bordered center-table table-hover well">
         @if (Model != null)
         {
@@ -33,13 +20,15 @@
                         <br />
                         You do not have any itineraries.
                         <br />
+                        <br />
                     </td>
                 </tr>
             }
 
             else
             {
-
+                <h3 style="text-align: center;"> <strong>Click an itinerary below to view a route</strong></h3>
+                <br />
                 foreach (var itinerary in Model)
                 {
                     <tr class="itinerary_row" onclick="location.href = '@Url.Action("ItineraryDetails", "Itinerary", new { itineraryID = itinerary.ID })'">
@@ -59,4 +48,25 @@
         }
 
     </table>
+    <br />
+    <table class="center-table">
+        <tr>
+            <td>
+                <br />
+                @*<button type="button" class="btn btn-primary btn-lg center-block" id="create_itin_button" href="Itinerary/CreateItinerary">Create Itinerary</button>*@
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center">
+                <br />
+                <h3>
+                    Click <b>Create Itinerary</b> to plan a new route!
+                </h3>
+                <br />
+                <br />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
 </div>
