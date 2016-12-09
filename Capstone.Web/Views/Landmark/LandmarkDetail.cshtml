@@ -5,28 +5,33 @@
     string imageSource;
 }
 
-
-<div class="container row">
-    <div class="col-lg-8 col-sm-8">
-        @if (Model.ImageName.StartsWith("https://"))
-        {
-            imageSource = Model.ImageName;
-        }
-        else
-        {
-            imageSource = "/Content/imgs/" + Model.ImageName;
-        }
-        <img class="img-responsive img-thumbnail" src=@imageSource />
+<div class="container well well-sm center-block">
+    <h2 class="pagetitle">Landmark Detail</h2>
+    <br />
+    <br />
+    <div class="center-block">
+        <div class="center-block">
+            @if (Model.ImageName.StartsWith("https://"))
+            {
+                imageSource = Model.ImageName;
+            }
+            else
+            {
+                imageSource = "/Content/imgs/" + Model.ImageName;
+            }
+            <img class="img-responsive img-thumbnail center-block" src=@imageSource />
+            <br />
+            <br />
+            <div>
+                <h3>@Model.Name</h3>
+                <p>@Model.Description</p>
+            </div>
+            <br />
+            <br />
+        </div>
+        <div>
+            <h3>Reviews</h3>
+            <p class="well well-sm" style="text-align: center;"> <strong>Visitors say:</strong> 5 stars! This is the greatest place I've ever seen!</p>
+        </div>
     </div>
-    <div class="col-lg-offset-1 col-lg-3 col-sm-4 well well-sm">
-        <h2>@Model.Name</h2>
-        <p>@Model.Description</p>
-    </div>
-</div>
 
-
-
-<div id="reviews_container">
-    <h2 class="pagetitle">Reviews</h2>
-    <p class="well well-sm"> Username says:<br />5 stars! This is the greatest landmark detail view I've ever seen!</p>
-</div>
