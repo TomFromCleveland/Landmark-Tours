@@ -16,7 +16,6 @@
   width: 300px;
 }
 
-<<<<<<< HEAD
 #pac-input {
     background-color: #fff;
     font-family: Roboto;
@@ -89,7 +88,7 @@
 
 .landmark_description_pending {
 }
-=======
+
 #pac-input:focus {
   border-color: #4d90fe;
 }
@@ -171,7 +170,6 @@
  .landmark_description_pending {
      
  }
->>>>>>> c45bfde6816def71a06d713ac66d59b26d5dede5
 
 #landmark_table {
     cursor: pointer;

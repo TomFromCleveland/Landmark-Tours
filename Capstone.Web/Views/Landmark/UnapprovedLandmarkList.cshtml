@@ -3,7 +3,7 @@
     ViewBag.Title = "UnapprovedLandmarkList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<<<<<<< HEAD
+
 <div class="container well well-lg">
 
         <h2 class="pagetitle">Approve Landmark</h2>
@@ -12,16 +12,7 @@
 
     <div class="row">
         <div class="col-sm-4 well col-sm-offset-1 ">
-=======
-<div class="container well well-sm">
-    <div class="row">
-        <h2 class="pagetitle">Approve Landmarks</h2>
-        <br />
-    </div>
 
-    <div class="row">
-        <div class="col-sm-5">
->>>>>>> c45bfde6816def71a06d713ac66d59b26d5dede5
             @Html.Partial("_Map")
             <script>
 
@@ -29,11 +20,8 @@
             </script>
         </div>
 
-<<<<<<< HEAD
         <div class="col-sm-5 col-sm-offset-1 well">
-=======
-        <div class="col-sm-4 col-sm-offset-1">
->>>>>>> c45bfde6816def71a06d713ac66d59b26d5dede5
+
             @using (Html.BeginForm("ApproveLandmarks", "Landmark", FormMethod.Post))
             {
                 for (var i = 0; i < Model.Count; i++)
@@ -46,11 +34,8 @@
                             <p class="landmark_description_pending">@Model[i].Description</p>
                         </div>
 
-<<<<<<< HEAD
                         <div class="col-md-3 checkbox approve_tab checkbox-inline text-center center-block">
-=======
-                        <div class="col-md-2 checkbox checkbox-inline approve_tab">
->>>>>>> c45bfde6816def71a06d713ac66d59b26d5dede5
+
                             @Html.Label("Approve")
                             <br />
                             @Html.Hidden("landmarksList[" + @i + "].ID", Model[i].ID)
@@ -60,11 +45,9 @@
                     </div>
                 }
 
-<<<<<<< HEAD
-                <button id="submit_approval_button" class="btn btn-primary btn-lg center-block">Submit Approval(s)</button>
-=======
-                <button class="btn btn-primary" id="submit_approval_button">Submit Approval(s)</button>
->>>>>>> c45bfde6816def71a06d713ac66d59b26d5dede5
+
+                <button class="btn btn-primary btn-lg center-block" id="submit_approval_button">Submit Approval(s)</button>
+
             }
         </div>
     </div>
