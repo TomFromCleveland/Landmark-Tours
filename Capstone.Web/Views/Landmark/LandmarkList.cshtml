@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             @Html.Partial("_MapList", Model)
-            <script>
+            <script async defer>
                 var pos;
                 var landmarkLatLng = [];
                 generateMap(@Html.Raw(Json.Encode(Model)))
