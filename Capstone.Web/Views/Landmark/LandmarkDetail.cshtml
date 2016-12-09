@@ -2,12 +2,21 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "LandmarkDetail";
+    string imageSource;
 }
 
 
 <div class="container row">
     <div class="col-lg-8 col-sm-8">
-        <img class="img-responsive img-thumbnail" src="~/Content/imgs/@Model.ImageName" />
+        @if (Model.ImageName.StartsWith("https://"))
+        {
+            imageSource = Model.ImageName;
+        }
+        else
+        {
+            imageSource = "/Content/imgs/" + Model.ImageName;
+        }
+        <img class="img-responsive img-thumbnail" src=@imageSource />
     </div>
     <div class="col-lg-offset-1 col-lg-3 col-sm-4 well well-sm">
         <h2>@Model.Name</h2>

@@ -5,7 +5,18 @@
     font-family: Verdana;
     border-color: #A39C87;
 }
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
 
+<<<<<<< HEAD
 #pac-input {
     background-color: #fff;
     font-family: Roboto;
@@ -78,6 +89,89 @@
 
 .landmark_description_pending {
 }
+=======
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+ .nav-tabs>li>a {
+       margin-right: 2px;
+       line-height: 1.42857143;
+       border: 1px solid transparent;
+       border-radius: 4px 4px 0 0;
+ }
+ .outline
+  {
+     text-align: center;
+     color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+ }
+.pagetitle {
+    text-align: center;
+    color: darkslategrey;
+    /*color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;*/
+}
+
+ #landmark_table {
+     cursor: pointer;
+ }
+
+ /*.landmark_list {
+     width:30%;
+     cursor: pointer;
+ }*/
+ 
+ .landmark_name {
+     width: 60%;
+     text-align: left;
+     padding-left: 5%;
+ }
+
+ .text-black {
+      color: black;
+    }
+
+ .text-white {
+     color: white;
+ }
+
+ #descriptionHelp {
+     color:black;
+ }
+ .landmark_description {
+     width: 10%;
+     text-align: right;
+     padding-left: 5%;
+     white-space: nowrap;
+ }
+
+ .approve_list div {
+     width:100%;
+ }
+
+ .landmark_name_pending {
+     text-align: left;
+     padding: 0%;
+     margin: 0%;
+ }
+
+ .landmark_description_pending {
+     
+ }
+>>>>>>> c45bfde6816def71a06d713ac66d59b26d5dede5
 
 #landmark_table {
     cursor: pointer;

@@ -40,7 +40,7 @@ function addLandmark() {
     var map = newMap();
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    map.controls[google.maps.ControlPosition.TOP].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
     map.addListener('bounds_changed', function () {
@@ -210,6 +210,9 @@ $(document).ready(function () {
 
     $(".delete").on("click", removeClick);
 
+    $(".checkin").on("click", checkin);
+    $(".checkout").on("click", checkout);
+
 });
 
 function addClick() {
@@ -227,6 +230,22 @@ function addClick() {
     $(this).off("click");
     $(this).on("click", removeClick);
 
+}
+
+function checkin() {
+    $(this).toggleClass("checkout");
+    $(this).toggleClass("checkin");
+    $(this).text("Checked In");
+    $(this).off("click");
+    $(this).on("click", checkout);
+}
+
+function checkout() {
+    $(this).toggleClass("checkin");
+    $(this).toggleClass("checkout");
+    $(this).text("Check In");
+    $(this).off("click");
+    $(this).on("click", checkin);
 }
 
 

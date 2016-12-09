@@ -5,6 +5,7 @@
 
 
 
+<<<<<<< HEAD
 <div class="submit_landmark container well well-sm center-block">
     <div class="center-block"> 
     <h2 class="center-block pagetitle">Add Landmark</h2>
@@ -28,6 +29,28 @@
 
             <div>
                 @using (Html.BeginForm("SubmissionConfirmation", "Landmark", FormMethod.Post, new { @class = "submission_form", enctype = "multipart/form-data" }))
+=======
+<div class="container well">
+    <h2 class="center-block">Add a Landmark</h2>
+    <div class="row">
+        <div class="column-sm-6">
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+            @Html.Partial("_Map")
+        </div>
+        <br />
+        <br />
+
+        <script async defer>
+            var places;
+            
+            addLandmark();
+            
+        </script>
+
+
+        <div class="column-sm-6">
+            @using (Html.BeginForm("SubmissionConfirmation", "Landmark", FormMethod.Post, new { @class = "submission_form", enctype = "multipart/form-data" }))
+>>>>>>> c45bfde6816def71a06d713ac66d59b26d5dede5
             {
 
                     @*To move 'Search Box' on to form side
@@ -52,7 +75,11 @@
                             <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
                             <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
                         </div>*@
+<<<<<<< HEAD
                         @Html.HiddenFor(m => m.Name, new { name = "landmarkName" })
+=======
+                    @Html.HiddenFor(m => m.Name, new { id = "LandmarkName" })
+>>>>>>> c45bfde6816def71a06d713ac66d59b26d5dede5
 
 
                         @Html.HiddenFor(m => m.Latitude)

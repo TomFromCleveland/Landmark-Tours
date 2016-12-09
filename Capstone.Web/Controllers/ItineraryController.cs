@@ -87,6 +87,7 @@ namespace Capstone.Web.Controllers
                 ModelState.Clear();
                 ItineraryModel itinerary = new ItineraryModel();
                 itinerary.UserID = userDAL.GetUser(CurrentUser).ID;
+                
                 return View("CreateItinerary", itinerary);
 
             }
@@ -136,7 +137,6 @@ namespace Capstone.Web.Controllers
                 landmarks = landmarkDAL.GetAllApprovedLandmarks();
                 AddLandmarkToItineraryViewModel landmarkAndItinerary = new AddLandmarkToItineraryViewModel();
                 landmarkAndItinerary.Itinerary = itineraryDAL.GetItineraryByID(id);
-
                 landmarkAndItinerary.AvailableLandmarks = landmarks;
                 return View("AddLandmarkToItinerary", landmarkAndItinerary);
 

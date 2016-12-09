@@ -7,9 +7,29 @@
 
 <div class="page_content well well-sm container col-sm-pull-6 center-block">
     <h2 class="pagetitle">Your Itineraries</h2>
+<<<<<<< HEAD
     <br />
     <br />
  
+=======
+    <table class="center-table">
+        <tr>
+            <td>
+                <br />
+                <input type="button" class="btn btn-primary btn-lg center-block" value="Create Itinerary" onclick="@("window.location.href='" + @Url.Action("CreateItinerary", "Itinerary") + "'");" />
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center text-white outline">
+                Click <b>Create Itinerary</b> to plan your route!
+                <br />
+                <br />
+            </td>
+        </tr>
+    </table>
+
+>>>>>>> c45bfde6816def71a06d713ac66d59b26d5dede5
     <table class="list_of_itineraries table-bordered center-table table-hover well">
         @if (Model != null)
         {
