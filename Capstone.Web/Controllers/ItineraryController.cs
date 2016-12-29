@@ -134,7 +134,7 @@ namespace Capstone.Web.Controllers
             {
                 requestUrl = requestUrl + "|" + landmark.Latitude + "," + landmark.Longitude;
             }
-            requestUrl = requestUrl + "&key=AIzaSyDu0VhcsrEx_f3CdQFVOC_Sw3r29lWBnYA";
+            requestUrl = requestUrl + "&key=AIzaSyD0sDsXauXijzO9sjRkhiUSamJjl6r9eoY";
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
             request.Method = "Get";

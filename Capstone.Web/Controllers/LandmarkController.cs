@@ -44,7 +44,7 @@ namespace Capstone.Web.Controllers
         [HttpPost]
         public ActionResult SubmissionConfirmation(LandmarkModel landmark)
         {
-            string imgSrc = "https://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + landmark.Latitude + "," + landmark.Longitude + "&heading=151.78&pitch=-0.76&key=" + "AIzaSyDu0VhcsrEx_f3CdQFVOC_Sw3r29lWBnYA";
+            string imgSrc = "https://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + landmark.Latitude + "," + landmark.Longitude + "&heading=151.78&pitch=-0.76&key=" + "AIzaSyD0sDsXauXijzO9sjRkhiUSamJjl6r9eoY";
             landmark.ImageName = imgSrc;
 
             landmark.SubmissionSuccessful = landmarkDAL.SubmitNewLandmark(landmark);
