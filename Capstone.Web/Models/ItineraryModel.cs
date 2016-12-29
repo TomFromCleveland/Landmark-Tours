@@ -14,8 +14,10 @@ namespace Capstone.Web.Models
         public double StartingLongitude { get; set; }
         public List<LandmarkModel> LandmarkList { get; set; } //List of landmarks within an itinerary
         public int UserID { get; set; }
+
         [Required]
-        public string Itinerary_Name { get; set; }  //Name of itinerary
+        public string ItineraryName { get; set; } 
+
         [Required]
         [DataType(DataType.Date)]
         [CurrentDate(ErrorMessage ="Date must be today or after.")]

@@ -61,7 +61,6 @@ namespace Capstone.Web.Controllers
             {
                 user = userDAL.GetUser(CurrentUser);
             }
-            //TODO Rami is working on _AuthenticationBar
             return View("_AuthenticationBar", user);
         }
     }

@@ -48,7 +48,6 @@ namespace Capstone.Web.Controllers
                 }
                 base.LogUserIn(user.Username);
                 return RedirectToAction("Index", "Home");
-
             }
             else
             {

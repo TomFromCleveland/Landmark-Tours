@@ -22,10 +22,10 @@ namespace Capstone.Web.Controllers
 
         [Route("api/add")]
         [HttpPost]
-        public ActionResult LandmarkToItinerary(ItineraryIDLandmarkIDModel model)
+        public ActionResult AddLandmarkToItinerary(ItineraryIDLandmarkIDModel model)
         {
 
-            if (itineraryDAL.AddItineraryLandmarks(model.LandmarkID, model.ItineraryID))
+            if (itineraryDAL.AddLandmarkToItinerary(model.LandmarkID, model.ItineraryID))
             {
                 return Json(true);
             }

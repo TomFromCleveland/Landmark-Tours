@@ -32,16 +32,13 @@ namespace Capstone.Web.Controllers
 
         public ActionResult LandmarkDetail(int landmarkID)
         {
-            //TODO Add actual reviews, get rid of dummy review in View, format reviews
             LandmarkModel landmark = landmarkDAL.GetLandmark(landmarkID);
             return View("LandmarkDetail", landmark);
         }
 
-
         public ActionResult SubmitNewLandmark()
         {
             return View("SubmitNewLandmark", new LandmarkModel());
-
         }
 
         [HttpPost]
@@ -59,8 +56,6 @@ namespace Capstone.Web.Controllers
         {
             if ((string)Session["username"] != null)
             {
-
-
                 bool admin = userDAL.GetUser((string)Session["username"]).IsAdmin;
                 if (admin)
                 {
@@ -72,17 +67,14 @@ namespace Capstone.Web.Controllers
                 }
             }
             else
-            {
-                
+            {                
                 return new HttpStatusCodeResult(401);
             }
-
         }
 
         [HttpPost]
         public ActionResult ApproveLandmarks(List<LandmarkModel> landmarksList)
         {
-
             if ((string)Session["username"] != null)
             {
                 landmarkDAL.ApproveLandmarks(landmarksList);
@@ -92,15 +84,12 @@ namespace Capstone.Web.Controllers
                 bool admin = userDAL.GetUser((string)Session["username"]).IsAdmin;
                 if (admin)
                 {
-
-
                     return View("UnapprovedLandmarkList", landmarkDAL.GetAllUnapprovedLandmarks());
                 }
                 else
                 {
                     return new HttpStatusCodeResult(401);
                 }
-
             }
             else
             {

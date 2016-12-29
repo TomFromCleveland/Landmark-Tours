@@ -35,21 +35,17 @@ namespace Capstone.Web.Controllers
 
                 int userID = (userDAL.GetUser(CurrentUser)).ID;
                 return View("ViewItineraries", itineraryDAL.GetAllItineraries(userID));
-
             }
             else
             {
-
                 return new HttpStatusCodeResult(401);
-            }
-            
+            }            
         }
 
         public ActionResult ItineraryDetails(int itineraryID)
         {
             if ((string)Session["username"] != null)
             {
-
                 ItineraryModel itinerary = new ItineraryModel();
 
                 List<LandmarkModel> optimizedOrder = new List<LandmarkModel>();
@@ -66,50 +62,36 @@ namespace Capstone.Web.Controllers
                 itinerary.LandmarkList = optimizedOrder;
 
                 return View("ItineraryDetail", itinerary);
-
-
             }
             else
             {
-
                 return new HttpStatusCodeResult(401);
-            }
-            
+            }            
         }
 
         public ActionResult CreateItinerary()
         {
             if ((string)Session["username"] != null)
             {
-
-
-
                 ModelState.Clear();
                 ItineraryModel itinerary = new ItineraryModel();
                 itinerary.UserID = userDAL.GetUser(CurrentUser).ID;
                 
                 return View("CreateItinerary", itinerary);
-
             }
             else
             {
-
                 return new HttpStatusCodeResult(401);
             }
-
         }
 
         [HttpPost]
         public ActionResult SubmitItinerary(ItineraryModel itinerary)
         {
-
             if ((string)Session["username"] != null)
             {
-
-
                 if (!ModelState.IsValid)
                 {
-
                     return RedirectToAction("CreateItinerary");
                 }
                 else
@@ -117,43 +99,32 @@ namespace Capstone.Web.Controllers
                     ItineraryModel newItinerary = itineraryDAL.CreateNewItinerary(itinerary);
                     return RedirectToAction("AddLandmarkToItinerary", new { id = newItinerary.ID });
                 }
-
-
             }
             else
             {
-
                 return new HttpStatusCodeResult(401);
             }
-
         }
 
         public ActionResult AddLandmarkToItinerary(int id)
         {
             if ((string)Session["username"] != null)
             {
-
                 List<LandmarkModel> landmarks = new List<LandmarkModel>();
                 landmarks = landmarkDAL.GetAllApprovedLandmarks();
                 AddLandmarkToItineraryViewModel landmarkAndItinerary = new AddLandmarkToItineraryViewModel();
                 landmarkAndItinerary.Itinerary = itineraryDAL.GetItineraryByID(id);
                 landmarkAndItinerary.AvailableLandmarks = landmarks;
                 return View("AddLandmarkToItinerary", landmarkAndItinerary);
-
-
             }
             else
             {
-
                 return new HttpStatusCodeResult(401);
             }
-
         }
 
         public ItineraryModel GetDirections(ItineraryModel itinerary)
         {
-
-
             string requestUrl = "https://maps.googleapis.com/maps/api/directions/json?origin=";
             requestUrl = requestUrl + itinerary.StartingLatitude + "," + itinerary.StartingLongitude;
             requestUrl = requestUrl + "&destination=" + itinerary.LandmarkList[itinerary.LandmarkList.Count - 1].Latitude + ",";
@@ -180,11 +151,11 @@ namespace Capstone.Web.Controllers
                     }
                 }
 
-
                 DirectionsHelper geoData = JsonConvert.DeserializeObject<DirectionsHelper>(str);
 
                 itinerary.Directions = geoData;
             }
+
             return itinerary;
         }
 

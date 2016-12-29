@@ -1,0 +1,15 @@
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\Default.srprofile
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\Capstone.UITests.dll.config
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\Capstone.UITests.dll
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\Capstone.UITests.pdb
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\SpecRun.SpecFlowPlugin.dll
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\TechTalk.SpecFlow.dll
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\TechTalk.SpecRun.dll
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\WebDriver.dll
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\WebDriver.Support.dll
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\WebDriver.xml
+C:\Projects\c-capstone\Capstone.UITests\bin\Debug\WebDriver.Support.xml
+C:\Projects\c-capstone\Capstone.UITests\obj\Debug\Capstone.UITests.csprojResolveAssemblyReference.cache
+C:\Projects\c-capstone\Capstone.UITests\obj\Debug\Capstone.UITests.dll
+C:\Projects\c-capstone\Capstone.UITests\obj\Debug\Capstone.UITests.pdb

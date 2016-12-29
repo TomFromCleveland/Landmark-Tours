@@ -156,20 +156,6 @@ function showLocation(position) {
     }
 }
 
-//TO DO: Delete once directions works
-//function showStartingLocation(startingLatitude, startingLongitude) {
-//    var geocoder = new google.maps.Geocoder;
-//    var latlng = {lat: parseFloat(startingLatitude), lng: parseFloat(startingLongitude)};
-//    geocoder.geocode({'location': latlng}, function (results, status) {
-//        if (status === 'OK') {
-//            if (results[0]) {
-//                $("#startingAddress").val("Your starting location:" + results[0].formatted_address);
-//            }
-//        };
-//    });
-//};
-
-
 
 function errorHandler(err) {
     if (err.code == 1) {
@@ -292,16 +278,4 @@ function giveSuggestions() {
 
         return startingLocation;
     });
-
-
-
 }
-
-
-//function addLandmarks() {
-//    $("tr").prop('onclick', null).off('click');
-//    $("#distance_header").text("Add to Itinerary");
-//    $(".landmark_distance").append("<input class=add type=button value=Add More />")
-
-
-//}

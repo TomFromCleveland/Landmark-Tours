@@ -29,7 +29,7 @@ namespace Capstone.Web.DALs
                     SqlCommand cmd = new SqlCommand(@"INSERT INTO itinerary (name, itinerary_date, user_id, starting_latitude, starting_longitude) 
                                                       VALUES (@name, @itineraryDate, @userID, @startingLatitude, @startingLongitude); SELECT cast(Scope_Identity() as int)", conn);
 
-                    cmd.Parameters.AddWithValue("@name", itinerary.Itinerary_Name);
+                    cmd.Parameters.AddWithValue("@name", itinerary.ItineraryName);
                     cmd.Parameters.AddWithValue("@itineraryDate", itinerary.Date);
                     cmd.Parameters.AddWithValue("@userID", itinerary.UserID);
                     cmd.Parameters.AddWithValue("@startingLatitude", itinerary.StartingLatitude);
@@ -46,10 +46,8 @@ namespace Capstone.Web.DALs
             return itinerary;
         }
 
-        public bool AddItineraryLandmarks(int landmarkID, int itineraryID)
+        public bool AddLandmarkToItinerary(int landmarkID, int itineraryID)
         {
-            //TODO: change this method to singular landmark
-
             int additionSuccess = 0;
 
             try
@@ -99,7 +97,7 @@ namespace Capstone.Web.DALs
                             StartingLatitude = Convert.ToDouble(reader["starting_latitude"]),
                             StartingLongitude = Convert.ToDouble(reader["starting_longitude"]),
                             Date = Convert.ToDateTime(reader["itinerary_date"]),
-                            Itinerary_Name = Convert.ToString(reader["name"])
+                            ItineraryName = Convert.ToString(reader["name"])
                         });
                     }
                 }
@@ -179,7 +177,7 @@ namespace Capstone.Web.DALs
                     {
                         itinerary.ID = itineraryID;
                         itinerary.Date = Convert.ToDateTime(reader["itinerary_DATE"]);
-                        itinerary.Itinerary_Name = Convert.ToString(reader["itinerary_name"]);
+                        itinerary.ItineraryName = Convert.ToString(reader["itinerary_name"]);
                         itinerary.StartingLatitude = Convert.ToDouble(reader["starting_latitude"]);
                         itinerary.StartingLongitude = Convert.ToDouble(reader["starting_longitude"]);
                         itinerary.UserID = Convert.ToInt32(reader["user_id"]);
@@ -237,7 +235,7 @@ namespace Capstone.Web.DALs
                         {
                             itinerary.ID = itineraryID;
                             itinerary.Date = Convert.ToDateTime(reader["itinerary_DATE"]);
-                            itinerary.Itinerary_Name = Convert.ToString(reader["name"]);
+                            itinerary.ItineraryName = Convert.ToString(reader["name"]);
                             itinerary.StartingLatitude = Convert.ToDouble(reader["starting_latitude"]);
                             itinerary.StartingLongitude = Convert.ToDouble(reader["starting_longitude"]);
                             itinerary.UserID = Convert.ToInt32(reader["user_id"]);
@@ -250,7 +248,7 @@ namespace Capstone.Web.DALs
                         {
                             itinerary.ID = itineraryID;
                             itinerary.Date = Convert.ToDateTime(reader["itinerary_DATE"]);
-                            itinerary.Itinerary_Name = Convert.ToString(reader["itinerary_name"]);
+                            itinerary.ItineraryName = Convert.ToString(reader["itinerary_name"]);
                             itinerary.StartingLatitude = Convert.ToDouble(reader["starting_latitude"]);
                             itinerary.StartingLongitude = Convert.ToDouble(reader["starting_longitude"]);
                             itinerary.UserID = Convert.ToInt32(reader["user_id"]);

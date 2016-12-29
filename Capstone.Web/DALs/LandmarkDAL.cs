@@ -180,7 +180,6 @@ namespace Capstone.Web.DALs
             {
                 Console.WriteLine(e.Message);
             }
-            //Ask Josh: is it a problem that we don't confirm a partial success?
             return (approvalSucessful == landmarks.Count);
         }
     }

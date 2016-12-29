@@ -79,6 +79,7 @@ namespace Capstone.Web.DALs
             return submissionSuccessful != 0;
         }
 
+        //TODO: Thumbs up/thumbs down
         //public bool SubmitThumbsUpOrDown(ReviewModel review)
         //{
         //      this will be done separately from submit reviews

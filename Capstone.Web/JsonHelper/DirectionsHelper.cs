@@ -9,8 +9,6 @@ using Newtonsoft.Json.Linq;
 
 namespace Capstone.Web.JsonHelper
 {
-  
-
         public class GeocodedWaypoint
         {
             public string geocoder_status;

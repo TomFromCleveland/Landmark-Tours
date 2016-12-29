@@ -185,7 +185,7 @@
     <Compile Include="Controllers\LandmarkController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Crypto\HashProvider.cs" />
+    <Compile Include="Validation\HashProvider.cs" />
     <Compile Include="DALs\IItineraryDAL.cs" />
     <Compile Include="DALs\IReviewDAL.cs" />
     <Compile Include="DALs\ItineraryDAL.cs" />
@@ -199,13 +199,13 @@
     </Compile>
     <Compile Include="DALs\ILandmarkDAL.cs" />
     <Compile Include="JsonHelper\DirectionsHelper.cs" />
-    <Compile Include="Models\AddLandmarkToItineraryViewModel.cs" />
-    <Compile Include="Models\CreateUserViewModel.cs" />
-    <Compile Include="Models\CurrentDateAttribute.cs" />
+    <Compile Include="ViewModels\AddLandmarkToItineraryViewModel.cs" />
+    <Compile Include="ViewModels\CreateUserViewModel.cs" />
+    <Compile Include="Validation\CurrentDateAttribute.cs" />
     <Compile Include="Models\ItineraryIDLandmarkIDModel.cs" />
     <Compile Include="Models\ItineraryModel.cs" />
     <Compile Include="Models\LandmarkModel.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
